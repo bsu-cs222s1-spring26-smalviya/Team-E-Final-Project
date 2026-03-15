@@ -12,6 +12,7 @@ repositories {
 dependencies {
     implementation 'org.json:json:20240303'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+    implementation 'com.google.code.gson:gson:2.10.1'
 }
 test{
     useJUnitPlatform()
