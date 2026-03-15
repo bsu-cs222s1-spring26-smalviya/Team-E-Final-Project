@@ -1,8 +1,19 @@
 package Model;
 
 import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import com.google.gson.Gson;
+import View.User;
 
 public class DataStorage {
+    private Gson gson = new Gson();
+
+    public DataStorage() {
+
+    }
 
     public boolean checkLocalData(String username) {
         String fileName = username + "_data.json";
