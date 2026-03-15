@@ -60,6 +60,7 @@ public class FinanceManager {
                     ds.saveAccount(currentAccount);
                     break;
                 case "2":
+                    ui.displayTransactionHistory(currentAccount);
                     break;
                 case "3":
                     break;
