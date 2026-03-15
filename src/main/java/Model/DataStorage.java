@@ -46,7 +46,7 @@ public class DataStorage {
         User ui = new User();
         try (FileWriter writer = new FileWriter(fileName)) {
             gson.toJson(account, writer);
-            ui.displayMessage("Data successfully saved to: " + fileName);
+            ui.displayMessage("Data successfully saved.");
         } catch (IOException e) {
             ui.displayMessage("Failed to save data. Error:" + e.getMessage());
         }
