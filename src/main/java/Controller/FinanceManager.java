@@ -4,6 +4,9 @@ import Model.Account;
 import Model.Transaction;
 import View.User;
 import Model.DataStorage;
+import Converter.CurrencyConverter;
+import Converter.ExchangeRateParser;
+import Converter.ConverterException;
 
 public class FinanceManager {
     private Account currentAccount;
@@ -65,8 +68,10 @@ public class FinanceManager {
                 case "3":
                     break;
                 case "4":
+                    handleCurrencyConverter();
                     break;
                 case "5":
+
                     break;
                 case "6":
                     ui.displayMessage("Thank you for your use.\nGoodbye!");
@@ -76,6 +81,31 @@ public class FinanceManager {
                 default:
                     ui.displayMessage("Please enter a number from 1 to 5!");
             }
+        }
+    }
+
+    private void handleCurrencyConverter() {
+        ui.displayMessage("\n--- Live Currency Converter ---");
+
+        String fromCurrency = ui.getUserInputString("Enter base currency (e.g., USD, EUR, CNY):").toUpperCase();
+        String toCurrency = ui.getUserInputString("Enter target currency (e.g., USD, EUR, CNY): ").toUpperCase();
+
+        double amount = ui.getUserInputDouble("Enter the amount to convert:");
+
+        ui.displayMessage("Fetching live exchange rates from server...");
+
+        try {
+            CurrencyConverter currencyConverter = new CurrencyConverter();
+            String jsonResult = currencyConverter.getExchangeRateJson(fromCurrency, toCurrency);
+
+            ExchangeRateParser exchangeRateParser = new ExchangeRateParser();
+            double rate = exchangeRateParser.parseExchangeRateJson(jsonResult, toCurrency);
+
+            double convertedAmount = amount * rate;
+            ui.displayMessage(String.format("Success! %.2f %s = %.2f %s (Rate: %.4f)", amount, fromCurrency, convertedAmount, toCurrency, rate));
+
+        } catch (ConverterException e) {
+            ui.displayMessage("Conversion failed: " + e.getMessage());
         }
     }
 
