@@ -1,5 +1,9 @@
 package View;
 
+import Model.Account;
+import Model.Transaction;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class User {
@@ -38,5 +42,13 @@ public class User {
 
     public void displayMessage(String message) {
         System.out.println(message);
+    }
+
+    public void displayTransactionHistory(Account account) {
+        ArrayList<Transaction> transactionHistory = account.getTransactionHistory();
+        for (Transaction transaction : transactionHistory) {
+            System.out.println(transaction);
+        }
+
     }
 }
