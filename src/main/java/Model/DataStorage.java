@@ -11,7 +11,23 @@ public class DataStorage {
     }
 
     public Account loadAccount(String username) {
-        return new Account(username, 0.0);//This just is a placeholder!
+        String fileName = username + "_data.json";
+        File file = new File(fileName);
+        User ui = new User();
+
+        if (!file.exists()) {
+            return null;
+        }
+
+        try (FileReader reader = new FileReader(file)) {
+            Account account = gson.fromJson(reader, Account.class);
+            ui.displayMessage("Data successfully loaded for: " + username);
+
+            return account;
+        } catch (IOException e) {
+            ui.displayMessage("Failed to load data. Error: " + e.getMessage());
+            return null;
+        }
     }
 
     public void saveAccount(Account account) {
