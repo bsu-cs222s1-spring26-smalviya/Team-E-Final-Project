@@ -36,4 +36,8 @@ public class Transaction {
         return date;
     }
 
+    public String toString() {
+        return "Amount: " + amount + "\n" + "Category: " + category + "\n" + "Date: " + date + "\n" + "Description: " + description + "\n";
+    }
+
 }
