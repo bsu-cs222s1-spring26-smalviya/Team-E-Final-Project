@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Account;
+import Model.Transaction;
 import View.User;
 import Model.DataStorage;
 
@@ -17,7 +18,7 @@ public class FinanceManager {
     public void start() {
         boolean isRuning = true;
 
-        String username = ui.getUserInput("Welcome!\nPlease enter your username.");
+        String username = ui.getUserInputString("Welcome!\nPlease enter your username: ");
 
         boolean hasSaveData = ds.checkLocalData(username);
 
@@ -30,15 +31,33 @@ public class FinanceManager {
             ui.displayMessage("Creating a new account for you...");
 
             this.currentAccount = new Account(username, 0.0);
+            ds.saveAccount(this.currentAccount);
+            ui.displayMessage("Account created!");
         }
 
         ui.displayMessage("Welcome to the Finance Manager, " + currentAccount.getUsername() + "!");
         while (isRuning) {
             ui.displayMainMenu();
-            String choice = ui.getUserInput("Please select an option: ");
+            String choice = ui.getUserInputString("Please select an option: ");
 
             switch (choice) {
                 case "1":
+                    boolean amountIsNotSufficient = false;
+                    double amount = ui.getUserInputDouble("Please enter the transaction amount. Use the prefix \"+\" for deposits and \"-\" for withdrawals.\n:");
+                    if (amount + currentAccount.getBalance() < 0) {
+                        amountIsNotSufficient = true;
+                    }
+                    while (amountIsNotSufficient) {
+                        amount = ui.getUserInputDouble("Insufficient balance, operation failed, please try again.Your balance is:" + currentAccount.getBalance() + "\n:");
+                        if (amount + currentAccount.getBalance() >= 0) {
+                            amountIsNotSufficient = false;
+                        }
+                    }
+
+                    String description = ui.getUserInputString("Please describe this transaction.\n:");
+
+                    currentAccount.addTransaction(new Transaction(amount, description));
+                    ds.saveAccount(currentAccount);
                     break;
                 case "2":
                     break;
