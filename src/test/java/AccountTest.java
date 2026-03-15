@@ -3,6 +3,7 @@ import Model.Transaction;
 import Model.MoneyGoal;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
@@ -25,7 +26,7 @@ public class AccountTest {
 
         Account account = new Account("Alex", 500.0);
 
-        Transaction t = new Transaction(50.0, "Food", "Dinner");
+        Transaction t = new Transaction(50.0, "Dinner");
         account.addTransaction(t);
 
         assertEquals(1, account.getTransactionHistory().size());
@@ -40,7 +41,7 @@ public class AccountTest {
         MoneyGoal goal = new MoneyGoal(
                 "Laptop",
                 1000.0,
-                LocalDate.of(2026,12,31)
+                "3/15/2026"
         );
 
         account.addMoneyGoals(goal);

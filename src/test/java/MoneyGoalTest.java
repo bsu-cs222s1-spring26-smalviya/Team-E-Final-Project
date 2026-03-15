@@ -13,7 +13,7 @@ public class MoneyGoalTest {
         MoneyGoal goal = new MoneyGoal(
                 "Vacation",
                 1000,
-                LocalDate.of(2026,6,1)
+                "6/1/2026"
         );
 
         assertEquals("Vacation", goal.getGoalName());
@@ -27,7 +27,7 @@ public class MoneyGoalTest {
         MoneyGoal goal = new MoneyGoal(
                 "Vacation",
                 1000,
-                LocalDate.of(2026,6,1)
+                "6/1/2026"
         );
 
         goal.addProgress(200);
@@ -41,7 +41,7 @@ public class MoneyGoalTest {
         MoneyGoal goal = new MoneyGoal(
                 "Vacation",
                 1000,
-                LocalDate.of(2026,6,1)
+                "6/1/2026"
         );
 
         goal.addProgress(200);
