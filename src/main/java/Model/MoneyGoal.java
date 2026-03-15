@@ -1,14 +1,12 @@
 package Model;
 
-import java.time.LocalDate;
-
 public class MoneyGoal {
     private String goalName;
     private double targetAmount;
     private double currentAmount;
-    private LocalDate deadline;
+    private String deadline;
 
-    public MoneyGoal(String goalName, double targetAmount, LocalDate deadline) {
+    public MoneyGoal(String goalName, double targetAmount, String deadline) {
         this.goalName = goalName;
         this.targetAmount = targetAmount;
         this.deadline = deadline;
