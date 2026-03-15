@@ -21,9 +21,19 @@ public class User {
         System.out.println();
     }
 
-    public String getUserInput(String prompt) {
+    public String getUserInputString(String prompt) {
         System.out.print(prompt);
         return scanner.nextLine();
+    }
+
+    public double getUserInputDouble(String prompt) {
+        System.out.print(prompt);
+        return Double.parseDouble(scanner.nextLine());
+    }
+
+    public int getUserInputInt(String prompt) {
+        System.out.print(prompt);
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public void displayMessage(String message) {
