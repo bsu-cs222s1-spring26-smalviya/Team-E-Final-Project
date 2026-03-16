@@ -31,6 +31,14 @@ public class Account {
         return moneyGoals;
     }
 
+    public boolean checkMoneyGoal() {
+        if (!moneyGoals.isEmpty()) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public void addMoneyGoals(MoneyGoal moneyGoal) {
         this.moneyGoals.add(moneyGoal);
     }
