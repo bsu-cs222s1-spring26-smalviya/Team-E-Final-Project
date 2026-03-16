@@ -5,14 +5,8 @@
 ### Controller
 
 - The FinanceManager class in the Controller folder is the main entry point and control center of the application.
-    - [ ] Case 3 and Case 5 haven't been implemented.
+    - [ ] Case 3 haven't been implemented.
     - Case 3: I don't know how to draw the chart in console.
-    - Case 5: I am still thinking about logic and data construction of Money Goals.
-    - There some questions:
-        - Do we have multiple Goals?
-        - Do we need add time for calculating and drawing charts?
-        - If we have multiple goals, do we need force user to set their goal at the first time when they open an
-          account?
 
 ### View
 
@@ -23,10 +17,8 @@
 ### Model
 
 - The Account class in the Model folder encapsulates the user's core data and the actions to manipulate these states.
-    - [ ] Note the MoneyGoal section.
 - The MoneyGoal class in the Model folder encapsulates the user's savings goals and the actions for manipulating this
   data.
-    - [ ] The operating logic of MoneyGoal hasn't been figured out yet.
 - The Transaction class in the Model folder encapsulates user transaction data and the actions for manipulating this
   data.
 - The DataStorage class in the Model folder encapsulates functions of saving Account to json, reading from json and
