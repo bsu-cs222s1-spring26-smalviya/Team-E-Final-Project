@@ -1,6 +1,7 @@
 package View;
 
 import Model.Account;
+import Model.MoneyGoal;
 import Model.Transaction;
 
 import java.util.ArrayList;
@@ -50,5 +51,12 @@ public class User {
             System.out.println(transaction);
         }
 
+    }
+
+    public void displayMoneyGoal(Account account) {
+        ArrayList<MoneyGoal> moneyGoals = account.getMoneyGoals();
+        for (MoneyGoal moneyGoal : moneyGoals) {
+            System.out.println(moneyGoal);
+        }
     }
 }
