@@ -95,6 +95,21 @@ public class FinanceManager {
             currentAccount.addMoneyGoals(moneyGoal);
         }
         ui.displayMoneyGoal(currentAccount);
+
+        boolean ifWantAddMoneyGoals = true;
+        while (ifWantAddMoneyGoals) {
+            if (ui.getUserInputString("Do you want to add money goals? (y/n): ").equalsIgnoreCase("y")) {
+                String goalName = ui.getUserInputString("Please enter your goal name: ");
+                double targetAmount = ui.getUserInputDouble("Please enter your target amount: ");
+                String deadline = ui.getUserInputString("Please enter your deadline: ");
+                MoneyGoal moneyGoal = new MoneyGoal(goalName, targetAmount, deadline);
+                currentAccount.addMoneyGoals(moneyGoal);
+                ui.displayMoneyGoal(currentAccount);
+            } else {
+                ifWantAddMoneyGoals = false;
+            }
+        }
+
         ds.saveAccount(currentAccount);
     }
 
