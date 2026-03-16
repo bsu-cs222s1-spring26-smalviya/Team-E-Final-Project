@@ -57,6 +57,7 @@ public class User {
         ArrayList<MoneyGoal> moneyGoals = account.getMoneyGoals();
         for (MoneyGoal moneyGoal : moneyGoals) {
             System.out.println(moneyGoal);
+            System.out.printf("Completion Percentage Of Goal: %.2f%%\n", (account.getBalance() / moneyGoal.getTargetAmount() * 100.0));
         }
     }
 }
