@@ -1,6 +1,7 @@
 package Controller;
 
 import Model.Account;
+import Model.MoneyGoal;
 import Model.Transaction;
 import View.User;
 import Model.DataStorage;
@@ -71,7 +72,7 @@ public class FinanceManager {
                     handleCurrencyConverter();
                     break;
                 case "5":
-
+                    moneyGoal();
                     break;
                 case "6":
                     ui.displayMessage("Thank you for your use.\nGoodbye!");
@@ -82,6 +83,19 @@ public class FinanceManager {
                     ui.displayMessage("Please enter a number from 1 to 5!");
             }
         }
+    }
+
+    private void moneyGoal() {
+        if (currentAccount.checkMoneyGoal()) {
+            ui.displayMessage("You do not have a goal yet, please create one.");
+            String goalName = ui.getUserInputString("Please enter your goal name: ");
+            double targetAmount = ui.getUserInputDouble("Please enter your target amount: ");
+            String deadline = ui.getUserInputString("Please enter your deadline: ");
+            MoneyGoal moneyGoal = new MoneyGoal(goalName, targetAmount, deadline);
+            currentAccount.addMoneyGoals(moneyGoal);
+        }
+        ui.displayMoneyGoal(currentAccount);
+        ds.saveAccount(currentAccount);
     }
 
     private void handleCurrencyConverter() {
