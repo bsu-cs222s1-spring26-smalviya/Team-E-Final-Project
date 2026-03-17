@@ -42,4 +42,16 @@ public class MoneyGoalTest {
 
         assertEquals(1000, goal.getTargetAmount());
     }
+
+    @Test
+    public void testDeadline() {
+
+        MoneyGoal goal = new MoneyGoal(
+                "Vacation",
+                1000,
+                "6/1/2026"
+        );
+
+        assertEquals("6/1/2026", goal.getDeadline());
+    }
 }
