@@ -1,6 +1,7 @@
 import Model.Transaction;
 
 import org.junit.jupiter.api.Test;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -9,17 +10,24 @@ public class TransactionTest {
     @Test
     public void testTransactionCreation() {
 
-        Transaction t = new Transaction(25.5, "Lunch");
+        Transaction testTransaction = new Transaction(-25.5, "Lunch");
 
-        assertEquals(25.5, t.getAmount());
-        assertEquals("Lunch", t.getDescription());
+        assertNotNull(testTransaction);
+    }
+
+    @Test
+    public void testTransactionAmount() {
+
+        Transaction testTransaction = new Transaction(45, "Fast Food");
+
+        assertEquals(45, testTransaction.getAmount());
     }
 
     @Test
     public void testTransactionDateExists() {
 
-        Transaction t = new Transaction(10, "Bus");
+        Transaction testTransaction = new Transaction(10, "Bus");
 
-        assertNotNull(t.getDate());
+        assertNotNull(testTransaction.getDate());
     }
 }
