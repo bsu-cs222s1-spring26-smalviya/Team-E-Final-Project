@@ -23,6 +23,16 @@ public class TransactionTest {
     }
 
     @Test
+    public void testTransactionCategory() {
+
+        Transaction withdrawalTransaction = new Transaction(-15, "Lost Gambling");
+        Transaction depositTransaction = new Transaction(15, "Won Gambling");
+
+        assertEquals("Withdrawal", withdrawalTransaction.getCategory());
+        assertEquals("Deposit", depositTransaction.getCategory());
+    }
+
+    @Test
     public void testTransactionDateExists() {
 
         Transaction testTransaction = new Transaction(10, "Bus");
