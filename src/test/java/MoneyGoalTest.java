@@ -32,7 +32,7 @@ public class MoneyGoalTest {
     }
 
     @Test
-    public void testCompletionPercentage() {
+    public void testTargetAmount() {
 
         MoneyGoal goal = new MoneyGoal(
                 "Vacation",
@@ -40,10 +40,6 @@ public class MoneyGoalTest {
                 "6/1/2026"
         );
 
-
-
-
-
-
+        assertEquals(1000, goal.getTargetAmount());
     }
 }
