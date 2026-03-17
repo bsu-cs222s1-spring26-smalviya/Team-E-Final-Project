@@ -67,6 +67,7 @@ public class FinanceManager {
                     ui.displayTransactionHistory(currentAccount);
                     break;
                 case "3":
+                    ui.displayMessage("(NOT YET IMPLEMENTED)");
                     break;
                 case "4":
                     handleCurrencyConverter();
