@@ -33,6 +33,14 @@ public class TransactionTest {
     }
 
     @Test
+    public void testDescription() {
+
+        Transaction testTransaction = new Transaction(12, "Gym");
+
+        assertEquals("Gym", testTransaction.getDescription());
+    }
+
+    @Test
     public void testTransactionDateExists() {
 
         Transaction testTransaction = new Transaction(10, "Bus");
