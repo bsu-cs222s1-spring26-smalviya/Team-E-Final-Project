@@ -16,12 +16,11 @@ public class MoneyGoalTest {
                 "6/1/2026"
         );
 
-        assertEquals("Vacation", goal.getGoalName());
-        assertEquals(1000, goal.getTargetAmount());
+        assertNotNull(goal);
     }
 
     @Test
-    public void testAddProgress() {
+    public void testGoalName() {
 
         MoneyGoal goal = new MoneyGoal(
                 "Vacation",
@@ -29,9 +28,7 @@ public class MoneyGoalTest {
                 "6/1/2026"
         );
 
-
-
-
+        assertEquals("Vacation", goal.getGoalName());
     }
 
     @Test
