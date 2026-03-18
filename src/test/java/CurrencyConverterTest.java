@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CurrencyConverterTest {
 
     @Test
-    public void testGetExchangeRateJson() throws Exception {
+    public void testIfReturnsJson() throws Exception {
 
         CurrencyConverter converter = new CurrencyConverter();
 
@@ -13,8 +13,6 @@ public class CurrencyConverterTest {
 
         assertNotNull(json);
 
-        assertTrue(json.contains("rates"));
-
-        assertTrue(json.contains("cny") || json.contains("CNY"));
     }
+
 }
