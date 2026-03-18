@@ -27,6 +27,14 @@ public class AccountTest {
     }
 
     @Test
+    public void testInitialBalance() {
+
+        Account testAccount = new Account("Alex", 500.0);
+
+        assertEquals(500.0, testAccount.getBalance());
+    }
+
+    @Test
     public void testAddTransaction() {
 
         Account account = new Account("Alex", 500.0);
