@@ -12,7 +12,17 @@ public class CurrencyConverterTest {
         String json = converter.getExchangeRateJson("USD", "CNY");
 
         assertNotNull(json);
+    }
 
+    @Test
+    public void testJsonFormat() throws Exception {
+
+        CurrencyConverter converter = new CurrencyConverter();
+
+        String json = converter.getExchangeRateJson("USD", "CNY");
+
+        assertTrue(json.contains("rates"));
+        assertTrue(json.contains("cny") || json.contains("CNY"));
     }
 
 }
