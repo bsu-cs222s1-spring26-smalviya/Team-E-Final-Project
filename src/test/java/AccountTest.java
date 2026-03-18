@@ -19,6 +19,14 @@ public class AccountTest {
     }
 
     @Test
+    public void testUsername() {
+
+        Account testAccount = new Account("Alex", 500.0);
+
+        assertEquals("Alex", testAccount.getUsername());
+    }
+
+    @Test
     public void testAddTransaction() {
 
         Account account = new Account("Alex", 500.0);
