@@ -43,6 +43,14 @@ public class AccountTest {
     }
 
     @Test
+    public void testInitialMoneyGoals() {
+
+        Account testAccount = new Account("Alex", 500.0);
+
+        assertTrue(testAccount.getMoneyGoals().isEmpty());
+    }
+
+    @Test
     public void testAddTransaction() {
 
         Account account = new Account("Alex", 500.0);
