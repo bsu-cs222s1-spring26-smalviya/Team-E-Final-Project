@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ExchangeRateParserTest {
 
     @Test
-    void testParseExchangeRateJson() throws JsonParserException {
+    void testParsedExchangeRate() throws JsonParserException {
 
         String json = """
         {
