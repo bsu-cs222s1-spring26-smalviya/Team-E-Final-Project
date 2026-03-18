@@ -35,6 +35,14 @@ public class AccountTest {
     }
 
     @Test
+    public void testInitialTransactionHistory() {
+
+        Account testAccount = new Account("Alex", 500.0);
+
+        assertTrue(testAccount.getTransactionHistory().isEmpty());
+    }
+
+    @Test
     public void testAddTransaction() {
 
         Account account = new Account("Alex", 500.0);
