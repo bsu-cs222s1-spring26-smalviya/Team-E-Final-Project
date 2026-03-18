@@ -53,19 +53,19 @@ public class AccountTest {
     @Test
     public void testAddTransaction() {
 
-        Account account = new Account("Alex", 500.0);
+        Account testAccount = new Account("Alex", 500.0);
 
         Transaction t = new Transaction(50.0, "Dinner");
-        account.addTransaction(t);
+        testAccount.addTransaction(t);
 
-        assertEquals(1, account.getTransactionHistory().size());
-        assertEquals(550.0, account.getBalance());
+        assertEquals(1, testAccount.getTransactionHistory().size());
+        assertEquals(550.0, testAccount.getBalance());
     }
 
     @Test
     public void testAddMoneyGoal() {
 
-        Account account = new Account("Alex", 500.0);
+        Account testAccount = new Account("Alex", 500.0);
 
         MoneyGoal goal = new MoneyGoal(
                 "Laptop",
@@ -73,9 +73,9 @@ public class AccountTest {
                 "3/15/2026"
         );
 
-        account.addMoneyGoals(goal);
+        testAccount.addMoneyGoals(goal);
 
-        assertEquals(1, account.getMoneyGoals().size());
-        assertEquals("Laptop", account.getMoneyGoals().get(0).getGoalName());
+        assertEquals(1, testAccount.getMoneyGoals().size());
+        assertEquals("Laptop", testAccount.getMoneyGoals().get(0).getGoalName());
     }
 }
