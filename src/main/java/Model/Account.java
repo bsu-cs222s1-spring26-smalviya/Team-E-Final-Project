@@ -7,8 +7,8 @@ import java.util.List;
 public class Account {
     private String username;
     private double balance;
-    private List<Transaction> transactionHistory;
-    private List<MoneyGoal> moneyGoals;
+    private List<Transaction> transactionHistory = new ArrayList<>();
+    private List<MoneyGoal> moneyGoals = new ArrayList<>();
 
     public Account(String username, double initialBalance) {
         this.username = username;
