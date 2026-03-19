@@ -31,12 +31,8 @@ public class Account {
         return moneyGoals;
     }
 
-    public boolean checkMoneyGoal() {
-        if (!moneyGoals.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+    public boolean hasMoneyGoals() {
+        return !moneyGoals.isEmpty();
     }
 
     public void addMoneyGoals(MoneyGoal moneyGoal) {

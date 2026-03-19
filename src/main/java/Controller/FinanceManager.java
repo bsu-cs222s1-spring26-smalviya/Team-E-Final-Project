@@ -94,7 +94,7 @@ public class FinanceManager {
     }
 
     private void moneyGoal() {
-        if (currentAccount.checkMoneyGoal()) {
+        if (!currentAccount.hasMoneyGoals()) {
             ui.displayMessage("You do not have a goal yet, please create one.");
             String goalName = ui.getUserInputString("Please enter your goal name: ");
             double targetAmount = ui.getUserInputDouble("Please enter your target amount: ");
