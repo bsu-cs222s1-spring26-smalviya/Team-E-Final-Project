@@ -13,8 +13,6 @@ public class Account {
     public Account(String username, double initialBalance) {
         this.username = username;
         this.balance = initialBalance;
-        this.transactionHistory = new ArrayList<>();
-        this.moneyGoals = new ArrayList<>();
     }
 
     public String getUsername() {
