@@ -56,7 +56,7 @@ public class MoneyGoalTest {
 
     @Test
     public void testCalculateCompletion() {
-        MoneyGoal goal = new MoneyGoal("iphone", 2000, "6/18/2026");
+        MoneyGoal goal = new MoneyGoal("Mac", 2000, "6/18/2026");
         assertEquals(25.0, goal.calculateCompletion(500.0));
     }
 

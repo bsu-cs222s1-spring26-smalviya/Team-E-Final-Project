@@ -8,7 +8,7 @@ import java.io.IOException;
 import com.google.gson.Gson;
 
 public class DataStorage {
-    private Gson gson = new Gson();
+    final private Gson gson = new Gson();
 
     public boolean checkLocalData(String username) {
         return new File(username + "_data.json").exists();

@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class User {
-    private Scanner scanner;
+    final private Scanner scanner;
 
     public User() {
         this.scanner = new Scanner(System.in);

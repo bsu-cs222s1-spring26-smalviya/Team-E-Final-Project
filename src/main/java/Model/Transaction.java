@@ -3,10 +3,10 @@ package Model;
 import java.time.LocalDateTime;
 
 public class Transaction {
-    private double amount;
-    private String category;
-    private String date;
-    private String description;
+    final private double amount;
+    final private String category;
+    final private String date;
+    final private String description;
 
     public Transaction(double amount, String description) {
         this.amount = amount;

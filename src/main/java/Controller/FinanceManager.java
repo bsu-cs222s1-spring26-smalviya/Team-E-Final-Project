@@ -13,8 +13,8 @@ import java.io.IOException;
 
 public class FinanceManager {
     private Account currentAccount;
-    private User ui;
-    private DataStorage ds;
+    final private User ui;
+    final private DataStorage ds;
 
     public FinanceManager() {
         this.ui = new User();

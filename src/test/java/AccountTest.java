@@ -82,7 +82,7 @@ public class AccountTest {
         Account testAccount = new Account("Fei", 500.0);
         assertFalse(testAccount.hasMoneyGoals());
 
-        testAccount.addMoneyGoals(new MoneyGoal("iphone", 999, "11/11/2026"));
+        testAccount.addMoneyGoals(new MoneyGoal("iPhone", 999, "11/11/2026"));
         assertTrue(testAccount.hasMoneyGoals());
     }
 }

@@ -32,8 +32,6 @@ public class DataStorageTest {
 
         Account account = new Account("Alex", 100);
 
-        assertDoesNotThrow(() -> {
-            storage.saveAccount(account);
-        });
+        assertDoesNotThrow(() -> storage.saveAccount(account));
     }
 }

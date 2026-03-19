@@ -9,8 +9,7 @@ public class ExchangeRateParser {
         try {
             JSONObject jsonObject = new JSONObject(exchangeRateJson);
             JSONObject rateObject = jsonObject.getJSONObject("rates");
-            double rate = rateObject.getDouble(toCurrency);
-            return rate;
+            return rateObject.getDouble(toCurrency);
         }catch (JSONException e){
             throw new JsonParserException("Parse ExchangeRate Json Error");
         }

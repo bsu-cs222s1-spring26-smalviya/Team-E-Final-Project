@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.List;
 
 public class Account {
-    private String username;
+    final private String username;
     private double balance;
-    private List<Transaction> transactionHistory = new ArrayList<>();
-    private List<MoneyGoal> moneyGoals = new ArrayList<>();
+    final private List<Transaction> transactionHistory = new ArrayList<>();
+    final private List<MoneyGoal> moneyGoals = new ArrayList<>();
 
     public Account(String username, double initialBalance) {
         this.username = username;
