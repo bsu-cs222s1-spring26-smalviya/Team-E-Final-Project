@@ -32,13 +32,14 @@ public class User {
     }
 
     public double getUserInputDouble(String prompt) {
-        System.out.print(prompt);
-        return Double.parseDouble(scanner.nextLine());
-    }
-
-    public int getUserInputInt(String prompt) {
-        System.out.print(prompt);
-        return Integer.parseInt(scanner.nextLine());
+        while (true) {
+            System.out.print(prompt);
+            try {
+                return Double.parseDouble(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a valid number.");
+            }
+        }
     }
 
     public void displayMessage(String message) {
