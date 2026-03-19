@@ -1,6 +1,8 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class Account {
     private String username;
@@ -23,12 +25,12 @@ public class Account {
         return balance;
     }
 
-    public ArrayList<Transaction> getTransactionHistory() {
-        return transactionHistory;
+    public List<Transaction> getTransactionHistory() {
+        return Collections.unmodifiableList(transactionHistory);
     }
 
-    public ArrayList<MoneyGoal> getMoneyGoals() {
-        return moneyGoals;
+    public List<MoneyGoal> getMoneyGoals() {
+        return Collections.unmodifiableList(moneyGoals);
     }
 
     public boolean hasMoneyGoals() {
