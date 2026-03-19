@@ -22,7 +22,7 @@ public class FinanceManager {
     }
 
     public void start() {
-        boolean isRuning = true;
+        boolean isRunning = true;
 
         String username = ui.getUserInputString("Welcome!\nPlease enter your username: ");
 
@@ -47,7 +47,7 @@ public class FinanceManager {
         }
 
         ui.displayMessage("Welcome to the Finance Manager, " + currentAccount.getUsername() + "!");
-        while (isRuning) {
+        while (isRunning) {
             ui.displayMainMenu();
             String choice = ui.getUserInputString("Please select an option: ");
 
@@ -84,7 +84,7 @@ public class FinanceManager {
                     break;
                 case "6":
                     ui.displayMessage("Thank you for your use.\nGoodbye!");
-                    isRuning = false;
+                    isRunning = false;
                     saveData(currentAccount);
                     break;
                 default:
