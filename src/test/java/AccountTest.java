@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.LocalDate;
-
 public class AccountTest {
 
     @Test
@@ -77,5 +75,14 @@ public class AccountTest {
 
         assertEquals(1, testAccount.getMoneyGoals().size());
         assertEquals("Laptop", testAccount.getMoneyGoals().get(0).getGoalName());
+    }
+
+    @Test
+    public void testHasMoneyGoals() {
+        Account testAccount = new Account("Fei", 500.0);
+        assertFalse(testAccount.hasMoneyGoals());
+
+        testAccount.addMoneyGoals(new MoneyGoal("iphone", 999, "11/11/2026"));
+        assertTrue(testAccount.hasMoneyGoals());
     }
 }

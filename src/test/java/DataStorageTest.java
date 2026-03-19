@@ -2,7 +2,9 @@ import Model.DataStorage;
 import Model.Account;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class DataStorageTest {
 
@@ -17,15 +19,10 @@ public class DataStorageTest {
     }
 
     @Test
-    public void testLoadAccountCreatesAccount() {
-
+    public void testLoadAccountReturnsNullWhenFileNotFound() throws Exception {
         DataStorage storage = new DataStorage();
-
-        Account account = storage.loadAccount("Alex");
-
-        assertNotNull(account);
-        assertEquals("Alex", account.getUsername());
-        assertEquals(0.0, account.getBalance());
+        Account account = storage.loadAccount("SomeFakeUserThatDoesNotExist123");
+        assertNull(account);
     }
 
     @Test

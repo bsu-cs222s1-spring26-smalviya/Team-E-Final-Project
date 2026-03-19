@@ -1,9 +1,8 @@
 import Model.MoneyGoal;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MoneyGoalTest {
 
@@ -53,5 +52,17 @@ public class MoneyGoalTest {
         );
 
         assertEquals("6/1/2026", goal.getDeadline());
+    }
+
+    @Test
+    public void testCalculateCompletion() {
+        MoneyGoal goal = new MoneyGoal("iphone", 2000, "6/18/2026");
+        assertEquals(25.0, goal.calculateCompletion(500.0));
+    }
+
+    @Test
+    public void testCalculateCompletionWithZeroTarget() {
+        MoneyGoal goal = new MoneyGoal("Free item",0,"6/18/2026");
+        assertEquals(0, goal.calculateCompletion(500.0));
     }
 }
