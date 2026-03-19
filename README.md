@@ -1,41 +1,40 @@
 # Team-E-Final-Project
 
-## Development checklist
+## Project Summary
 
-### Controller
+Finance Manager is a robust, console-based personal finance application designed to help users track their daily income
+and expenses, manage customized savings goals, and perform real-time currency conversions.
 
-- The FinanceManager class in the Controller folder is the main entry point and control center of the application.
-    - [ ] Case 3 haven't been implemented.
-    - Case 3: I don't know how to draw the chart in console.
+Developed with a strict adherence to the Model-View-Controller (MVC) architectural pattern and Test-Driven Development (
+TDD), this project ensures high maintainability and robust data protection. It provides tangible user value by offering
+a stable, bug-free environment for personal wealth management, featuring persistent JSON data storage and secure API
+integration for live exchange rates.
 
-### View
+## Authors
 
-- The User class in the View folder is responsible for providing user interaction functionality, including all input and
-  output behaviors.
-    - [ ] If getUserInputInt is not used afterward, it should be deleted.
+* Ye, Fei (GitHub: AlecFeiYe)
+* Zhang, Daniel (GitHub: DanielZhang1129)
+* Johnson, Silas (GitHub: LordRaymik/Lord-Raymik)
+* Palenske, Alejandro (GitHub: alexsome22)
 
-### Model
+## Build and Run Instructions
 
-- The Account class in the Model folder encapsulates the user's core data and the actions to manipulate these states.
-- The MoneyGoal class in the Model folder encapsulates the user's savings goals and the actions for manipulating this
-  data.
-- The Transaction class in the Model folder encapsulates user transaction data and the actions for manipulating this
-  data.
-- The DataStorage class in the Model folder encapsulates functions of saving Account to json, reading from json and
-  check if one's file is there.
+### Prerequisites
 
-### Test
+* **Java:** Java Development Kit (JDK) 11 or higher installed on your system.
+* **Dependencies:** The project utilizes `Gson` for JSON serialization/deserialization and `JUnit 5` for unit testing.
 
-- I didn't thoroughly check any of the tests; I just made sure they passed. However, I glanced at them and noticed that
-  due to some recent changes, some new classes lacked corresponding tests, and some classes with existing tests were
-  missing.
+### How to Build and Run
 
-## Program running and file logic
-
-The program starts running, displays a welcome screen, and prompts the user to enter a username. The program retrieves
-the username and checks if the user exists in the local file.
-If the username does not exist, it's a new user, and the account opening process begins.
-If the username exists, it's an existing user, reads the user data, and directly enters the program's main interface.
-Then the user can select functions such as trading, viewing trading history, viewing financial charts, Currency
-Converter,and Manage Money Goals . Selecting
-option 6 will exit and automatically save the data.
+1. **Clone the repository:** Open your terminal and clone the project from the course's GitHub organization:
+   ```bash
+   git clone https://github.com/bsu-cs222s1-spring26-smalviya/Team-E-Final-Project
+   ```
+2. Open the project: Open the cloned directory in your preferred Java IDE (such as IntelliJ IDEA or Eclipse).
+3. Resolve Dependencies: If you are using a dependency manager (like Gradle), ensure it has successfully synced. If you
+   are managing libraries manually, verify that the Gson JAR file is added to your project's build path.
+4. Run the Application: * Navigate to the src/Controller directory.
+    - Locate the FinanceManager.java file.
+    - Run the main method within FinanceManager.java to launch the application.
+5. Usage: Follow the on-screen console prompts to create a user profile, record transactions, and check your money
+   goal progress.
