@@ -9,6 +9,8 @@ import Converter.CurrencyConverter;
 import Converter.ExchangeRateParser;
 import Converter.ConverterException;
 
+import java.io.IOException;
+
 public class FinanceManager {
     private Account currentAccount;
     private User ui;
@@ -28,14 +30,19 @@ public class FinanceManager {
 
         if (hasSaveData) {
             ui.displayMessage("Loading your saved data...");
-            this.currentAccount = ds.loadAccount(username);
+            try {
+                this.currentAccount = ds.loadAccount(username);
+                ui.displayMessage("Account loaded successfully!");
+            } catch (IOException e) {
+                ui.displayMessage("Failed to load data. Error: " + e.getMessage());
+            }
 
         } else {
             ui.displayMessage("You are a new customer!");
             ui.displayMessage("Creating a new account for you...");
 
             this.currentAccount = new Account(username, 0.0);
-            ds.saveAccount(this.currentAccount);
+            saveData(currentAccount);
             ui.displayMessage("Account created!");
         }
 
@@ -61,7 +68,7 @@ public class FinanceManager {
                     String description = ui.getUserInputString("Please describe this transaction.\n:");
 
                     currentAccount.addTransaction(new Transaction(amount, description));
-                    ds.saveAccount(currentAccount);
+                    saveData(currentAccount);
                     break;
                 case "2":
                     ui.displayTransactionHistory(currentAccount);
@@ -78,7 +85,7 @@ public class FinanceManager {
                 case "6":
                     ui.displayMessage("Thank you for your use.\nGoodbye!");
                     isRuning = false;
-                    ds.saveAccount(currentAccount);
+                    saveData(currentAccount);
                     break;
                 default:
                     ui.displayMessage("Please enter a number from 1 to 5!");
@@ -110,8 +117,7 @@ public class FinanceManager {
                 ifWantAddMoneyGoals = false;
             }
         }
-
-        ds.saveAccount(currentAccount);
+        saveData(currentAccount);
     }
 
     private void handleCurrencyConverter() {
@@ -136,6 +142,15 @@ public class FinanceManager {
 
         } catch (ConverterException e) {
             ui.displayMessage("Conversion failed: " + e.getMessage());
+        }
+    }
+
+    private void saveData(Account currentAccount) {
+        try {
+            ds.saveAccount(currentAccount);
+            ui.displayMessage("Data successfully saved.");
+        } catch (IOException e) {
+            ui.displayMessage("Failed to save data. Error: " + e.getMessage());
         }
     }
 
