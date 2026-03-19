@@ -16,9 +16,7 @@ public class DataStorage {
     }
 
     public boolean checkLocalData(String username) {
-        String fileName = username + "_data.json";
-        File file = new File(fileName);
-        return file.exists();
+        return new File(username + "_data.json").exists();
     }
 
     public Account loadAccount(String username) {
