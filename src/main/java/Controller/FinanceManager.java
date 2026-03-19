@@ -53,22 +53,7 @@ public class FinanceManager {
 
             switch (choice) {
                 case "1":
-                    boolean amountIsNotSufficient = false;
-                    double amount = ui.getUserInputDouble("Please enter the transaction amount. Use the prefix \"+\" for deposits and \"-\" for withdrawals.\n:");
-                    if (amount + currentAccount.getBalance() < 0) {
-                        amountIsNotSufficient = true;
-                    }
-                    while (amountIsNotSufficient) {
-                        amount = ui.getUserInputDouble("Insufficient balance, operation failed, please try again.Your balance is:" + currentAccount.getBalance() + "\n:");
-                        if (amount + currentAccount.getBalance() >= 0) {
-                            amountIsNotSufficient = false;
-                        }
-                    }
-
-                    String description = ui.getUserInputString("Please describe this transaction.\n:");
-
-                    currentAccount.addTransaction(new Transaction(amount, description));
-                    saveData(currentAccount);
+                    handleTransaction();
                     break;
                 case "2":
                     ui.displayTransactionHistory(currentAccount);
@@ -96,25 +81,17 @@ public class FinanceManager {
     private void moneyGoal() {
         if (!currentAccount.hasMoneyGoals()) {
             ui.displayMessage("You do not have a goal yet, please create one.");
-            String goalName = ui.getUserInputString("Please enter your goal name: ");
-            double targetAmount = ui.getUserInputDouble("Please enter your target amount: ");
-            String deadline = ui.getUserInputString("Please enter your deadline: ");
-            MoneyGoal moneyGoal = new MoneyGoal(goalName, targetAmount, deadline);
-            currentAccount.addMoneyGoals(moneyGoal);
+            createNewGoal();
         }
         ui.displayMoneyGoal(currentAccount);
 
-        boolean ifWantAddMoneyGoals = true;
-        while (ifWantAddMoneyGoals) {
+        boolean wantAddMoneyGoals = true;
+        while (wantAddMoneyGoals) {
             if (ui.getUserInputString("Do you want to add money goals? (y/n): ").equalsIgnoreCase("y")) {
-                String goalName = ui.getUserInputString("Please enter your goal name: ");
-                double targetAmount = ui.getUserInputDouble("Please enter your target amount: ");
-                String deadline = ui.getUserInputString("Please enter your deadline: ");
-                MoneyGoal moneyGoal = new MoneyGoal(goalName, targetAmount, deadline);
-                currentAccount.addMoneyGoals(moneyGoal);
+                createNewGoal();
                 ui.displayMoneyGoal(currentAccount);
             } else {
-                ifWantAddMoneyGoals = false;
+                wantAddMoneyGoals = false;
             }
         }
         saveData(currentAccount);
@@ -152,6 +129,33 @@ public class FinanceManager {
         } catch (IOException e) {
             ui.displayMessage("Failed to save data. Error: " + e.getMessage());
         }
+    }
+
+    private void createNewGoal() {
+        String goalName = ui.getUserInputString("Please enter your goal name: ");
+        double targetAmount = ui.getUserInputDouble("Please enter your target amount: ");
+        String deadline = ui.getUserInputString("Please enter your deadline: ");
+        MoneyGoal moneyGoal = new MoneyGoal(goalName, targetAmount, deadline);
+        currentAccount.addMoneyGoals(moneyGoal);
+    }
+
+    private void handleTransaction() {
+        boolean amountIsNotSufficient = false;
+        double amount = ui.getUserInputDouble("Please enter the transaction amount. Use the prefix \"+\" for deposits and \"-\" for withdrawals.\n:");
+        if (amount + currentAccount.getBalance() < 0) {
+            amountIsNotSufficient = true;
+        }
+        while (amountIsNotSufficient) {
+            amount = ui.getUserInputDouble("Insufficient balance, operation failed, please try again.Your balance is:" + currentAccount.getBalance() + "\n:");
+            if (amount + currentAccount.getBalance() >= 0) {
+                amountIsNotSufficient = false;
+            }
+        }
+
+        String description = ui.getUserInputString("Please describe this transaction.\n:");
+
+        currentAccount.addTransaction(new Transaction(amount, description));
+        saveData(currentAccount);
     }
 
     public static void main(String[] args) {
