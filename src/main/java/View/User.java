@@ -4,7 +4,7 @@ import Model.Account;
 import Model.MoneyGoal;
 import Model.Transaction;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class User {
@@ -47,7 +47,7 @@ public class User {
     }
 
     public void displayTransactionHistory(Account account) {
-        ArrayList<Transaction> transactionHistory = account.getTransactionHistory();
+        List<Transaction> transactionHistory = account.getTransactionHistory();
         for (Transaction transaction : transactionHistory) {
             System.out.println(transaction);
         }
@@ -55,7 +55,7 @@ public class User {
     }
 
     public void displayMoneyGoal(Account account) {
-        ArrayList<MoneyGoal> moneyGoals = account.getMoneyGoals();
+        List<MoneyGoal> moneyGoals = account.getMoneyGoals();
         for (MoneyGoal moneyGoal : moneyGoals) {
             System.out.println(moneyGoal);
             System.out.printf("Completion Percentage Of Goal: %.2f%%\n",moneyGoal.calculateCompletion(account.getBalance()));
