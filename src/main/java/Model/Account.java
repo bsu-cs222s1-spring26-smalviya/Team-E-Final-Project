@@ -23,12 +23,20 @@ public class Account {
         return balance;
     }
 
-    public List<Transaction> getTransactionHistory() {
-        return Collections.unmodifiableList(transactionHistory);
+    public String getTransactionHistory() {
+        String transactionHistory = "";
+        for (Transaction transaction : this.transactionHistory) {
+            transactionHistory += transaction + "\n";
+        }
+        return transactionHistory;
     }
 
-    public List<MoneyGoal> getMoneyGoals() {
-        return Collections.unmodifiableList(moneyGoals);
+    public String getMoneyGoals() {
+        String moneyGoals = "";
+        for (MoneyGoal moneyGoal : this.moneyGoals) {
+            moneyGoals += moneyGoal + "\n";
+        }
+        return moneyGoals;
     }
 
     public boolean hasMoneyGoals() {

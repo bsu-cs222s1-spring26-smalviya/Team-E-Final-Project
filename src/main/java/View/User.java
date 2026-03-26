@@ -47,18 +47,10 @@ public class User {
     }
 
     public void displayTransactionHistory(Account account) {
-        List<Transaction> transactionHistory = account.getTransactionHistory();
-        for (Transaction transaction : transactionHistory) {
-            System.out.println(transaction);
-        }
-
+            System.out.println(account.getTransactionHistory());
     }
 
     public void displayMoneyGoal(Account account) {
-        List<MoneyGoal> moneyGoals = account.getMoneyGoals();
-        for (MoneyGoal moneyGoal : moneyGoals) {
-            System.out.println(moneyGoal);
-            System.out.printf("Completion Percentage Of Goal: %.2f%%\n",moneyGoal.calculateCompletion(account.getBalance()));
-        }
+        System.out.println(account.getMoneyGoals());
     }
 }
