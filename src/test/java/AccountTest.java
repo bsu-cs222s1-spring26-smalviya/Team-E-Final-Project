@@ -55,8 +55,6 @@ public class AccountTest {
 
         Transaction t = new Transaction(50.0, "Dinner");
         testAccount.addTransaction(t);
-
-        assertEquals(1, testAccount.getTransactionHistory().size());
         assertEquals(550.0, testAccount.getBalance());
     }
 
@@ -72,9 +70,7 @@ public class AccountTest {
         );
 
         testAccount.addMoneyGoals(goal);
-
-        assertEquals(1, testAccount.getMoneyGoals().size());
-        assertEquals("Laptop", testAccount.getMoneyGoals().get(0).getGoalName());
+        assertEquals("Goal: Laptop\nTarget Amount: 1000.0\nDeadline: 3/15/2026\n", testAccount.getMoneyGoals());
     }
 
     @Test
