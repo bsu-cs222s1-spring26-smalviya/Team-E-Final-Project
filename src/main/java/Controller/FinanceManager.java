@@ -158,6 +158,17 @@ public class FinanceManager {
         saveData(currentAccount);
     }
 
+    public String addTransaction(double amount, String description) {
+        if (amount + currentAccount.getBalance() < 0) {
+            return ("Insufficient funds!");
+        }
+
+        currentAccount.addTransaction(new Transaction(amount, description));
+        saveData(currentAccount);
+
+        return ("Transaction added. New balance: " + currentAccount.getBalance());
+    }
+
     public static void main(String[] args) {
         FinanceManager app = new FinanceManager();
         app.start();

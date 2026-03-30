@@ -29,7 +29,24 @@ public class AppUI extends Application {
             output.setText("Welcome " + username);
 
         });
-        VBox root = new VBox(10, title, usernameField, loginButton, output);
+
+
+        TextField amountField = new TextField();
+        amountField.setPromptText("Amount (+ or -)");
+
+        TextField descriptionField = new TextField();
+        descriptionField.setPromptText("Description");
+        Button addButton = new Button("Add transaction");
+
+        addButton.setOnAction(event -> {
+            double amount = Double.parseDouble(amountField.getText());
+            String description = descriptionField.getText();
+
+            String result = manager.addTransaction(amount, description);
+            output.setText(result);
+        });
+
+        VBox root = new VBox(10, title, usernameField, loginButton, amountField, descriptionField, addButton, output);
 
         Scene scene = new Scene(root);
         stage.setScene(scene);
