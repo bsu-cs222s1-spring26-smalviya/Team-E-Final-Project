@@ -169,6 +169,25 @@ public class FinanceManager {
         return ("Transaction added. New balance: " + currentAccount.getBalance());
     }
 
+    public Account getCurrentAccount() {
+        return currentAccount;
+    }
+
+    public void initAccount(String username) {
+        boolean hasSaveData = ds.checkLocalData(username);
+
+        if (hasSaveData) {
+            try {
+                currentAccount = ds.loadAccount(username);
+            } catch (IOException e) {
+                System.out.println("Error loading account.");
+            }
+        } else {
+            currentAccount = new Account(username, 0.0);
+            saveData(currentAccount);
+        }
+    }
+
     public static void main(String[] args) {
         FinanceManager app = new FinanceManager();
         app.start();
