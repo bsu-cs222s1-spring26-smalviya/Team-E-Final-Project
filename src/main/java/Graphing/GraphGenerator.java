@@ -2,7 +2,6 @@ package Graphing;
 
 import Model.Account;
 import Model.Transaction;
-import View.User;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,16 +15,16 @@ public class GraphGenerator {
         Account account;
 
         try {
-          account = JsonUtils.readUser(path);
-        }catch(Exception e){
+            account = JsonUtils.readUser(path);
+        } catch (Exception e) {
 
             throw new JsonLoadException("json loading failed");
         }
 
-        if (account == null){
+        if (account == null) {
             throw new AccountDataException("account info is empty");
         }
-        if (account.getTransactionList()==null){
+        if (account.getTransactionList() == null) {
             throw new AccountDataException("transaction history null");
         }
 
@@ -36,7 +35,7 @@ public class GraphGenerator {
         List<Transaction> transactions = account.getTransactionList();
 
         for (Transaction t : transactions) {
-            if(t == null){
+            if (t == null) {
                 throw new AccountDataException("transaction info missing");
             }
             String category = t.getDescription();
@@ -51,15 +50,16 @@ public class GraphGenerator {
                         expenseMap.getOrDefault(category, 0.0) + Math.abs(t.getAmount()));
             }
         }
-        String expenseChartFileName = account.getUsername()+"-expense_chart.png";
-        String incomeChartFileName = account.getUsername()+"-income_chart.png";
-       try {
-           savePieChart(incomeMap, "Income", incomeChartFileName);
-           savePieChart(expenseMap, "Expense", expenseChartFileName);
-       }catch(Exception e){
-           throw new ChartSaveException("fail to save charts");
-       }
+        String expenseChartFileName = account.getUsername() + "-expense_chart.png";
+        String incomeChartFileName = account.getUsername() + "-income_chart.png";
+        try {
+            savePieChart(incomeMap, "Income", incomeChartFileName);
+            savePieChart(expenseMap, "Expense", expenseChartFileName);
+        } catch (Exception e) {
+            throw new ChartSaveException("fail to save charts");
+        }
     }
+
     private static void savePieChart(Map<String, Double> data, String title, String fileName) throws Exception {
 
         int width = 600, height = 400;

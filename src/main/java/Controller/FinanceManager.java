@@ -6,6 +6,7 @@ import Graphing.MoneyGoalVisualizer;
 import Model.Account;
 import Model.MoneyGoal;
 import Model.Transaction;
+import View.ShowPNG;
 import View.User;
 import Model.DataStorage;
 import Converter.CurrencyConverter;
@@ -13,7 +14,6 @@ import Converter.ExchangeRateParser;
 import Converter.ConverterException;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FinanceManager {
@@ -181,6 +181,9 @@ public class FinanceManager {
         } catch (Exception e) {
             ui.displayMessage("Error: " + e.getMessage());
         }
+        ShowPNG showPNG = new ShowPNG();
+        showPNG.showPng(currentAccount.getUsername() + "-income_chart.png");
+        showPNG.showPng(currentAccount.getUsername() + "-expense_chart.png");
     }
 
     public static void main(String[] args) {
