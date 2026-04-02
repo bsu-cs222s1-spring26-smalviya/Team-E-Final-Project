@@ -1,5 +1,8 @@
 package Controller;
 
+import Graphing.GraphGenerator;
+import Graphing.JsonUtils;
+import Graphing.MoneyGoalVisualizer;
 import Model.Account;
 import Model.MoneyGoal;
 import Model.Transaction;
@@ -10,6 +13,8 @@ import Converter.ExchangeRateParser;
 import Converter.ConverterException;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FinanceManager {
     private Account currentAccount;
@@ -59,7 +64,7 @@ public class FinanceManager {
                     ui.displayTransactionHistory(currentAccount);
                     break;
                 case "3":
-                    ui.displayMessage("(NOT YET IMPLEMENTED)");
+                    generateGraph();
                     break;
                 case "4":
                     handleCurrencyConverter();
@@ -156,6 +161,26 @@ public class FinanceManager {
 
         currentAccount.addTransaction(new Transaction(amount, description));
         saveData(currentAccount);
+    }
+
+    private void generateGraph() {
+        String fileName = currentAccount.getUsername() + "_data.json";
+        try {
+            GraphGenerator.generateCharts(fileName);
+        } catch (Exception e) {
+            ui.displayMessage("Error: " + e.getMessage());
+        }
+        try {
+            Account account = JsonUtils.readUser(fileName);
+            List<MoneyGoal> moneyGoals = account.getMoneyGoalList();
+            MoneyGoalVisualizer moneyGoalVisualizer = new MoneyGoalVisualizer();
+            for (MoneyGoal m : moneyGoals) {
+                ui.displayMessage(moneyGoalVisualizer.generateGoalBar(account, m));
+            }
+
+        } catch (Exception e) {
+            ui.displayMessage("Error: " + e.getMessage());
+        }
     }
 
     public static void main(String[] args) {

@@ -4,13 +4,6 @@ import Model.Account;
 import Model.MoneyGoal;
 
 public class MoneyGoalVisualizer {
-    public static void main(String[] args) throws Exception {
-        Account test = JsonUtils.readUser("daniel_data.json");
-        MoneyGoal m = new MoneyGoal("house",100000,"11.29");
-        MoneyGoalVisualizer moneyGoalVisualizer = new MoneyGoalVisualizer();
-        System.out.println(moneyGoalVisualizer.generateGoalBar(test,m));
-
-    }
     public String generateGoalBar(Account account, MoneyGoal goal)throws Exception{
 
         if(account == null||goal == null){

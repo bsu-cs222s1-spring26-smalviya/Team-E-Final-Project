@@ -12,13 +12,6 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 public class GraphGenerator {
-    public static void main(String[]args) throws Exception {
-        try {
-            GraphGenerator.generateCharts("daniel_data.json");
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-    }
     public static void generateCharts(String path) throws Exception {
         Account account;
 

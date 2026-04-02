@@ -30,6 +30,7 @@ public class Account {
         }
         return transactionHistory;
     }
+
     public List<Transaction> getTransactionList() {
         return Collections.unmodifiableList(transactionHistory);
     }
@@ -40,6 +41,10 @@ public class Account {
             moneyGoals += moneyGoal + "\n";
         }
         return moneyGoals;
+    }
+
+    public List<MoneyGoal> getMoneyGoalList() {
+        return Collections.unmodifiableList(moneyGoals);
     }
 
     public boolean hasMoneyGoals() {
