@@ -30,6 +30,9 @@ public class Account {
         }
         return transactionHistory;
     }
+    public List<Transaction> getTransactionList() {
+        return Collections.unmodifiableList(transactionHistory);
+    }
 
     public String getMoneyGoals() {
         String moneyGoals = "";

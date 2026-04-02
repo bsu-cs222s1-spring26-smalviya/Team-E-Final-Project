@@ -1,7 +1,7 @@
 package Graphing;
 
-public class GraphingException extends RuntimeException {
-  public GraphingException(String message) {
-    super(message);
-  }
+public class GraphingException extends Exception {
+    public GraphingException(String message) {
+        super(message);
+    }
 }
