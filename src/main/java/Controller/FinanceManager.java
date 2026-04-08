@@ -108,7 +108,15 @@ public class FinanceManager {
         String fromCurrency = ui.getUserInputString("Enter base currency (e.g., USD, EUR, CNY):").toUpperCase();
         String toCurrency = ui.getUserInputString("Enter target currency (e.g., USD, EUR, CNY): ").toUpperCase();
 
-        double amount = ui.getUserInputDouble("Enter the amount to convert:");
+        double amount;
+        while (true) {
+            try {
+                amount = ui.getUserInputDouble("Enter the amount to convert:");
+                break;
+            } catch (Exception e) {
+                ui.displayMessage("Invalid input! Please try again.");
+            }
+        }
 
         ui.displayMessage("Fetching live exchange rates from server...");
 
@@ -138,7 +146,17 @@ public class FinanceManager {
 
     private void createNewGoal() {
         String goalName = ui.getUserInputString("Please enter your goal name: ");
-        double targetAmount = ui.getUserInputDouble("Please enter your target amount: ");
+
+        double targetAmount;
+        while (true) {
+            try {
+                targetAmount = ui.getUserInputDouble("Please enter your target amount: ");
+                break;
+            } catch (Exception e) {
+                ui.displayMessage("Invalid input! Please try again.");
+            }
+        }
+
         String deadline = ui.getUserInputString("Please enter your deadline: ");
         MoneyGoal moneyGoal = new MoneyGoal(goalName, targetAmount, deadline);
         currentAccount.addMoneyGoals(moneyGoal);
@@ -146,12 +164,30 @@ public class FinanceManager {
 
     private void handleTransaction() {
         boolean amountIsNotSufficient = false;
-        double amount = ui.getUserInputDouble("Please enter the transaction amount. Use the prefix \"+\" for deposits and \"-\" for withdrawals.\n:");
+
+        double amount;
+        while (true) {
+            try {
+                amount = ui.getUserInputDouble("Please enter the transaction amount. Use the prefix \"+\" for deposits and \"-\" for withdrawals.\n:");
+                break;
+            } catch (Exception e) {
+                ui.displayMessage("Invalid input! Please try again.");
+            }
+        }
+
         if (amount + currentAccount.getBalance() < 0) {
             amountIsNotSufficient = true;
         }
         while (amountIsNotSufficient) {
-            amount = ui.getUserInputDouble("Insufficient balance, operation failed, please try again.Your balance is:" + currentAccount.getBalance() + "\n:");
+
+            while (true) {
+                try {
+                    amount = ui.getUserInputDouble("Insufficient balance, operation failed, please try again.Your balance is:" + currentAccount.getBalance() + "\n:");
+                    break;
+                } catch (Exception e) {
+                    ui.displayMessage("Invalid input! Please try again.");
+                }
+            }
             if (amount + currentAccount.getBalance() >= 0) {
                 amountIsNotSufficient = false;
             }

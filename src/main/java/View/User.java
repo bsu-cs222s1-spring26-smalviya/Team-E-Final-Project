@@ -31,15 +31,13 @@ public class User {
         return scanner.nextLine();
     }
 
-    public double getUserInputDouble(String prompt) {
-        while (true) {
+    public double getUserInputDouble(String prompt) throws UnmatchInputException {
             System.out.print(prompt);
             try {
                 return Double.parseDouble(scanner.nextLine());
             } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
+               throw new UnmatchInputException("Invalid input");
             }
-        }
     }
 
     public void displayMessage(String message) {
