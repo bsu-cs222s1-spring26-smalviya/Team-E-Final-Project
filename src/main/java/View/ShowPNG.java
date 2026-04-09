@@ -13,7 +13,7 @@ public class ShowPNG {
             BufferedImage image = ImageIO.read(new File(fileName));
 
             JFrame frame = new JFrame("Show PNG picture");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             JLabel label = new JLabel(new ImageIcon(image));
             frame.getContentPane().add(label, BorderLayout.CENTER);
