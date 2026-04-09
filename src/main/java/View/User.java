@@ -12,6 +12,10 @@ public class User {
     }
 
     public void displayMainMenu() {
+        try {
+            Thread.sleep(500);
+        } catch (Exception e) {
+        }
         System.out.println();
         System.out.println("--- Finance Manager ---");
         System.out.println("1. Record a Transaction");
@@ -43,9 +47,21 @@ public class User {
 
     public void displayTransactionHistory(Account account) {
         System.out.println(account.getTransactionHistory());
+        waitForNextStep();
     }
 
     public void displayMoneyGoal(Account account) {
         System.out.println(account.getMoneyGoals());
+        waitForNextStep();
+    }
+
+    public void displayMoneyGoalVisualizer(String goalBar) {
+        System.out.println(goalBar);
+        waitForNextStep();
+    }
+
+    private void waitForNextStep() {
+        System.out.println("Press Enter to continue...");
+        scanner.nextLine();
     }
 }
