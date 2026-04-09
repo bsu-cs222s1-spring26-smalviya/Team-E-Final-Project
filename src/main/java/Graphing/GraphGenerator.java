@@ -51,8 +51,8 @@ public class GraphGenerator {
                         expenseMap.getOrDefault(category, 0.0) + Math.abs(t.getAmount()));
             }
         }
-        String expenseChartFileName = account.getUsername() + "-expense_chart.png";
-        String incomeChartFileName = account.getUsername() + "-income_chart.png";
+        String expenseChartFileName = "data/" + account.getUsername() + "-expense_chart.png";
+        String incomeChartFileName = "data/" + account.getUsername() + "-income_chart.png";
         try {
             savePieChart(incomeMap, "Income", incomeChartFileName);
             savePieChart(expenseMap, "Expense", expenseChartFileName);

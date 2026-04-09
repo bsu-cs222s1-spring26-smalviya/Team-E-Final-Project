@@ -197,7 +197,7 @@ public class FinanceManager {
     }
 
     private void generateGraph() {
-        String fileName = "data/" + currentAccount.getUsername() + " _data.json ";
+        String fileName = "data/" + currentAccount.getUsername() + "_data.json ";
         try {
             GraphGenerator.generateCharts(fileName);
         } catch (Exception e) {
