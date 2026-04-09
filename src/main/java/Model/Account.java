@@ -24,11 +24,12 @@ public class Account {
     }
 
     public String getTransactionHistory() {
-        String transactionHistory = "";
+        StringBuilder transactionHistory = new StringBuilder();
         for (Transaction transaction : this.transactionHistory) {
-            transactionHistory += transaction + "\n";
+            transactionHistory.append(transaction);
+            transactionHistory.append("\n");
         }
-        return transactionHistory;
+        return transactionHistory.toString();
     }
 
     public List<Transaction> getTransactionList() {
@@ -36,11 +37,12 @@ public class Account {
     }
 
     public String getMoneyGoals() {
-        String moneyGoals = "";
+        StringBuilder moneyGoals = new StringBuilder();
         for (MoneyGoal moneyGoal : this.moneyGoals) {
-            moneyGoals += moneyGoal + "\n";
+            moneyGoals.append(moneyGoal);
+            moneyGoals.append("\n");
         }
-        return moneyGoals;
+        return moneyGoals.toString();
     }
 
     public List<MoneyGoal> getMoneyGoalList() {
