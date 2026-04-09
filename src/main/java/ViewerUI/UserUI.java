@@ -27,6 +27,8 @@ public class UserUI extends Application {
         setDisplayPane(loginScreen);
         configureLoginScreen();
         configureHomeScreen();
+        configureAccountScreen();
+        configureMenuScreen();
         primaryStage.show();
     }
 
@@ -41,17 +43,23 @@ public class UserUI extends Application {
     }
 
     private void configureHomeScreen() {
+        homeScreen.setLeft(accountScreen);
+        homeScreen.setRight(menuScreen);
+    }
+
+    private void configureMenuScreen() {
         Label menuScreenLabel = new Label("Please Select a Menu");
         Button menuButton_CurrencyConverter = new Button("Currency Converter");
         Button menuButton_Transactions = new Button("Transactions");
         Button menuButton_MoneyGoals = new Button("Money Goals");
+
+        menuScreen.getChildren().setAll(menuScreenLabel, menuButton_CurrencyConverter, menuButton_Transactions, menuButton_MoneyGoals);
+    }
+
+    private void configureAccountScreen() {
         Label accountScreenlabel = new Label("-Account-");
 
         accountScreen.getChildren().setAll(accountScreenlabel);
-        menuScreen.getChildren().setAll(menuScreenLabel, menuButton_CurrencyConverter, menuButton_Transactions, menuButton_MoneyGoals);
-
-        homeScreen.setLeft(accountScreen);
-        homeScreen.setRight(menuScreen);
     }
 
     private void setDisplayPane(Node displayNode) {
