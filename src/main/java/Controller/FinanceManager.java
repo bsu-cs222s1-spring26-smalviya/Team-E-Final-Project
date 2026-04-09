@@ -197,7 +197,7 @@ public class FinanceManager {
     }
 
     private void generateGraph() {
-        String fileName = currentAccount.getUsername() + "_data.json";
+        String fileName = "data/" + currentAccount.getUsername() + " _data.json ";
         try {
             GraphGenerator.generateCharts(fileName);
         } catch (Exception e) {
@@ -214,14 +214,17 @@ public class FinanceManager {
         } catch (Exception e) {
             ui.displayMessage("Error: " + e.getMessage());
         }
+
         ShowPNG showPNG = new ShowPNG();
+
         try {
-            showPNG.showPng(currentAccount.getUsername() + "-income_chart.png");
+            showPNG.showPng("data/" + currentAccount.getUsername() + "-income_chart.png");
         } catch (Exception e) {
             ui.displayMessage("Error: " + e.getMessage());
         }
+
         try {
-            showPNG.showPng(currentAccount.getUsername() + "-expense_chart.png");
+            showPNG.showPng("data/" + currentAccount.getUsername() + "-expense_chart.png");
         } catch (Exception e) {
             ui.displayMessage("Error: " + e.getMessage());
         }
