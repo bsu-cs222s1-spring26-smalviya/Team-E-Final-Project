@@ -1,7 +1,6 @@
 package Controller;
 
 import Graphing.GraphGenerator;
-import Graphing.JsonUtils;
 import Graphing.MoneyGoalVisualizer;
 import Model.Account;
 import Model.MoneyGoal;
@@ -19,11 +18,9 @@ import java.util.List;
 public class FinanceManager {
     private Account currentAccount;
     final private User ui;
-    final private DataStorage ds;
 
     public FinanceManager() {
         this.ui = new User();
-        this.ds = new DataStorage();
     }
 
     public void start() {
@@ -31,12 +28,12 @@ public class FinanceManager {
 
         String username = ui.getUserInputString("Welcome!\nPlease enter your username: ");
 
-        boolean hasSaveData = ds.checkLocalData(username);
+        boolean hasSaveData = DataStorage.checkLocalData(username);
 
         if (hasSaveData) {
             ui.displayMessage("Loading your saved data...");
             try {
-                this.currentAccount = ds.loadAccount(username);
+                this.currentAccount = DataStorage.loadAccount(username);
                 ui.displayMessage("Account loaded successfully!");
             } catch (IOException e) {
                 ui.displayMessage("Failed to load data. Error: " + e.getMessage());
@@ -137,7 +134,7 @@ public class FinanceManager {
 
     private void saveData(Account currentAccount) {
         try {
-            ds.saveAccount(currentAccount);
+            DataStorage.saveAccount(currentAccount);
             ui.displayMessage("Data successfully saved.");
         } catch (IOException e) {
             ui.displayMessage("Failed to save data. Error: " + e.getMessage());
@@ -207,7 +204,7 @@ public class FinanceManager {
             ui.displayMessage("Error: " + e.getMessage());
         }
         try {
-            Account account = JsonUtils.readUser(fileName);
+            Account account = DataStorage.readUser(fileName);
             List<MoneyGoal> moneyGoals = account.getMoneyGoalList();
             MoneyGoalVisualizer moneyGoalVisualizer = new MoneyGoalVisualizer();
             for (MoneyGoal m : moneyGoals) {

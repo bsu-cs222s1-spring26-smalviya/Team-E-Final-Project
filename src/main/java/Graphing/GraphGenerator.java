@@ -1,6 +1,7 @@
 package Graphing;
 
 import Model.Account;
+import Model.DataStorage;
 import Model.Transaction;
 
 import java.awt.*;
@@ -15,7 +16,7 @@ public class GraphGenerator {
         Account account;
 
         try {
-            account = JsonUtils.readUser(path);
+            account = DataStorage.readUser(path);
         } catch (Exception e) {
 
             throw new JsonLoadException("json loading failed");
