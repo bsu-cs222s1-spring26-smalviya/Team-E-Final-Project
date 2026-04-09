@@ -1,6 +1,6 @@
 {
   "username": "fei",
-  "balance": 0.0,
+  "balance": 500.0,
   "transactionHistory": [
     {
       "amount": 100.0,
@@ -12,19 +12,30 @@
       "amount": 999.0,
       "category": "Deposit",
       "date": "2026-03-18T23:21:21.379239100",
-      "description": "goood"
+      "description": "wage"
     },
     {
       "amount": -1099.0,
       "category": "Withdrawal",
       "date": "2026-03-18T23:21:56.342578500",
-      "description": "pay"
+      "description": "gas"
+    },
+    {
+      "amount": 500.0,
+      "category": "Deposit",
+      "date": "2026-04-07T11:17:29.666875",
+      "description": "salary"
     }
   ],
   "moneyGoals": [
     {
       "goalName": "Iphone",
       "targetAmount": 899.0,
+      "deadline": "12/17/2026"
+    },
+    {
+      "goalName": "gym fee",
+      "targetAmount": 100.0,
       "deadline": "12/17/2026"
     }
   ]
