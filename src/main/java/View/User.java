@@ -1,10 +1,7 @@
 package View;
 
 import Model.Account;
-import Model.MoneyGoal;
-import Model.Transaction;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class User {
@@ -15,6 +12,10 @@ public class User {
     }
 
     public void displayMainMenu() {
+        try {
+            Thread.sleep(500);
+        } catch (Exception e) {
+        }
         System.out.println();
         System.out.println("--- Finance Manager ---");
         System.out.println("1. Record a Transaction");
@@ -31,14 +32,12 @@ public class User {
         return scanner.nextLine();
     }
 
-    public double getUserInputDouble(String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            try {
-                return Double.parseDouble(scanner.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input. Please enter a valid number.");
-            }
+    public double getUserInputDouble(String prompt) throws UnmatchInputException {
+        System.out.print(prompt);
+        try {
+            return Double.parseDouble(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            throw new UnmatchInputException("Invalid input");
         }
     }
 
@@ -47,18 +46,22 @@ public class User {
     }
 
     public void displayTransactionHistory(Account account) {
-        List<Transaction> transactionHistory = account.getTransactionHistory();
-        for (Transaction transaction : transactionHistory) {
-            System.out.println(transaction);
-        }
-
+        System.out.println(account.getTransactionHistory());
+        waitForNextStep();
     }
 
     public void displayMoneyGoal(Account account) {
-        List<MoneyGoal> moneyGoals = account.getMoneyGoals();
-        for (MoneyGoal moneyGoal : moneyGoals) {
-            System.out.println(moneyGoal);
-            System.out.printf("Completion Percentage Of Goal: %.2f%%\n",moneyGoal.calculateCompletion(account.getBalance()));
-        }
+        System.out.println(account.getMoneyGoals());
+        waitForNextStep();
+    }
+
+    public void displayMoneyGoalVisualizer(String goalBar) {
+        System.out.println(goalBar);
+        waitForNextStep();
+    }
+
+    private void waitForNextStep() {
+        System.out.println("Press Enter to continue...");
+        scanner.nextLine();
     }
 }

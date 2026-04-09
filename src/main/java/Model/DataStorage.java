@@ -8,14 +8,15 @@ import java.io.IOException;
 import com.google.gson.Gson;
 
 public class DataStorage {
-    final private Gson gson = new Gson();
+    private static final Gson gson = new Gson();
+    private static final String DATA_DIR = "data" + File.separator;
 
-    public boolean checkLocalData(String username) {
-        return new File(username + "_data.json").exists();
+    public static boolean checkLocalData(String username) {
+        return getUserFile(username).exists();
     }
 
-    public Account loadAccount(String username) throws IOException {
-        File file = new File(username + "_data.json");
+    public static Account loadAccount(String username) throws IOException {
+        File file = getUserFile(username);
         if (!file.exists()) {
             return null;
         }
@@ -24,10 +25,24 @@ public class DataStorage {
         }
     }
 
-    public void saveAccount(Account account) throws IOException {
-        String fileName = account.getUsername() + "_data.json";
-        try (FileWriter writer = new FileWriter(fileName)) {
+    public static void saveAccount(Account account) throws IOException {
+        File dir = new File(DATA_DIR);
+        if (!dir.exists() && !dir.mkdirs()) {
+            throw new IOException("Failed to create directory: " + DATA_DIR);
+        }
+        File file = getUserFile(account.getUsername());
+        try (FileWriter writer = new FileWriter(file)) {
             gson.toJson(account, writer);
         }
+    }
+
+    public static Account readUser(String path) throws IOException {
+        try (FileReader reader = new FileReader(path)) {
+            return gson.fromJson(reader, Account.class);
+        }
+    }
+
+    private static File getUserFile(String username) {
+        return new File(DATA_DIR + username + "_data.json");
     }
 }

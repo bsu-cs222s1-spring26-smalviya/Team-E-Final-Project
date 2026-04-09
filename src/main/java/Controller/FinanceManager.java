@@ -1,8 +1,11 @@
 package Controller;
 
+import Graphing.GraphGenerator;
+import Graphing.MoneyGoalVisualizer;
 import Model.Account;
 import Model.MoneyGoal;
 import Model.Transaction;
+import View.ShowPNG;
 import View.User;
 import Model.DataStorage;
 import Converter.CurrencyConverter;
@@ -10,15 +13,14 @@ import Converter.ExchangeRateParser;
 import Converter.ConverterException;
 
 import java.io.IOException;
+import java.util.List;
 
 public class FinanceManager {
     private Account currentAccount;
     final private User ui;
-    final private DataStorage ds;
 
     public FinanceManager() {
         this.ui = new User();
-        this.ds = new DataStorage();
     }
 
     public void start() {
@@ -26,12 +28,12 @@ public class FinanceManager {
 
         String username = ui.getUserInputString("Welcome!\nPlease enter your username: ");
 
-        boolean hasSaveData = ds.checkLocalData(username);
+        boolean hasSaveData = DataStorage.checkLocalData(username);
 
         if (hasSaveData) {
             ui.displayMessage("Loading your saved data...");
             try {
-                this.currentAccount = ds.loadAccount(username);
+                this.currentAccount = DataStorage.loadAccount(username);
                 ui.displayMessage("Account loaded successfully!");
             } catch (IOException e) {
                 ui.displayMessage("Failed to load data. Error: " + e.getMessage());
@@ -59,7 +61,7 @@ public class FinanceManager {
                     ui.displayTransactionHistory(currentAccount);
                     break;
                 case "3":
-                    ui.displayMessage("(NOT YET IMPLEMENTED)");
+                    generateGraph();
                     break;
                 case "4":
                     handleCurrencyConverter();
@@ -103,7 +105,15 @@ public class FinanceManager {
         String fromCurrency = ui.getUserInputString("Enter base currency (e.g., USD, EUR, CNY):").toUpperCase();
         String toCurrency = ui.getUserInputString("Enter target currency (e.g., USD, EUR, CNY): ").toUpperCase();
 
-        double amount = ui.getUserInputDouble("Enter the amount to convert:");
+        double amount;
+        while (true) {
+            try {
+                amount = ui.getUserInputDouble("Enter the amount to convert:");
+                break;
+            } catch (Exception e) {
+                ui.displayMessage("Invalid input! Please try again.");
+            }
+        }
 
         ui.displayMessage("Fetching live exchange rates from server...");
 
@@ -124,7 +134,7 @@ public class FinanceManager {
 
     private void saveData(Account currentAccount) {
         try {
-            ds.saveAccount(currentAccount);
+            DataStorage.saveAccount(currentAccount);
             ui.displayMessage("Data successfully saved.");
         } catch (IOException e) {
             ui.displayMessage("Failed to save data. Error: " + e.getMessage());
@@ -133,7 +143,17 @@ public class FinanceManager {
 
     private void createNewGoal() {
         String goalName = ui.getUserInputString("Please enter your goal name: ");
-        double targetAmount = ui.getUserInputDouble("Please enter your target amount: ");
+
+        double targetAmount;
+        while (true) {
+            try {
+                targetAmount = ui.getUserInputDouble("Please enter your target amount: ");
+                break;
+            } catch (Exception e) {
+                ui.displayMessage("Invalid input! Please try again.");
+            }
+        }
+
         String deadline = ui.getUserInputString("Please enter your deadline: ");
         MoneyGoal moneyGoal = new MoneyGoal(goalName, targetAmount, deadline);
         currentAccount.addMoneyGoals(moneyGoal);
@@ -141,12 +161,30 @@ public class FinanceManager {
 
     private void handleTransaction() {
         boolean amountIsNotSufficient = false;
-        double amount = ui.getUserInputDouble("Please enter the transaction amount. Use the prefix \"+\" for deposits and \"-\" for withdrawals.\n:");
+
+        double amount;
+        while (true) {
+            try {
+                amount = ui.getUserInputDouble("Please enter the transaction amount. Use the prefix \"+\" for deposits and \"-\" for withdrawals.\n:");
+                break;
+            } catch (Exception e) {
+                ui.displayMessage("Invalid input! Please try again.");
+            }
+        }
+
         if (amount + currentAccount.getBalance() < 0) {
             amountIsNotSufficient = true;
         }
         while (amountIsNotSufficient) {
-            amount = ui.getUserInputDouble("Insufficient balance, operation failed, please try again.Your balance is:" + currentAccount.getBalance() + "\n:");
+
+            while (true) {
+                try {
+                    amount = ui.getUserInputDouble("Insufficient balance, operation failed, please try again.Your balance is:" + currentAccount.getBalance() + "\n:");
+                    break;
+                } catch (Exception e) {
+                    ui.displayMessage("Invalid input! Please try again.");
+                }
+            }
             if (amount + currentAccount.getBalance() >= 0) {
                 amountIsNotSufficient = false;
             }
@@ -185,6 +223,42 @@ public class FinanceManager {
         } else {
             currentAccount = new Account(username, 0.0);
             saveData(currentAccount);
+        }
+    }
+
+    private void generateGraph() {
+        String fileName = "data/" + currentAccount.getUsername() + "_data.json ";
+        try {
+            GraphGenerator.generateCharts(fileName);
+        } catch (Exception e) {
+            ui.displayMessage("Error: " + e.getMessage());
+        }
+        try {
+            Account account = DataStorage.readUser(fileName);
+            List<MoneyGoal> moneyGoals = account.getMoneyGoalList();
+            MoneyGoalVisualizer moneyGoalVisualizer = new MoneyGoalVisualizer();
+            StringBuilder goalBars = new StringBuilder();
+            for (MoneyGoal m : moneyGoals) {
+                goalBars.append(moneyGoalVisualizer.generateGoalBar(account, m));
+            }
+            ui.displayMoneyGoalVisualizer(goalBars.toString());
+
+        } catch (Exception e) {
+            ui.displayMessage("Error: " + e.getMessage());
+        }
+
+        ShowPNG showPNG = new ShowPNG();
+
+        try {
+            showPNG.showPng("data/" + currentAccount.getUsername() + "-income_chart.png");
+        } catch (Exception e) {
+            ui.displayMessage("Error: " + e.getMessage());
+        }
+
+        try {
+            showPNG.showPng("data/" + currentAccount.getUsername() + "-expense_chart.png");
+        } catch (Exception e) {
+            ui.displayMessage("Error: " + e.getMessage());
         }
     }
 
