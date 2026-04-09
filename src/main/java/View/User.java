@@ -1,10 +1,7 @@
 package View;
 
 import Model.Account;
-import Model.MoneyGoal;
-import Model.Transaction;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class User {
@@ -32,12 +29,12 @@ public class User {
     }
 
     public double getUserInputDouble(String prompt) throws UnmatchInputException {
-            System.out.print(prompt);
-            try {
-                return Double.parseDouble(scanner.nextLine());
-            } catch (NumberFormatException e) {
-               throw new UnmatchInputException("Invalid input");
-            }
+        System.out.print(prompt);
+        try {
+            return Double.parseDouble(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            throw new UnmatchInputException("Invalid input");
+        }
     }
 
     public void displayMessage(String message) {
@@ -45,7 +42,7 @@ public class User {
     }
 
     public void displayTransactionHistory(Account account) {
-            System.out.println(account.getTransactionHistory());
+        System.out.println(account.getTransactionHistory());
     }
 
     public void displayMoneyGoal(Account account) {

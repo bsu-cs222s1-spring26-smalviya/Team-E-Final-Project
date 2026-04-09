@@ -218,8 +218,16 @@ public class FinanceManager {
             ui.displayMessage("Error: " + e.getMessage());
         }
         ShowPNG showPNG = new ShowPNG();
-        showPNG.showPng(currentAccount.getUsername() + "-income_chart.png");
-        showPNG.showPng(currentAccount.getUsername() + "-expense_chart.png");
+        try {
+            showPNG.showPng(currentAccount.getUsername() + "-income_chart.png");
+        } catch (Exception e) {
+            ui.displayMessage("Error: " + e.getMessage());
+        }
+        try {
+            showPNG.showPng(currentAccount.getUsername() + "-expense_chart.png");
+        } catch (Exception e) {
+            ui.displayMessage("Error: " + e.getMessage());
+        }
     }
 
     public static void main(String[] args) {

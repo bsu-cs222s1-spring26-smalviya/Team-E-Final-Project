@@ -8,8 +8,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 
 public class ShowPNG {
-    public void showPng(String fileName) {
-        try {
+    public void showPng(String fileName) throws IOException {
             BufferedImage image = ImageIO.read(new File(fileName));
 
             JFrame frame = new JFrame("Show PNG picture");
@@ -21,11 +20,5 @@ public class ShowPNG {
             frame.pack();
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
-
-        } catch (
-                IOException e) {
-            e.printStackTrace();
         }
     }
-
-}
