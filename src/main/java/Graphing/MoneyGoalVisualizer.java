@@ -4,13 +4,13 @@ import Model.Account;
 import Model.MoneyGoal;
 
 public class MoneyGoalVisualizer {
-    public String generateGoalBar(Account account, MoneyGoal goal)throws Exception{
+    public String generateGoalBar(Account account, MoneyGoal goal){
 
         if(account == null||goal == null){
             throw new NullArgumentException("account or money goal doesn't exist");
         }
         double balance = account.getBalance();
-        double target = goal.getTargetAmount();
+        double target = goal.targetAmount();
         if(balance <0 || target<0){
             throw new NegativeAmountException("balance or target is negative");
         }
@@ -35,7 +35,6 @@ public class MoneyGoalVisualizer {
         for (int i = 0; i < filled; i++) {
             bar.append("#");
         }
-
         for (int i = 0; i < empty; i++) {
             bar.append("-");
         }
