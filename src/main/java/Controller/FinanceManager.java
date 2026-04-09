@@ -212,11 +212,11 @@ public class FinanceManager {
     }
 
     public void initAccount(String username) {
-        boolean hasSaveData = ds.checkLocalData(username);
+        boolean hasSaveData = DataStorage.checkLocalData(username);
 
         if (hasSaveData) {
             try {
-                currentAccount = ds.loadAccount(username);
+                currentAccount = DataStorage.loadAccount(username);
             } catch (IOException e) {
                 System.out.println("Error loading account.");
             }

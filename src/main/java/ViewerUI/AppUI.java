@@ -78,7 +78,6 @@ public class AppUI extends Application {
         if (manager.getCurrentAccount() != null) {
             table.setItems(
                     javafx.collections.FXCollections.observableArrayList(
-                            manager.getCurrentAccount().getTransactionHistory()
                     )
             );
 
