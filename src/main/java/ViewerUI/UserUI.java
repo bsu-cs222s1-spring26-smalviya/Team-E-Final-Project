@@ -35,6 +35,7 @@ public class UserUI extends Application {
         configureMenuScreen();
         configureCurrencyScreen();
         configureTransactionsScreen();
+        configureGoalsScreen();
         primaryStage.show();
     }
 
@@ -89,7 +90,14 @@ public class UserUI extends Application {
         transactionsScreen.getChildren().setAll(transactionsScreenlabel, backButton);
         transactionsScreen.setAlignment(Pos.CENTER);
     }
+    private void configureGoalsScreen() {
+        Label goalsScreenLabel = new Label("Goals");
+        Button backButton = new Button("Back");
+        backButton.setOnAction(event -> setDisplayPane(homeScreen));
 
+        goalsScreen.getChildren().setAll(goalsScreenLabel, backButton);
+        goalsScreen.setAlignment(Pos.CENTER);
+    }
 
 
     private void setDisplayPane(Node displayNode) {
