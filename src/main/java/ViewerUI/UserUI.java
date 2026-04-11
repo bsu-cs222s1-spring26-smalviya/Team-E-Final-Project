@@ -19,6 +19,10 @@ public class UserUI extends Application {
     VBox accountScreen = new VBox();
     VBox menuScreen = new VBox();
 
+    VBox currencyScreen = new VBox();
+    VBox transactionsScreen = new VBox();
+    VBox goalsScreen = new VBox();
+
     public static void main(String[] args) {launch(args);}
 
     @Override
@@ -29,6 +33,8 @@ public class UserUI extends Application {
         configureHomeScreen();
         configureAccountScreen();
         configureMenuScreen();
+        configureCurrencyScreen();
+        configureTransactionsScreen();
         primaryStage.show();
     }
 
@@ -53,6 +59,10 @@ public class UserUI extends Application {
         Button menuButton_Transactions = new Button("Transactions");
         Button menuButton_MoneyGoals = new Button("Money Goals");
 
+        menuButton_CurrencyConverter.setOnAction(event -> setDisplayPane(currencyScreen));
+        menuButton_Transactions.setOnAction(event -> setDisplayPane(transactionsScreen));
+        menuButton_MoneyGoals.setOnAction(event -> setDisplayPane(goalsScreen));
+
         menuScreen.getChildren().setAll(menuScreenLabel, menuButton_CurrencyConverter, menuButton_Transactions, menuButton_MoneyGoals);
     }
 
@@ -61,6 +71,26 @@ public class UserUI extends Application {
 
         accountScreen.getChildren().setAll(accountScreenlabel);
     }
+
+    private void configureCurrencyScreen() {
+        Label currencyConverterlabel = new Label("Currency Converter");
+        Button backButton = new Button("Back");
+
+        backButton.setOnAction(event -> setDisplayPane(homeScreen));
+
+        currencyScreen.getChildren().setAll(currencyConverterlabel, backButton);
+        currencyScreen.setAlignment(Pos.CENTER);
+    }
+    private void configureTransactionsScreen() {
+        Label transactionsScreenlabel = new Label("Transactions");
+        Button backButton = new Button("Back");
+        backButton.setOnAction(event -> setDisplayPane(homeScreen));
+
+        transactionsScreen.getChildren().setAll(transactionsScreenlabel, backButton);
+        transactionsScreen.setAlignment(Pos.CENTER);
+    }
+
+
 
     private void setDisplayPane(Node displayNode) {
         displayPane.setCenter(displayNode);
