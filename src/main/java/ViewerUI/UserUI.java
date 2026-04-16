@@ -161,4 +161,8 @@ public class UserUI extends Application {
     private void setDisplayPane(Node displayNode) {
         displayPane.setCenter(displayNode);
     }
+
+    private void setHomeDisplayPane(Node displayNode) {
+
+    }
 }
