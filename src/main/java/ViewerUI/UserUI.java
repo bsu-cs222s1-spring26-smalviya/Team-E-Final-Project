@@ -85,7 +85,10 @@ public class UserUI extends Application {
         Label accountBalanceLabel = new Label("Balance: ");
 
         accountScreen.getChildren().setAll(accountScreenHeader, accountNameLabel, accountBalanceLabel);
-        accountScreen.setAlignment(Pos.CENTER);
+        accountScreen.setAlignment(Pos.TOP_CENTER);
+        accountScreenHeader.setAlignment(Pos.CENTER);
+        accountNameLabel.setAlignment(Pos.CENTER);
+        accountBalanceLabel.setAlignment(Pos.CENTER);
     }
 
     private void configureCurrencyScreen() {
