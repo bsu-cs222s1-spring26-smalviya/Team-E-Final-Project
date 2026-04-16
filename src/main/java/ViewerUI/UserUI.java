@@ -167,6 +167,10 @@ public class UserUI extends Application {
     }
 
     private void updateScreenValues() {
+        updateAccountScreen();
+    }
+
+    private void updateAccountScreen() {
 
     }
 
