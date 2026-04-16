@@ -3,9 +3,13 @@ package Controller;
 import Model.Account;
 
 public class UIManager {
-    Account currentAccount = null;
+    Account currentAccount;
 
-    public boolean loginUser(String username) {
-        return true;
+    public UIManager() {
+        currentAccount = null;
+    }
+
+    public Account loginUser(String username) {
+        return null;
     }
 }

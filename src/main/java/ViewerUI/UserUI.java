@@ -1,5 +1,6 @@
 package ViewerUI;
 
+import Controller.UIManager;
 import Model.Account;
 import Model.Transaction;
 import javafx.application.Application;
@@ -18,6 +19,8 @@ import java.util.List;
 
 
 public class UserUI extends Application {
+    UIManager manager = new UIManager();
+
     BorderPane displayPane = new BorderPane();
     Scene displayScene = new Scene(displayPane);
     VBox loginScreen = new VBox();
@@ -58,7 +61,7 @@ public class UserUI extends Application {
         loginScreen.getChildren().addAll(loginTextField, loginButton);
         loginScreen.setAlignment(Pos.CENTER);
 
-        loginButton.setOnAction( event -> setDisplayPane(homeScreen));
+        loginButton.setOnAction( event -> attemptLogin(loginTextField.getText()));
     }
 
     private void configureHomeScreen() {
@@ -174,6 +177,16 @@ public class UserUI extends Application {
         javafx.collections.ObservableList<Node> accountScreenElements = accountScreen.getChildren();
         Node accountName = accountScreenElements.get(1);
         Node accountBalance = accountScreenElements.get(2);
+    }
+
+    private void attemptLogin(String username) {
+        Account userAccount = manager.loginUser(username);
+
+        if (userAccount != null) {
+            setDisplayPane(homeScreen);
+        } else {
+            setDisplayPane(homeScreen);
+        }
     }
 
     private void setDisplayPane(Node displayNode) {
