@@ -71,9 +71,9 @@ public class UserUI extends Application {
         Button menuButton_Transactions = new Button("Transactions");
         Button menuButton_MoneyGoals = new Button("Money Goals");
 
-        menuButton_CurrencyConverter.setOnAction(event -> setDisplayPane(currencyScreen));
-        menuButton_Transactions.setOnAction(event -> setDisplayPane(transactionsScreen));
-        menuButton_MoneyGoals.setOnAction(event -> setDisplayPane(goalsScreen));
+        menuButton_CurrencyConverter.setOnAction(event -> setHomeDisplayPane(currencyScreen));
+        menuButton_Transactions.setOnAction(event -> setHomeDisplayPane(transactionsScreen));
+        menuButton_MoneyGoals.setOnAction(event -> setHomeDisplayPane(goalsScreen));
 
         menuScreen.getChildren().setAll(menuScreenLabel, menuButton_CurrencyConverter, menuButton_Transactions, menuButton_MoneyGoals);
     }
@@ -88,7 +88,7 @@ public class UserUI extends Application {
         Label currencyConverterlabel = new Label("Currency Converter");
         Button backButton = new Button("Back");
 
-        backButton.setOnAction(event -> setDisplayPane(homeScreen));
+        backButton.setOnAction(event -> setHomeDisplayPane(menuScreen));
 
         currencyScreen.getChildren().setAll(currencyConverterlabel, backButton);
         currencyScreen.setAlignment(Pos.CENTER);
@@ -133,7 +133,7 @@ public class UserUI extends Application {
         });
 
         Button backButton = new Button("Back");
-        backButton.setOnAction(event -> setDisplayPane(homeScreen));
+        backButton.setOnAction(event -> setHomeDisplayPane(menuScreen));
 
         transactionsScreen.getChildren().setAll(
                 title,
@@ -151,7 +151,7 @@ public class UserUI extends Application {
     private void configureGoalsScreen() {
         Label goalsScreenLabel = new Label("Goals");
         Button backButton = new Button("Back");
-        backButton.setOnAction(event -> setDisplayPane(homeScreen));
+        backButton.setOnAction(event -> setHomeDisplayPane(menuScreen));
 
         goalsScreen.getChildren().setAll(goalsScreenLabel, backButton);
         goalsScreen.setAlignment(Pos.CENTER);
