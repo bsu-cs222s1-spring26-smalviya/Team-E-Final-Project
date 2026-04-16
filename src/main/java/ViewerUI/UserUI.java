@@ -46,6 +46,10 @@ public class UserUI extends Application {
         primaryStage.show();
     }
 
+    private void configureScreens() {
+
+    }
+
     private void configureLoginScreen() {
         TextField loginTextField = new TextField();
         Button loginButton = new Button("Login");
