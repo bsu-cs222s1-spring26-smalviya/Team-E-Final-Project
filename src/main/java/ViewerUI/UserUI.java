@@ -36,6 +36,11 @@ public class UserUI extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setScene(displayScene);
         setDisplayPane(loginScreen);
+        configureScreens();
+        primaryStage.show();
+    }
+
+    private void configureScreens() {
         configureLoginScreen();
         configureHomeScreen();
         configureAccountScreen();
@@ -43,11 +48,6 @@ public class UserUI extends Application {
         configureCurrencyScreen();
         configureTransactionsScreen();
         configureGoalsScreen();
-        primaryStage.show();
-    }
-
-    private void configureScreens() {
-
     }
 
     private void configureLoginScreen() {
