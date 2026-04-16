@@ -62,7 +62,7 @@ public class UserUI extends Application {
 
     private void configureHomeScreen() {
         homeScreen.setLeft(accountScreen);
-        homeScreen.setRight(menuScreen);
+        setHomeDisplayPane(menuScreen);
     }
 
     private void configureMenuScreen() {
