@@ -79,9 +79,11 @@ public class UserUI extends Application {
     }
 
     private void configureAccountScreen() {
-        Label accountScreenlabel = new Label("-Account-");
+        Label accountScreenHeader = new Label("---Account---");
+        Label accountNameLabel = new Label("---");
 
-        accountScreen.getChildren().setAll(accountScreenlabel);
+        accountScreen.getChildren().setAll(accountScreenHeader, accountNameLabel);
+        accountScreen.setAlignment(Pos.CENTER);
     }
 
     private void configureCurrencyScreen() {
@@ -148,6 +150,7 @@ public class UserUI extends Application {
         transactionsScreen.setAlignment(Pos.CENTER);
         transactionsScreen.setSpacing(10);
     }
+
     private void configureGoalsScreen() {
         Label goalsScreenLabel = new Label("Goals");
         Button backButton = new Button("Back");
@@ -156,7 +159,6 @@ public class UserUI extends Application {
         goalsScreen.getChildren().setAll(goalsScreenLabel, backButton);
         goalsScreen.setAlignment(Pos.CENTER);
     }
-
 
     private void setDisplayPane(Node displayNode) {
         displayPane.setCenter(displayNode);
