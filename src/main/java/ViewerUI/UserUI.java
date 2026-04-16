@@ -91,6 +91,7 @@ public class UserUI extends Application {
     }
     private void configureTransactionsScreen() {
         Label title = new Label("Transactions");
+        Label balanceLabel = new Label("Balance: $0");
 
         TextField amountField = new TextField();
         amountField.setPromptText("Amount (+ deposit, - withdrawal)");
@@ -102,7 +103,6 @@ public class UserUI extends Application {
 
         ListView<Transaction> transactionList = new ListView<>();
 
-        transactionList.getItems().addAll(transactions);
 
         addButton.setOnAction(event -> {
             try {
@@ -113,6 +113,11 @@ public class UserUI extends Application {
 
                 transactions.add(transaction);
                 transactionList.getItems().add(transaction);
+
+                transactionList.getItems().addAll(transactions);
+                double total = transactions.stream().mapToDouble(Transaction::getAmount).sum();
+
+                balanceLabel.setText("Balance: $" + total);
 
                 amountField.clear();
                 descriptionField.clear();
@@ -128,6 +133,7 @@ public class UserUI extends Application {
 
         transactionsScreen.getChildren().setAll(
                 title,
+                balanceLabel,
                 amountField,
                 descriptionField,
                 addButton,
