@@ -1,5 +1,7 @@
 package Controller;
 
-public class UIManager {
+import Model.Account;
 
+public class UIManager {
+    Account currentAccount = null;
 }
