@@ -1,15 +1,20 @@
 package ViewerUI;
 
+import Model.Transaction;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class UserUI extends Application {
     BorderPane displayPane = new BorderPane();
@@ -22,6 +27,8 @@ public class UserUI extends Application {
     VBox currencyScreen = new VBox();
     VBox transactionsScreen = new VBox();
     VBox goalsScreen = new VBox();
+
+    private List<Transaction> transactions = new ArrayList<>();
 
     public static void main(String[] args) {launch(args);}
 
@@ -83,12 +90,53 @@ public class UserUI extends Application {
         currencyScreen.setAlignment(Pos.CENTER);
     }
     private void configureTransactionsScreen() {
-        Label transactionsScreenlabel = new Label("Transactions");
+        Label title = new Label("Transactions");
+
+        TextField amountField = new TextField();
+        amountField.setPromptText("Amount (+ deposit, - withdrawal)");
+
+        TextField descriptionField = new TextField();
+        descriptionField.setPromptText("Description");
+
+        Button addButton = new Button("Add Transaction");
+
+        ListView<Transaction> transactionList = new ListView<>();
+
+        transactionList.getItems().addAll(transactions);
+
+        addButton.setOnAction(event -> {
+            try {
+                double amount = Double.parseDouble(amountField.getText());
+                String description = descriptionField.getText();
+
+                Transaction transaction = new Transaction(amount, description);
+
+                transactions.add(transaction);
+                transactionList.getItems().add(transaction);
+
+                amountField.clear();
+                descriptionField.clear();
+
+            }
+            catch (NumberFormatException exception) {
+                System.out.println("Invalid number");
+            }
+        });
+
         Button backButton = new Button("Back");
         backButton.setOnAction(event -> setDisplayPane(homeScreen));
 
-        transactionsScreen.getChildren().setAll(transactionsScreenlabel, backButton);
+        transactionsScreen.getChildren().setAll(
+                title,
+                amountField,
+                descriptionField,
+                addButton,
+                transactionList,
+                backButton
+        );
+
         transactionsScreen.setAlignment(Pos.CENTER);
+        transactionsScreen.setSpacing(10);
     }
     private void configureGoalsScreen() {
         Label goalsScreenLabel = new Label("Goals");
