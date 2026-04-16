@@ -163,6 +163,6 @@ public class UserUI extends Application {
     }
 
     private void setHomeDisplayPane(Node displayNode) {
-
+        homeScreen.setRight(displayNode);
     }
 }
