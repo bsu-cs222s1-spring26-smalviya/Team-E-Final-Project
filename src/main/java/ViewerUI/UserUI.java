@@ -1,5 +1,6 @@
 package ViewerUI;
 
+import Model.Account;
 import Model.Transaction;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -80,9 +81,10 @@ public class UserUI extends Application {
 
     private void configureAccountScreen() {
         Label accountScreenHeader = new Label("---Account---");
-        Label accountNameLabel = new Label("---");
+        Label accountNameLabel = new Label("Name: ");
+        Label accountBalanceLabel = new Label("Balance: ");
 
-        accountScreen.getChildren().setAll(accountScreenHeader, accountNameLabel);
+        accountScreen.getChildren().setAll(accountScreenHeader, accountNameLabel, accountBalanceLabel);
         accountScreen.setAlignment(Pos.CENTER);
     }
 
