@@ -100,6 +100,7 @@ public class UserUI extends Application {
         currencyScreen.getChildren().setAll(currencyConverterlabel, backButton);
         currencyScreen.setAlignment(Pos.CENTER);
     }
+
     private void configureTransactionsScreen() {
         Label title = new Label("Transactions");
         Label balanceLabel = new Label("Balance: $0");
@@ -163,6 +164,10 @@ public class UserUI extends Application {
 
         goalsScreen.getChildren().setAll(goalsScreenLabel, backButton);
         goalsScreen.setAlignment(Pos.CENTER);
+    }
+
+    private void updateScreenValues() {
+
     }
 
     private void setDisplayPane(Node displayNode) {
