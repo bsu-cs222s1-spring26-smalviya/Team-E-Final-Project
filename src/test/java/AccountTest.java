@@ -53,7 +53,7 @@ public class AccountTest {
 
         Account testAccount = new Account("Alex", 500.0);
 
-        Transaction t = new Transaction(50.0, "Dinner");
+        Transaction t = new Transaction(50.0, "food", "Dinner");
         testAccount.addTransaction(t);
         assertEquals(550.0, testAccount.getBalance());
     }
