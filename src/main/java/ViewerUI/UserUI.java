@@ -226,5 +226,8 @@ class AccountScreen extends VBox {
 }
 
 class MenuScreen extends VBox {
-
+    Label menuScreenLabel;
+    Button menuButton_CurrencyConverter;
+    Button menuButton_Transactions;
+    Button menuButton_MoneyGoals;
 }
