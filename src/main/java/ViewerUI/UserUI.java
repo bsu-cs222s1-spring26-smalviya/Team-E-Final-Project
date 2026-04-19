@@ -27,7 +27,7 @@ public class UserUI extends Application {
     Scene displayScene = new Scene(displayPane);
     LoginScreen loginScreen = new LoginScreen();
     BorderPane homeScreenPane = new BorderPane();
-    VBox accountScreen = new VBox();
+    AccountScreen accountScreen = new AccountScreen();
     VBox menuScreen = new VBox();
 
     VBox currencyScreen = new VBox();
@@ -79,15 +79,7 @@ public class UserUI extends Application {
     }
 
     private void configureAccountScreen() {
-        Label accountScreenHeader = new Label("---Account---");
-        Label accountNameLabel = new Label("Name: ");
-        Label accountBalanceLabel = new Label("Balance: ");
 
-        accountScreen.getChildren().setAll(accountScreenHeader, accountNameLabel, accountBalanceLabel);
-        accountScreen.setAlignment(Pos.TOP_CENTER);
-        accountScreenHeader.setAlignment(Pos.CENTER);
-        accountNameLabel.setAlignment(Pos.CENTER);
-        accountBalanceLabel.setAlignment(Pos.CENTER);
     }
 
     private void configureCurrencyScreen() {
@@ -231,4 +223,8 @@ class AccountScreen extends VBox {
         accountNameLabel.setAlignment(Pos.CENTER);
         accountBalanceLabel.setAlignment(Pos.CENTER);
     }
+}
+
+class MenuScreen extends VBox {
+
 }
