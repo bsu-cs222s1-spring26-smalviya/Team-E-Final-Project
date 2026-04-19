@@ -25,7 +25,7 @@ public class UserUI extends Application {
 
     BorderPane displayPane = new BorderPane();
     Scene displayScene = new Scene(displayPane);
-    VBox loginScreen = new VBox();
+    LoginScreen loginScreen = new LoginScreen();
     BorderPane homeScreen = new BorderPane();
     VBox accountScreen = new VBox();
     VBox menuScreen = new VBox();
@@ -57,13 +57,7 @@ public class UserUI extends Application {
     }
 
     private void configureLoginScreen() {
-        TextField loginTextField = new TextField();
-        Button loginButton = new Button("Login");
-
-        loginScreen.getChildren().addAll(loginTextField, loginButton);
-        loginScreen.setAlignment(Pos.CENTER);
-
-        loginButton.setOnAction( event -> attemptLogin(loginTextField.getText()));
+        loginScreen.setLoginButtonAction( event -> attemptLogin(loginScreen.getTextInput()));
     }
 
     private void configureHomeScreen() {
@@ -207,6 +201,8 @@ class LoginScreen extends VBox {
     public LoginScreen() {
         textInputField = new TextField();
         loginButton = new Button("Login");
+
+        this.getChildren().setAll(textInputField, loginButton);
     }
 
     public String getTextInput() {
