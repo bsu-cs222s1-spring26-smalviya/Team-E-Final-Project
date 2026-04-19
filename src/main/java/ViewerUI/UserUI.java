@@ -227,7 +227,17 @@ class AccountScreen extends VBox {
 
 class MenuScreen extends VBox {
     Label menuScreenLabel;
-    Button menuButton_CurrencyConverter;
-    Button menuButton_Transactions;
-    Button menuButton_MoneyGoals;
+    Button button_CurrencyConverter;
+    Button button_Transactions;
+    Button button_MoneyGoals;
+
+    public MenuScreen() {
+        menuScreenLabel = new Label("Please Select a Menu");
+        button_CurrencyConverter = new Button("Currency Converter");
+        button_Transactions = new Button("Transactions");
+        button_MoneyGoals = new Button("Money Goals");
+
+        this.getChildren().setAll(menuScreenLabel, button_CurrencyConverter, button_Transactions, button_MoneyGoals);
+        this.setAlignment(Pos.CENTER);
+    }
 }
