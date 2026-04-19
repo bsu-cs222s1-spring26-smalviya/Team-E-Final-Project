@@ -268,6 +268,9 @@ class MoneyGoalsScreen extends VBox {
 
         this.getChildren().setAll(goalsScreenLabel, backButton);
         this.setAlignment(Pos.CENTER);
+    }
 
+    public void setBackButtonAction(EventHandler<ActionEvent> action) {
+        backButton.setOnAction(action);
     }
 }
