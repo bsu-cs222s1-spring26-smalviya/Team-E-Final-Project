@@ -219,4 +219,16 @@ class AccountScreen extends VBox {
     Label accountScreenHeader;
     Label accountNameLabel;
     Label accountBalanceLabel;
+
+    public AccountScreen() {
+        accountScreenHeader = new Label("---Account---");
+        accountNameLabel = new Label("Name: ");
+        accountBalanceLabel = new Label("Balance: ");
+
+        this.getChildren().setAll(accountScreenHeader, accountNameLabel, accountBalanceLabel);
+        this.setAlignment(Pos.TOP_CENTER);
+        accountScreenHeader.setAlignment(Pos.CENTER);
+        accountNameLabel.setAlignment(Pos.CENTER);
+        accountBalanceLabel.setAlignment(Pos.CENTER);
+    }
 }
