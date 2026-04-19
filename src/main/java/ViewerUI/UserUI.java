@@ -259,5 +259,15 @@ class CurrencyConverterScreen extends VBox {
 }
 
 class MoneyGoalsScreen extends VBox {
+    Label goalsScreenLabel;
+    Button backButton;
 
+    public MoneyGoalsScreen() {
+        goalsScreenLabel = new Label("Goals");
+        backButton = new Button("Back");
+
+        this.getChildren().setAll(goalsScreenLabel, backButton);
+        this.setAlignment(Pos.CENTER);
+
+    }
 }
