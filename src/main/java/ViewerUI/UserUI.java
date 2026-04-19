@@ -30,7 +30,7 @@ public class UserUI extends Application {
     AccountScreen accountScreen = new AccountScreen();
     MenuScreen menuScreen = new MenuScreen();
 
-    VBox currencyScreen = new VBox();
+    CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen();
     VBox transactionsScreen = new VBox();
     VBox goalsScreen = new VBox();
 
@@ -66,7 +66,7 @@ public class UserUI extends Application {
     }
 
     private void configureMenuScreen() {
-        menuScreen.setCurrencyConverterButtonAction(event -> setHomeDisplayPane(currencyScreen));
+        menuScreen.setCurrencyConverterButtonAction(event -> setHomeDisplayPane(currencyConverterScreen));
         menuScreen.setTransactionButtonAction(event -> setHomeDisplayPane(transactionsScreen));
         menuScreen.setMoneyGoalButtonAction(event -> setHomeDisplayPane(goalsScreen));
     }
@@ -76,10 +76,7 @@ public class UserUI extends Application {
     }
 
     private void configureCurrencyScreen() {
-        Label currencyConverterlabel = new Label("Currency Converter");
-        Button backButton = new Button("Back");
-
-        backButton.setOnAction(event -> setHomeDisplayPane(menuScreen));
+        currencyConverterScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
     }
 
     private void configureTransactionsScreen() {
