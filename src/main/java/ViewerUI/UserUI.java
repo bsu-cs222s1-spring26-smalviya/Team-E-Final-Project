@@ -198,7 +198,12 @@ public class UserUI extends Application {
     }
 }
 
-class loginScreen extends VBox {
-    TextField textInputField = new TextField();
-    Button loginButton = new Button("Login");
+class LoginScreen extends VBox {
+    TextField textInputField;
+    Button loginButton;
+
+    public LoginScreen() {
+        textInputField = new TextField();
+        loginButton = new Button("Login");
+    }
 }
