@@ -26,7 +26,7 @@ public class UserUI extends Application {
     BorderPane displayPane = new BorderPane();
     Scene displayScene = new Scene(displayPane);
     LoginScreen loginScreen = new LoginScreen();
-    BorderPane homeScreen = new BorderPane();
+    BorderPane homeScreenPane = new BorderPane();
     VBox accountScreen = new VBox();
     VBox menuScreen = new VBox();
 
@@ -61,7 +61,7 @@ public class UserUI extends Application {
     }
 
     private void configureHomeScreen() {
-        homeScreen.setLeft(accountScreen);
+        homeScreenPane.setLeft(accountScreen);
         setHomeDisplayPane(menuScreen);
     }
 
@@ -179,9 +179,9 @@ public class UserUI extends Application {
         Account userAccount = manager.loginUser(username);
 
         if (userAccount != null) {
-            setDisplayPane(homeScreen);
+            setDisplayPane(homeScreenPane);
         } else {
-            setDisplayPane(homeScreen);
+            setDisplayPane(homeScreenPane);
         }
     }
 
@@ -190,7 +190,7 @@ public class UserUI extends Application {
     }
 
     private void setHomeDisplayPane(Node displayNode) {
-        homeScreen.setRight(displayNode);
+        homeScreenPane.setRight(displayNode);
     }
 }
 
