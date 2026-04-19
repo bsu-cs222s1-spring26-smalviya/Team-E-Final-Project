@@ -28,7 +28,7 @@ public class UserUI extends Application {
     LoginScreen loginScreen = new LoginScreen();
     BorderPane homeScreenPane = new BorderPane();
     AccountScreen accountScreen = new AccountScreen();
-    VBox menuScreen = new VBox();
+    MenuScreen menuScreen = new MenuScreen();
 
     VBox currencyScreen = new VBox();
     VBox transactionsScreen = new VBox();
@@ -66,16 +66,9 @@ public class UserUI extends Application {
     }
 
     private void configureMenuScreen() {
-        Label menuScreenLabel = new Label("Please Select a Menu");
-        Button menuButton_CurrencyConverter = new Button("Currency Converter");
-        Button menuButton_Transactions = new Button("Transactions");
-        Button menuButton_MoneyGoals = new Button("Money Goals");
-
-        menuButton_CurrencyConverter.setOnAction(event -> setHomeDisplayPane(currencyScreen));
-        menuButton_Transactions.setOnAction(event -> setHomeDisplayPane(transactionsScreen));
-        menuButton_MoneyGoals.setOnAction(event -> setHomeDisplayPane(goalsScreen));
-
-        menuScreen.getChildren().setAll(menuScreenLabel, menuButton_CurrencyConverter, menuButton_Transactions, menuButton_MoneyGoals);
+        menuScreen.setCurrencyConverterButtonAction(event -> setHomeDisplayPane(currencyScreen));
+        menuScreen.setTransactionButtonAction(event -> setHomeDisplayPane(transactionsScreen));
+        menuScreen.setMoneyGoalButtonAction(event -> setHomeDisplayPane(goalsScreen));
     }
 
     private void configureAccountScreen() {
@@ -218,7 +211,7 @@ class AccountScreen extends VBox {
         accountBalanceLabel = new Label("Balance: ");
 
         this.getChildren().setAll(accountScreenHeader, accountNameLabel, accountBalanceLabel);
-        this.setAlignment(Pos.TOP_CENTER);
+        this.setAlignment(Pos.CENTER);
         accountScreenHeader.setAlignment(Pos.CENTER);
         accountNameLabel.setAlignment(Pos.CENTER);
         accountBalanceLabel.setAlignment(Pos.CENTER);
