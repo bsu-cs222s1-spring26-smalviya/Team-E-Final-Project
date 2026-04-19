@@ -80,9 +80,6 @@ public class UserUI extends Application {
         Button backButton = new Button("Back");
 
         backButton.setOnAction(event -> setHomeDisplayPane(menuScreen));
-
-        currencyScreen.getChildren().setAll(currencyConverterlabel, backButton);
-        currencyScreen.setAlignment(Pos.CENTER);
     }
 
     private void configureTransactionsScreen() {
@@ -248,5 +245,14 @@ class MenuScreen extends VBox {
 }
 
 class CurrencyConverterScreen extends VBox {
+    Label currencyConverterlabel;
+    Button backButton;
 
+    public CurrencyConverterScreen() {
+        currencyConverterlabel = new Label("Currency Converter");
+        backButton = new Button("Back");
+
+        this.getChildren().setAll(currencyConverterlabel, backButton);
+        this.setAlignment(Pos.CENTER);
+    }
 }
