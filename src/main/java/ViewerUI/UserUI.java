@@ -203,6 +203,7 @@ class LoginScreen extends VBox {
         loginButton = new Button("Login");
 
         this.getChildren().setAll(textInputField, loginButton);
+        this.setAlignment(Pos.CENTER);
     }
 
     public String getTextInput() {
