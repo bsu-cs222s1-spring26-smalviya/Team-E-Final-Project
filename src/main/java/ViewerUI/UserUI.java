@@ -4,6 +4,8 @@ import Controller.UIManager;
 import Model.Account;
 import Model.Transaction;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -205,5 +207,9 @@ class LoginScreen extends VBox {
     public LoginScreen() {
         textInputField = new TextField();
         loginButton = new Button("Login");
+    }
+
+    public void setLoginButtonAction(EventHandler<ActionEvent> action) {
+        loginButton.setOnAction(action);
     }
 }
