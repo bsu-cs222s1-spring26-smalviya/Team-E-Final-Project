@@ -255,4 +255,8 @@ class CurrencyConverterScreen extends VBox {
         this.getChildren().setAll(currencyConverterlabel, backButton);
         this.setAlignment(Pos.CENTER);
     }
+
+    public void setBackButtonAction(EventHandler<ActionEvent> action) {
+        backButton.setOnAction(action);
+    }
 }
