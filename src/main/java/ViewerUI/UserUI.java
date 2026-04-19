@@ -214,3 +214,7 @@ class LoginScreen extends VBox {
         loginButton.setOnAction(action);
     }
 }
+
+class AccountScreen extends VBox {
+
+}
