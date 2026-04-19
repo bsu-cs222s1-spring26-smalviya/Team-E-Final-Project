@@ -209,6 +209,10 @@ class LoginScreen extends VBox {
         loginButton = new Button("Login");
     }
 
+    public String getTextInput() {
+        return textInputField.getText();
+    }
+
     public void setLoginButtonAction(EventHandler<ActionEvent> action) {
         loginButton.setOnAction(action);
     }
