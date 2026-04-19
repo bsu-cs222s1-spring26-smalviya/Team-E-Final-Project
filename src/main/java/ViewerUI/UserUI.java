@@ -244,4 +244,12 @@ class MenuScreen extends VBox {
     public void setCurrencyConverterButtonAction(EventHandler<ActionEvent> action) {
         button_CurrencyConverter.setOnAction(action);
     }
+
+    public void setTransactionButtonAction(EventHandler<ActionEvent> action) {
+        button_Transactions.setOnAction(action);
+    }
+
+    public void setMoneyGoalButtonAction(EventHandler<ActionEvent> action) {
+        button_MoneyGoals.setOnAction(action);
+    }
 }
