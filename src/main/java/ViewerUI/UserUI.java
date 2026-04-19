@@ -240,4 +240,8 @@ class MenuScreen extends VBox {
         this.getChildren().setAll(menuScreenLabel, button_CurrencyConverter, button_Transactions, button_MoneyGoals);
         this.setAlignment(Pos.CENTER);
     }
+
+    public void setCurrencyConverterButtonAction(EventHandler<ActionEvent> action) {
+        button_CurrencyConverter.setOnAction(action);
+    }
 }
