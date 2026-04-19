@@ -197,3 +197,7 @@ public class UserUI extends Application {
         homeScreen.setRight(displayNode);
     }
 }
+
+class loginScreen extends VBox {
+
+}
