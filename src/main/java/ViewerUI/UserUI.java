@@ -216,5 +216,7 @@ class LoginScreen extends VBox {
 }
 
 class AccountScreen extends VBox {
-
+    Label accountScreenHeader;
+    Label accountNameLabel;
+    Label accountBalanceLabel;
 }
