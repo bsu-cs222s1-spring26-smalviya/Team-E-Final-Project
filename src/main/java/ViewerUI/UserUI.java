@@ -257,3 +257,7 @@ class CurrencyConverterScreen extends VBox {
         backButton.setOnAction(action);
     }
 }
+
+class MoneyGoalsScreen extends VBox {
+
+}
