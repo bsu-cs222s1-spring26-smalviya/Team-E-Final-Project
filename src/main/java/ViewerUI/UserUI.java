@@ -246,3 +246,7 @@ class MenuScreen extends VBox {
         button_MoneyGoals.setOnAction(action);
     }
 }
+
+class CurrencyConverterScreen extends VBox {
+
+}
