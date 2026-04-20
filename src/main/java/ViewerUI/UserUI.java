@@ -286,6 +286,7 @@ class TransactionsScreen extends VBox{
     TextField descriptionInput;
     Button addTransactionButton;
     ListView<Transaction> transactionList;
+    Button backButton;
 
     public TransactionsScreen() {
         screenTitle = new Label("Transactions");
@@ -294,6 +295,7 @@ class TransactionsScreen extends VBox{
         descriptionInput = new TextField();
         addTransactionButton = new Button("Add Transaction");
         transactionList = new ListView<>();
+        backButton = new Button("Back");
 
         this.getChildren().setAll(
                 screenTitle,
@@ -306,6 +308,10 @@ class TransactionsScreen extends VBox{
 
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
+    }
+
+    public void setBackButtonAction(EventHandler<ActionEvent> action) {
+        backButton.setOnAction(action);
     }
 }
 
