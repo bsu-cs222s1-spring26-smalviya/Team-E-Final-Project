@@ -1,8 +1,6 @@
 package ViewerUI;
 
 import Controller.UIManager;
-import Model.Account;
-import Model.DataStorage;
 import Model.Transaction;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -17,9 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -36,8 +31,6 @@ public class UserUI extends Application {
     CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen();
     TransactionsScreen transactionsScreen = new TransactionsScreen(manager);
     MoneyGoalsScreen moneyGoalsScreen = new MoneyGoalsScreen();
-
-    private List<Transaction> transactions = new ArrayList<>();
 
     public static void main(String[] args) {launch(args);}
 
@@ -60,7 +53,7 @@ public class UserUI extends Application {
     }
 
     private void configureLoginScreen() {
-        loginScreen.setLoginButtonAction( event -> attemptLogin(loginScreen.getTextInput()));
+        loginScreen.setLoginButtonAction( event -> attemptLogin());
     }
 
     private void configureHomeScreen() {
@@ -88,61 +81,6 @@ public class UserUI extends Application {
             transactionsScreen.addTransaction();
             updateScreens();
         });
-        /*
-        Label title = new Label("Transactions");
-        Label balanceLabel = new Label("Balance: $0");
-
-        TextField amountField = new TextField();
-        amountField.setPromptText("Amount (+ deposit, - withdrawal)");
-
-        TextField descriptionField = new TextField();
-        descriptionField.setPromptText("Description");
-
-        Button addButton = new Button("Add Transaction");
-
-        ListView<Transaction> transactionList = new ListView<>();
-
-
-        addButton.setOnAction(event -> {
-            try {
-                double amount = Double.parseDouble(amountField.getText());
-                String description = descriptionField.getText();
-
-                Transaction transaction = new Transaction(amount, description);
-
-                transactions.add(transaction);
-                transactionList.getItems().add(transaction);
-
-                transactionList.getItems().addAll(transactions);
-                double total = transactions.stream().mapToDouble(Transaction::getAmount).sum();
-
-                balanceLabel.setText("Balance: $" + total);
-
-                amountField.clear();
-                descriptionField.clear();
-
-            }
-            catch (NumberFormatException exception) {
-                System.out.println("Invalid number");
-            }
-        });
-
-        Button backButton = new Button("Back");
-        backButton.setOnAction(event -> setHomeDisplayPane(menuScreen));
-
-        transactionsScreen.getChildren().setAll(
-                title,
-                balanceLabel,
-                amountField,
-                descriptionField,
-                addButton,
-                transactionList,
-                backButton
-        );
-
-        transactionsScreen.setAlignment(Pos.CENTER);
-        transactionsScreen.setSpacing(10);
-         */
     }
 
     private void configureGoalsScreen() {
@@ -154,7 +92,7 @@ public class UserUI extends Application {
          transactionsScreen.updateScreen();
     }
 
-    private void attemptLogin(String username) {
+    private void attemptLogin() {
         String loginInput = loginScreen.getTextInput();
         manager.loginUser(loginInput);
         setDisplayPane(homeScreenPane);
@@ -226,9 +164,9 @@ class AccountScreen extends VBox {
     public void updateScreen() {
         try {
             accountNameLabel.setText("Name: " + manager.getCurrentAccount().getUsername());
-            accountBalanceLabel.setText("Balance: " + Double.toString(manager.getCurrentAccount().getBalance()));
+            accountBalanceLabel.setText("Balance: " + manager.getCurrentAccount().getBalance());
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error updating AccountScreen values...");
         }
     }
 }
@@ -366,7 +304,7 @@ class TransactionsScreen extends VBox {
             List<Transaction> transactions = manager.getCurrentAccount().getTransactionList();
             transactionList.getItems().setAll(transactions);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Error updating TransactionScreen values...");
         }
     }
 }
