@@ -325,6 +325,10 @@ class TransactionsScreen extends VBox {
     public void setBackButtonAction(EventHandler<ActionEvent> action) {
         backButton.setOnAction(action);
     }
+
+    public void setAddTransactionButtonAction(EventHandler<ActionEvent> action) {
+        addTransactionButton.setOnAction(action);
+    }
 }
 
 class MoneyGoalsScreen extends VBox {
