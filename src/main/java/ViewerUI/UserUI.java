@@ -253,6 +253,10 @@ class CurrencyConverterScreen extends VBox {
     }
 }
 
+class TransactionsScreen {
+
+}
+
 class MoneyGoalsScreen extends VBox {
     Label goalsScreenLabel;
     Button backButton;
