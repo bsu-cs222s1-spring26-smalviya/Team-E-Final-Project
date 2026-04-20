@@ -24,17 +24,17 @@ import java.util.List;
 
 
 public class UserUI extends Application {
-    Account userAccount = null;
+    UIManager manager = new UIManager();
 
     BorderPane displayPane = new BorderPane();
     Scene displayScene = new Scene(displayPane);
     LoginScreen loginScreen = new LoginScreen();
     BorderPane homeScreenPane = new BorderPane();
-    AccountScreen accountScreen = new AccountScreen(userAccount);
+    AccountScreen accountScreen = new AccountScreen(manager);
     MenuScreen menuScreen = new MenuScreen();
 
     CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen();
-    TransactionsScreen transactionsScreen = new TransactionsScreen();
+    TransactionsScreen transactionsScreen = new TransactionsScreen(manager);
     MoneyGoalsScreen moneyGoalsScreen = new MoneyGoalsScreen();
 
     private List<Transaction> transactions = new ArrayList<>();
@@ -65,7 +65,7 @@ public class UserUI extends Application {
 
     private void configureHomeScreen() {
         homeScreenPane.setLeft(accountScreen);
-        setHomeDisplayPane(menuScreen);
+        homeScreenPane.setRight(menuScreen);
     }
 
     private void configureMenuScreen() {
@@ -145,28 +145,24 @@ public class UserUI extends Application {
         moneyGoalsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
     }
 
-    private void updateScreenValues() {
-
+    private void updateScreens() {
+         accountScreen.updateScreen();
     }
 
     private void attemptLogin(String username) {
         String loginInput = loginScreen.getTextInput();
-        try {
-            userAccount = DataStorage.loadAccount(loginInput);
-            System.out.println("Logged in " + userAccount.getUsername());
-        } catch (Exception e) {
-           System.out.println("Created new account...");
-           userAccount = new Account(loginInput, 0);
-        }
+        manager.loginUser(loginInput);
         setDisplayPane(homeScreenPane);
     }
 
     private void setDisplayPane(Node displayNode) {
         displayPane.setCenter(displayNode);
+        updateScreens();
     }
 
     private void setHomeDisplayPane(Node displayNode) {
         homeScreenPane.setRight(displayNode);
+        updateScreens();
     }
 }
 
@@ -197,14 +193,14 @@ class LoginScreen extends VBox {
 }
 
 class AccountScreen extends VBox {
-    Account userAccount;
+    UIManager manager;
 
     Label accountScreenHeader;
     Label accountNameLabel;
     Label accountBalanceLabel;
 
-    public AccountScreen(Account userAccount) {
-        this.userAccount = userAccount;
+    public AccountScreen(UIManager manager) {
+        this.manager = manager;
 
         accountScreenHeader = new Label("---Account---");
         accountNameLabel = new Label("Name: ");
@@ -220,6 +216,15 @@ class AccountScreen extends VBox {
         accountScreenHeader.setAlignment(Pos.CENTER);
         accountNameLabel.setAlignment(Pos.CENTER);
         accountBalanceLabel.setAlignment(Pos.CENTER);
+    }
+
+    public void updateScreen() {
+        try {
+            accountNameLabel.setText("Name: " + manager.getCurrentAccount().getUsername());
+            accountBalanceLabel.setText("Balance: " + Double.toString(manager.getCurrentAccount().getBalance()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 
@@ -281,7 +286,8 @@ class CurrencyConverterScreen extends VBox {
     }
 }
 
-class TransactionsScreen extends VBox{
+class TransactionsScreen extends VBox {
+    UIManager manager;
 
     Label screenTitle;
     TextField amountInput;
@@ -291,7 +297,9 @@ class TransactionsScreen extends VBox{
     ListView<Transaction> transactionList;
     Button backButton;
 
-    public TransactionsScreen() {
+    public TransactionsScreen(UIManager manager) {
+        this.manager = manager;
+
         screenTitle = new Label("Transactions");
         amountInput = new TextField();
         categoryInput = new TextField();
