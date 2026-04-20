@@ -303,7 +303,8 @@ class TransactionsScreen extends VBox{
                 categoryInput,
                 descriptionInput,
                 addTransactionButton,
-                transactionList
+                transactionList,
+                backButton
         );
 
         this.setAlignment(Pos.CENTER);
