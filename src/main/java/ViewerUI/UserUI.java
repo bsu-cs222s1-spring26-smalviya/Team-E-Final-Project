@@ -284,19 +284,24 @@ class TransactionsScreen extends VBox{
     TextField amountInput;
     TextField categoryInput;
     TextField descriptionInput;
-
+    Button addTransactionButton;
+    ListView<Transaction> transactionList;
 
     public TransactionsScreen() {
         screenTitle = new Label("Transactions");
         amountInput = new TextField();
         categoryInput = new TextField();
         descriptionInput = new TextField();
+        addTransactionButton = new Button("Add Transaction");
+        transactionList = new ListView<>();
 
         this.getChildren().setAll(
                 screenTitle,
                 amountInput,
                 categoryInput,
-                descriptionInput
+                descriptionInput,
+                addTransactionButton,
+                transactionList
         );
 
         this.setAlignment(Pos.CENTER);
