@@ -145,13 +145,7 @@ public class UserUI extends Application {
     }
 
     private void updateScreenValues() {
-        updateAccountScreen();
-    }
 
-    private void updateAccountScreen() {
-        javafx.collections.ObservableList<Node> accountScreenElements = accountScreen.getChildren();
-        Node accountName = accountScreenElements.get(1);
-        Node accountBalance = accountScreenElements.get(2);
     }
 
     private void attemptLogin(String username) {
