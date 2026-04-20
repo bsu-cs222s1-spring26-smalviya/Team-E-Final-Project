@@ -2,6 +2,7 @@ package ViewerUI;
 
 import Controller.UIManager;
 import Model.Account;
+import Model.DataStorage;
 import Model.Transaction;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -23,13 +24,13 @@ import java.util.List;
 
 
 public class UserUI extends Application {
-    UIManager manager = new UIManager();
+    Account userAccount = null;
 
     BorderPane displayPane = new BorderPane();
     Scene displayScene = new Scene(displayPane);
     LoginScreen loginScreen = new LoginScreen();
     BorderPane homeScreenPane = new BorderPane();
-    AccountScreen accountScreen = new AccountScreen();
+    AccountScreen accountScreen = new AccountScreen(userAccount);
     MenuScreen menuScreen = new MenuScreen();
 
     CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen();
@@ -149,13 +150,15 @@ public class UserUI extends Application {
     }
 
     private void attemptLogin(String username) {
-        Account userAccount = manager.loginUser(username);
-
-        if (userAccount != null) {
-            setDisplayPane(homeScreenPane);
-        } else {
-            setDisplayPane(homeScreenPane);
+        String loginInput = loginScreen.getTextInput();
+        try {
+            userAccount = DataStorage.loadAccount(loginInput);
+            System.out.println("Logged in " + userAccount.getUsername());
+        } catch (Exception e) {
+           System.out.println("Created new account...");
+           userAccount = new Account(loginInput, 0);
         }
+        setDisplayPane(homeScreenPane);
     }
 
     private void setDisplayPane(Node displayNode) {
@@ -194,12 +197,15 @@ class LoginScreen extends VBox {
 }
 
 class AccountScreen extends VBox {
+    Account userAccount;
 
     Label accountScreenHeader;
     Label accountNameLabel;
     Label accountBalanceLabel;
 
-    public AccountScreen() {
+    public AccountScreen(Account userAccount) {
+        this.userAccount = userAccount;
+
         accountScreenHeader = new Label("---Account---");
         accountNameLabel = new Label("Name: ");
         accountBalanceLabel = new Label("Balance: ");
