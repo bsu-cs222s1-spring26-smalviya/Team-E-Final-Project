@@ -84,6 +84,10 @@ public class UserUI extends Application {
 
     private void configureTransactionsScreen() {
         transactionsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
+        transactionsScreen.setAddTransactionButtonAction(event -> {
+            transactionsScreen.addTransaction();
+            updateScreens();
+        });
         /*
         Label title = new Label("Transactions");
         Label balanceLabel = new Label("Balance: $0");
@@ -147,6 +151,7 @@ public class UserUI extends Application {
 
     private void updateScreens() {
          accountScreen.updateScreen();
+         transactionsScreen.updateScreen();
     }
 
     private void attemptLogin(String username) {
@@ -328,6 +333,33 @@ class TransactionsScreen extends VBox {
 
     public void setAddTransactionButtonAction(EventHandler<ActionEvent> action) {
         addTransactionButton.setOnAction(action);
+    }
+
+    public void addTransaction() {
+        try {
+            double transactionAmount = Double.parseDouble(amountInput.getText());
+            String transactionCategory = categoryInput.getText();
+            String transactionDescription = descriptionInput.getText();
+
+            Transaction transaction = new Transaction(transactionAmount, transactionCategory, transactionDescription);
+
+            manager.getCurrentAccount().addTransaction(transaction);
+
+            amountInput.clear();
+            categoryInput.clear();
+            descriptionInput.clear();
+        } catch (NumberFormatException exception) {
+            System.out.println("Invalid input...");
+        }
+    }
+
+    public void updateScreen() {
+        try {
+            List<Transaction> transactions = manager.getCurrentAccount().getTransactionList();
+            transactionList.getItems().setAll(transactions);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
 
