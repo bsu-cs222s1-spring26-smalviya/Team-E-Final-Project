@@ -323,8 +323,16 @@ class TransactionsScreen extends VBox {
                 backButton
         );
 
+        configureVisualDetails();
+    }
+
+    private void configureVisualDetails() {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
+
+        amountInput.setPromptText("Amount for the transaction (- value for withdrawal)");
+        categoryInput.setPromptText("Category of transaction (i.e \"Rent\" or \"Food\")");
+        descriptionInput.setPromptText("Description/note for the transaction");
     }
 
     public void setBackButtonAction(EventHandler<ActionEvent> action) {
