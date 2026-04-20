@@ -16,6 +16,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -169,6 +171,7 @@ public class UserUI extends Application {
 }
 
 class LoginScreen extends VBox {
+
     TextField textInputField;
     Button loginButton;
 
@@ -176,7 +179,11 @@ class LoginScreen extends VBox {
         textInputField = new TextField();
         loginButton = new Button("Login");
 
-        this.getChildren().setAll(textInputField, loginButton);
+        this.getChildren().setAll(
+                textInputField,
+                loginButton
+        );
+
         this.setAlignment(Pos.CENTER);
     }
 
@@ -190,6 +197,7 @@ class LoginScreen extends VBox {
 }
 
 class AccountScreen extends VBox {
+
     Label accountScreenHeader;
     Label accountNameLabel;
     Label accountBalanceLabel;
@@ -199,7 +207,12 @@ class AccountScreen extends VBox {
         accountNameLabel = new Label("Name: ");
         accountBalanceLabel = new Label("Balance: ");
 
-        this.getChildren().setAll(accountScreenHeader, accountNameLabel, accountBalanceLabel);
+        this.getChildren().setAll(
+                accountScreenHeader,
+                accountNameLabel,
+                accountBalanceLabel
+        );
+
         this.setAlignment(Pos.CENTER);
         accountScreenHeader.setAlignment(Pos.CENTER);
         accountNameLabel.setAlignment(Pos.CENTER);
@@ -208,6 +221,7 @@ class AccountScreen extends VBox {
 }
 
 class MenuScreen extends VBox {
+
     Label menuScreenLabel;
     Button button_CurrencyConverter;
     Button button_Transactions;
@@ -219,7 +233,13 @@ class MenuScreen extends VBox {
         button_Transactions = new Button("Transactions");
         button_MoneyGoals = new Button("Money Goals");
 
-        this.getChildren().setAll(menuScreenLabel, button_CurrencyConverter, button_Transactions, button_MoneyGoals);
+        this.getChildren().setAll(
+                menuScreenLabel,
+                button_CurrencyConverter,
+                button_Transactions,
+                button_MoneyGoals
+        );
+
         this.setAlignment(Pos.CENTER);
     }
 
@@ -237,6 +257,7 @@ class MenuScreen extends VBox {
 }
 
 class CurrencyConverterScreen extends VBox {
+
     Label currencyConverterlabel;
     Button backButton;
 
@@ -244,7 +265,11 @@ class CurrencyConverterScreen extends VBox {
         currencyConverterlabel = new Label("Currency Converter");
         backButton = new Button("Back");
 
-        this.getChildren().setAll(currencyConverterlabel, backButton);
+        this.getChildren().setAll(
+                currencyConverterlabel,
+                backButton
+        );
+
         this.setAlignment(Pos.CENTER);
     }
 
@@ -253,11 +278,34 @@ class CurrencyConverterScreen extends VBox {
     }
 }
 
-class TransactionsScreen {
+class TransactionsScreen extends VBox{
 
+    Label screenTitle;
+    TextField amountInput;
+    TextField categoryInput;
+    TextField descriptionInput;
+
+
+    public TransactionsScreen() {
+        screenTitle = new Label("Transactions");
+        amountInput = new TextField();
+        categoryInput = new TextField();
+        descriptionInput = new TextField();
+
+        this.getChildren().setAll(
+                screenTitle,
+                amountInput,
+                categoryInput,
+                descriptionInput
+        );
+
+        this.setAlignment(Pos.CENTER);
+        this.setSpacing(10);
+    }
 }
 
 class MoneyGoalsScreen extends VBox {
+
     Label goalsScreenLabel;
     Button backButton;
 
@@ -265,7 +313,11 @@ class MoneyGoalsScreen extends VBox {
         goalsScreenLabel = new Label("Goals");
         backButton = new Button("Back");
 
-        this.getChildren().setAll(goalsScreenLabel, backButton);
+        this.getChildren().setAll(
+                goalsScreenLabel,
+                backButton
+        );
+
         this.setAlignment(Pos.CENTER);
     }
 
