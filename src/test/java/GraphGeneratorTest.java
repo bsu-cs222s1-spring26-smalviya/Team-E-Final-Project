@@ -41,7 +41,7 @@ public class GraphGeneratorTest {
     }
 
     @Test
-    public void TestGenerateIncomeChartsIsSuccess() {
+    public void testGenerateIncomeChartsIsSuccess() {
         assertDoesNotThrow(() -> {
             GraphGenerator.generateCharts(TEST_FILE);
         });
@@ -51,7 +51,7 @@ public class GraphGeneratorTest {
     }
 
     @Test
-    public void TestGenerateExpenseChartsIsSuccess() {
+    public void testGenerateExpenseChartsIsSuccess() {
         assertDoesNotThrow(() -> {
             GraphGenerator.generateCharts(TEST_FILE);
         });
@@ -61,7 +61,7 @@ public class GraphGeneratorTest {
     }
 
     @Test
-    public void TestGenerateInvalidPath() {
+    public void testGenerateInvalidPath() {
         assertThrows(JsonLoadException.class, () -> {
             GraphGenerator.generateCharts("notExist.json");
         });
@@ -69,7 +69,7 @@ public class GraphGeneratorTest {
     }
 
     @Test
-    public void TestGenerateUmptyJson() throws Exception {
+    public void testGenerateUmptyJson() throws Exception {
         String json = "";
         FileWriter writer = new FileWriter(TEST_FILE);
         writer.write(json);
@@ -100,7 +100,7 @@ public class GraphGeneratorTest {
     }
 
     @Test
-    public void GenerateCharts_AllIncome() throws IOException {
+    public void generateCharts_AllIncome() throws IOException {
         String json =  """
         {
           "username": "testuser",
@@ -121,7 +121,7 @@ public class GraphGeneratorTest {
     }
 
     @Test
-    public void GenerateCharts_AllExpense() throws IOException {
+    public void generateCharts_AllExpense() throws IOException {
         String json =  """
         {
           "username": "testuser",
