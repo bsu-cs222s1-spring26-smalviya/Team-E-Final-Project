@@ -30,9 +30,9 @@ public class Transaction {
         return type;
     }
 
-//    public String getCategory() {
-//        return category;
-//    }
+   public String getCategory() {
+       return category;
+    }
 
     public String getDescription() {
         return description;
