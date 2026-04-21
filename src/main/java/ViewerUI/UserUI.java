@@ -14,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import java.util.List;
@@ -218,14 +219,27 @@ class MenuScreen extends VBox {
 class CurrencyConverterScreen extends VBox {
 
     Label currencyConverterlabel;
+    HBox currencyConversionTypeContainer;
+    TextField currencyConversionFrom;
+    Label currencyConversionTypeArrow;
+    TextField currencyConversionTo;
     Button backButton;
 
     public CurrencyConverterScreen() {
         currencyConverterlabel = new Label("Currency Converter");
+        currencyConversionFrom = new TextField();
+        currencyConversionTypeArrow = new Label("->");
+        currencyConversionTo = new TextField();
+        currencyConversionTypeContainer = new HBox(
+                currencyConversionFrom,
+                currencyConversionTypeArrow,
+                currencyConversionTo
+        );
         backButton = new Button("Back");
 
         this.getChildren().setAll(
                 currencyConverterlabel,
+                currencyConversionTypeContainer,
                 backButton
         );
 
