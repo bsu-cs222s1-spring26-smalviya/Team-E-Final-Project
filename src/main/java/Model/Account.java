@@ -15,6 +15,7 @@ public class Account {
         this.balance = initialBalance;
     }
 
+
     public String getUsername() {
         return username;
     }

@@ -39,7 +39,7 @@ public class GraphGenerator {
             if (t == null) {
                 throw new AccountDataException("transaction info missing");
             }
-            String category = t.getDescription();
+            String category = t.getCategory();
 
             if (t.getAmount() >= 0) {
 
