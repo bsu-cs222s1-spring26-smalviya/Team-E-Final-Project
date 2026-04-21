@@ -25,7 +25,7 @@ test{
 
 
 javafx {
-    version = "21" // 或 17（更稳）
+    version = "21"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
