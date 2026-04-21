@@ -1,7 +1,5 @@
 package Model;
 
-import java.lang.classfile.instruction.ReturnInstruction;
-
 public class MoneyGoal {
     private String goalName;
     private double targetAmount;

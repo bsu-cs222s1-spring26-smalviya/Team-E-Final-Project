@@ -1,6 +1,6 @@
 package ViewerUI;
 
-import Controller.UIManager;
+import Controller.FinanceManager;
 import Model.Transaction;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -19,7 +19,7 @@ import java.util.List;
 
 
 public class UserUI extends Application {
-    UIManager manager = new UIManager();
+    FinanceManager manager = new FinanceManager();
 
     BorderPane displayPane = new BorderPane();
     Scene displayScene = new Scene(displayPane);
@@ -94,7 +94,7 @@ public class UserUI extends Application {
 
     private void attemptLogin() {
         String loginInput = loginScreen.getTextInput();
-        manager.loginUser(loginInput);
+        manager.initAccount(loginInput);
         setDisplayPane(homeScreenPane);
     }
 
@@ -136,13 +136,13 @@ class LoginScreen extends VBox {
 }
 
 class AccountScreen extends VBox {
-    UIManager manager;
+    FinanceManager manager;
 
     Label accountScreenHeader;
     Label accountNameLabel;
     Label accountBalanceLabel;
 
-    public AccountScreen(UIManager manager) {
+    public AccountScreen(FinanceManager manager) {
         this.manager = manager;
 
         accountScreenHeader = new Label("---Account---");
@@ -230,7 +230,7 @@ class CurrencyConverterScreen extends VBox {
 }
 
 class TransactionsScreen extends VBox {
-    UIManager manager;
+    FinanceManager manager;
 
     Label screenTitle;
     TextField amountInput;
@@ -240,7 +240,7 @@ class TransactionsScreen extends VBox {
     ListView<Transaction> transactionList;
     Button backButton;
 
-    public TransactionsScreen(UIManager manager) {
+    public TransactionsScreen(FinanceManager manager) {
         this.manager = manager;
 
         screenTitle = new Label("Transactions");
