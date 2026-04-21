@@ -40,6 +40,8 @@ public class UserUI extends Application {
         primaryStage.setScene(displayScene);
         setDisplayPane(loginScreen);
         configureScreens();
+        primaryStage.setMinHeight(600);
+        primaryStage.setMinWidth(800);
         primaryStage.show();
     }
 
