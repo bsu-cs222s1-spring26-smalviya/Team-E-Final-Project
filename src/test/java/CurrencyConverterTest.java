@@ -12,6 +12,7 @@ public class CurrencyConverterTest {
         String json = converter.getExchangeRateJson("USD", "CNY");
 
         assertNotNull(json);
+        assertFalse(json.isEmpty());
     }
 
     @Test
