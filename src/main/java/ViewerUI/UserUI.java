@@ -86,11 +86,16 @@ public class UserUI extends Application {
 
     private void configureGoalsScreen() {
         moneyGoalsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
+        moneyGoalsScreen.setAddGoalButtonAction(event -> {
+            moneyGoalsScreen.addMoneyGoal();
+            updateScreens();
+        });
     }
 
     private void updateScreens() {
          accountScreen.updateScreen();
          transactionsScreen.updateScreen();
+         moneyGoalsScreen.updateScreen();
     }
 
     private void attemptLogin() {
@@ -373,6 +378,15 @@ class MoneyGoalsScreen extends VBox {
             goalDeadlineInput.clear();
         } catch (NumberFormatException exception) {
             System.out.println("Invalid input...");
+        }
+    }
+
+    public void updateScreen() {
+        try {
+            List<MoneyGoal> moneyGoals = manager.getCurrentAccount().getMoneyGoalList();
+            moneyGoalsList.getItems().setAll(moneyGoals);
+        } catch (Exception e) {
+            System.out.println("Error updating MoneyGoalsScreen values...");
         }
     }
 }
