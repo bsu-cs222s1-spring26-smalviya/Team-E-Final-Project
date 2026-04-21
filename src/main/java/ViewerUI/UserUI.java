@@ -275,7 +275,7 @@ class TransactionsScreen extends VBox {
         this.setSpacing(10);
 
         amountInput.setPromptText("Amount for the transaction (- value for withdrawal)");
-        categoryInput.setPromptText("Category of transaction (i.e \"Rent\" or \"Food\")");
+        categoryInput.setPromptText("Category of transaction (i.e. \"Rent\" or \"Food\")");
         descriptionInput.setPromptText("Description/note for the transaction");
     }
 
@@ -353,6 +353,10 @@ class MoneyGoalsScreen extends VBox {
     private void configureVisualDetails() {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
+
+        goalNameInput.setPromptText("The name for the goal");
+        goalAmountInput.setPromptText("The target amount to reach for the goal");
+        goalDeadlineInput.setPromptText("The deadline for the goal to be reached by");
     }
 
     public void setBackButtonAction(EventHandler<ActionEvent> action) {
