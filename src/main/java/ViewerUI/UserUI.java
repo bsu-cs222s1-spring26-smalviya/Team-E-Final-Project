@@ -1,6 +1,7 @@
 package ViewerUI;
 
 import Controller.FinanceManager;
+import Model.MoneyGoal;
 import Model.Transaction;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -30,7 +31,7 @@ public class UserUI extends Application {
 
     CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen();
     TransactionsScreen transactionsScreen = new TransactionsScreen(manager);
-    MoneyGoalsScreen moneyGoalsScreen = new MoneyGoalsScreen();
+    MoneyGoalsScreen moneyGoalsScreen = new MoneyGoalsScreen(manager);
 
     public static void main(String[] args) {launch(args);}
 
@@ -310,23 +311,50 @@ class TransactionsScreen extends VBox {
 }
 
 class MoneyGoalsScreen extends VBox {
+    FinanceManager manager;
 
     Label goalsScreenLabel;
+    TextField goalNameInput;
+    TextField goalAmountInput;
+    TextField goalDeadlineInput;
+    Button addGoalButton;
+    ListView<MoneyGoal> moneyGoalsList;
     Button backButton;
 
-    public MoneyGoalsScreen() {
+    public MoneyGoalsScreen(FinanceManager manager) {
+        this.manager = manager;
+
         goalsScreenLabel = new Label("Goals");
+        goalNameInput = new TextField();
+        goalAmountInput = new TextField();
+        goalDeadlineInput = new TextField();
+        addGoalButton = new Button("Add Goal");
+        moneyGoalsList = new ListView<>();
         backButton = new Button("Back");
 
         this.getChildren().setAll(
                 goalsScreenLabel,
+                goalNameInput,
+                goalAmountInput,
+                goalDeadlineInput,
+                addGoalButton,
+                moneyGoalsList,
                 backButton
         );
 
+        configureVisualDetails();
+    }
+
+    private void configureVisualDetails() {
         this.setAlignment(Pos.CENTER);
+        this.setSpacing(10);
     }
 
     public void setBackButtonAction(EventHandler<ActionEvent> action) {
         backButton.setOnAction(action);
+    }
+
+    public void setAddGoalButtonAction(EventHandler<ActionEvent> action) {
+        addGoalButton.setOnAction(action);
     }
 }
