@@ -357,4 +357,22 @@ class MoneyGoalsScreen extends VBox {
     public void setAddGoalButtonAction(EventHandler<ActionEvent> action) {
         addGoalButton.setOnAction(action);
     }
+
+    public void addMoneyGoal() {
+        try {
+            String goalName = goalNameInput.getText();
+            double goalAmount = Double.parseDouble(goalAmountInput.getText());
+            String goalDeadline = goalDeadlineInput.getText();
+
+            MoneyGoal moneyGoal = new MoneyGoal(goalName, goalAmount, goalDeadline);
+
+            manager.getCurrentAccount().addMoneyGoals(moneyGoal);
+
+            goalNameInput.clear();
+            goalAmountInput.clear();
+            goalDeadlineInput.clear();
+        } catch (NumberFormatException exception) {
+            System.out.println("Invalid input...");
+        }
+    }
 }
