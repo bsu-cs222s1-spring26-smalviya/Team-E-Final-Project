@@ -36,9 +36,11 @@ public class DataStorage {
         }
     }
 
-    public static Account readUser(String path) throws IOException {
+    public static Account readUser(String path) throws Exception {
         try (FileReader reader = new FileReader(path)) {
             return gson.fromJson(reader, Account.class);
+        }catch(Exception e){
+            throw new ReadUserException("error occured while reading users info");
         }
     }
 

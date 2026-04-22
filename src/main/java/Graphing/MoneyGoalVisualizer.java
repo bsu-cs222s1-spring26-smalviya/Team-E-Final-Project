@@ -4,13 +4,17 @@ import Model.Account;
 import Model.MoneyGoal;
 
 public class MoneyGoalVisualizer {
-    public String generateGoalBar(Account account, MoneyGoal goal){
+    public String generateGoalBar(Account account, MoneyGoal goal) throws Exception {
 
         if(account == null||goal == null){
             throw new NullArgumentException("account or money goal doesn't exist");
         }
         double balance = account.getBalance();
         double target = goal.getTargetAmount();
+        if (target == 0){
+            throw new DividedByZeroException("the target is zero");
+        }
+        
         if(balance <0 || target<0){
             throw new NegativeAmountException("balance or target is negative");
         }
