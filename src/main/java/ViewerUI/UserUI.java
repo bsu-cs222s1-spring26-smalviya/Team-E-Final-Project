@@ -21,6 +21,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -167,9 +168,7 @@ class LoginScreen extends VBox {
         this.setSpacing(20);
         this.setPadding(new Insets(20, 80, 20, 80));
 
-        loginScreenTitle.setScaleX(4);
-        loginScreenTitle.setScaleY(4);
-        loginScreenTitle.setPadding(new Insets(0,0,10, 0));
+        loginScreenTitle.setFont(new Font(60));
 
         textInputField.setAlignment(Pos.CENTER);
         textInputField.setMaxWidth(300);
@@ -204,10 +203,22 @@ class AccountScreen extends VBox {
                 accountBalanceLabel
         );
 
+        configureVisualDetails();
+    }
+
+    private void configureVisualDetails() {
         this.setAlignment(Pos.CENTER);
+        this.setSpacing(10);
+        this.setPadding(new Insets(40, 20, 40, 20));
+
         accountScreenHeader.setAlignment(Pos.CENTER);
+        accountScreenHeader.setFont(new Font(30));
+
         accountNameLabel.setAlignment(Pos.CENTER);
+        accountNameLabel.setFont(new Font(20));
+
         accountBalanceLabel.setAlignment(Pos.CENTER);
+        accountBalanceLabel.setFont(new Font(20));
     }
 
     public void updateScreen() {
