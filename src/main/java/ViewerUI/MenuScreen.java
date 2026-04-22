@@ -14,10 +14,14 @@ public class MenuScreen extends VBox {
     Button button_MoneyGoals;
 
     public MenuScreen() {
-        menuScreenLabel = new Label("Please Select a Menu");
+        menuScreenLabel = new Label("Menu");
+        menuScreenLabel.getStyleClass().add("title-label");
+
         button_CurrencyConverter = new Button("Currency Converter");
         button_Transactions = new Button("Transactions");
         button_MoneyGoals = new Button("Money Goals");
+
+        this.getStyleClass().add("menu-vbox");
 
         this.getChildren().setAll(
                 menuScreenLabel,
@@ -27,6 +31,7 @@ public class MenuScreen extends VBox {
         );
 
         this.setAlignment(Pos.CENTER);
+        this.setSpacing(15);
     }
 
     public void setCurrencyConverterButtonAction(EventHandler<ActionEvent> action) {
