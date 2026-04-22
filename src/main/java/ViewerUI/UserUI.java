@@ -4,6 +4,7 @@ import Controller.FinanceManager;
 import Converter.ConverterException;
 import Converter.CurrencyConverter;
 import Converter.ExchangeRateParser;
+import Model.DataStorage;
 import Model.MoneyGoal;
 import Model.Transaction;
 import javafx.application.Application;
@@ -21,6 +22,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.List;
 
 
@@ -48,6 +51,20 @@ public class UserUI extends Application {
         primaryStage.setMinHeight(600);
         primaryStage.setMinWidth(800);
         primaryStage.show();
+    }
+
+    @Override
+    public void stop() {
+        if (manager.getCurrentAccount() != null) {
+            try {
+                DataStorage.saveAccount(manager.getCurrentAccount());
+                System.out.println("Account saved successfully...");
+            } catch (IOException exception) {
+                System.out.println("Error attempting to save account...\n" + exception.getMessage());
+            }
+        } else {
+            System.out.println("No account data to save...");
+        }
     }
 
     private void configureScreens() {
