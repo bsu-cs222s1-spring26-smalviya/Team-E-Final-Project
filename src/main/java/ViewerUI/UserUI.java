@@ -144,19 +144,35 @@ public class UserUI extends Application {
 
 class LoginScreen extends VBox {
 
+    Label loginScreenTitle;
     TextField textInputField;
     Button loginButton;
 
     public LoginScreen() {
+        loginScreenTitle = new Label("Finance Manager");
         textInputField = new TextField();
         loginButton = new Button("Login");
 
         this.getChildren().setAll(
+                loginScreenTitle,
                 textInputField,
                 loginButton
         );
 
+        configureVisualDetails();
+    }
+
+    private void configureVisualDetails() {
         this.setAlignment(Pos.CENTER);
+        this.setSpacing(20);
+        this.setPadding(new Insets(20, 80, 20, 80));
+
+        loginScreenTitle.setScaleX(4);
+        loginScreenTitle.setScaleY(4);
+        loginScreenTitle.setPadding(new Insets(0,0,10, 0));
+
+        textInputField.setAlignment(Pos.CENTER);
+        textInputField.setMaxWidth(300);
     }
 
     public String getTextInput() {
