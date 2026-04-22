@@ -224,6 +224,8 @@ class CurrencyConverterScreen extends VBox {
     Label currencyConversionTypeArrow;
     TextField currencyConversionTo;
     TextField currencyConversionAmount;
+    Button currencyConversionButton;
+    Label currencyConversionOutputText;
     Button backButton;
 
     public CurrencyConverterScreen() {
@@ -237,12 +239,16 @@ class CurrencyConverterScreen extends VBox {
                 currencyConversionTo
         );
         currencyConversionAmount = new TextField();
+        currencyConversionButton = new Button("Convert");
+        currencyConversionOutputText = new Label("");
         backButton = new Button("Back");
 
         this.getChildren().setAll(
                 currencyConverterlabel,
                 currencyConversionTypeContainer,
                 currencyConversionAmount,
+                currencyConversionButton,
+                currencyConversionOutputText,
                 backButton
         );
 
