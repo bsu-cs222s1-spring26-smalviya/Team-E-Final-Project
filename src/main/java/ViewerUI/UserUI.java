@@ -1,6 +1,9 @@
 package ViewerUI;
 
 import Controller.FinanceManager;
+import Converter.ConverterException;
+import Converter.CurrencyConverter;
+import Converter.ExchangeRateParser;
 import Model.MoneyGoal;
 import Model.Transaction;
 import javafx.application.Application;
@@ -77,6 +80,9 @@ public class UserUI extends Application {
 
     private void configureCurrencyScreen() {
         currencyConverterScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
+        currencyConverterScreen.setCurrencyConversionButtonAction(
+                event -> currencyConverterScreen.convertCurrency()
+        );
     }
 
     private void configureTransactionsScreen() {
@@ -243,7 +249,7 @@ class CurrencyConverterScreen extends VBox {
         );
         currencyConversionAmount = new TextField();
         currencyConversionButton = new Button("Convert");
-        currencyConversionOutputText = new Label("");
+        currencyConversionOutputText = new Label("Conversion result: ");
         backButton = new Button("Back");
 
         this.getChildren().setAll(
@@ -264,6 +270,29 @@ class CurrencyConverterScreen extends VBox {
 
     public void setCurrencyConversionButtonAction(EventHandler<ActionEvent> action) {
         currencyConversionButton.setOnAction(action);
+    }
+
+    public void convertCurrency() {
+        try {
+            String fromCurrency = currencyConversionFrom.getText();
+            String toCurrency = currencyConversionTo.getText();
+            double amount = Double.parseDouble(currencyConversionAmount.getText());
+
+            CurrencyConverter currencyConverter = new CurrencyConverter();
+            String jsonResult = currencyConverter.getExchangeRateJson(fromCurrency, toCurrency);
+
+            ExchangeRateParser exchangeRateParser = new ExchangeRateParser();
+            double rate = exchangeRateParser.parseExchangeRateJson(jsonResult, toCurrency);
+
+            double convertedAmount = amount * rate;
+            currencyConversionOutputText.setText(
+                    "Conversion result: " + "\n" + amount + " " + fromCurrency + " = " + convertedAmount + " " + toCurrency
+                    + "\n(Rate: " + rate + ")"
+            );
+
+        } catch (ConverterException e) {
+            currencyConversionOutputText.setText("Conversion result: " + "\nConversion failed...");
+        }
     }
 
     public void updateScreen() {
