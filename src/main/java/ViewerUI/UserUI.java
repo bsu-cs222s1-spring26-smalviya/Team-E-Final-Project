@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -79,7 +78,7 @@ public class UserUI extends Application {
     }
 
     private void configureLoginScreen() {
-        loginScreen.setLoginButtonAction( event -> attemptLogin());
+        loginScreen.setLoginButtonAction(_ -> attemptLogin());
     }
 
     private void configureHomeScreen() {
@@ -88,10 +87,10 @@ public class UserUI extends Application {
     }
 
     private void configureMenuScreen() {
-        menuScreen.setCurrencyConverterButtonAction(event -> setHomeDisplayPane(currencyConverterScreen));
-        menuScreen.setTransactionButtonAction(event -> setHomeDisplayPane(transactionsScreen));
-        menuScreen.setMoneyGoalButtonAction(event -> setHomeDisplayPane(moneyGoalsScreen));
-        menuScreen.setChartsButtonAction(event -> manager.showChartPng());
+        menuScreen.setCurrencyConverterButtonAction(_ -> setHomeDisplayPane(currencyConverterScreen));
+        menuScreen.setTransactionButtonAction(_ -> setHomeDisplayPane(transactionsScreen));
+        menuScreen.setMoneyGoalButtonAction(_ -> setHomeDisplayPane(moneyGoalsScreen));
+        menuScreen.setChartsButtonAction(_ -> manager.showChartPng());
     }
 
     private void configureAccountScreen() {
@@ -99,23 +98,23 @@ public class UserUI extends Application {
     }
 
     private void configureCurrencyScreen() {
-        currencyConverterScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
+        currencyConverterScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
         currencyConverterScreen.setCurrencyConversionButtonAction(
-                event -> currencyConverterScreen.convertCurrency()
+                _ -> currencyConverterScreen.convertCurrency()
         );
     }
 
     private void configureTransactionsScreen() {
-        transactionsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
-        transactionsScreen.setAddTransactionButtonAction(event -> {
+        transactionsScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
+        transactionsScreen.setAddTransactionButtonAction(_ -> {
             transactionsScreen.addTransaction();
             updateScreens();
         });
     }
 
     private void configureGoalsScreen() {
-        moneyGoalsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
-        moneyGoalsScreen.setAddGoalButtonAction(event -> {
+        moneyGoalsScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
+        moneyGoalsScreen.setAddGoalButtonAction(_ -> {
             moneyGoalsScreen.addMoneyGoal();
             updateScreens();
         });
@@ -544,21 +543,4 @@ class MoneyGoalsScreen extends VBox {
             System.out.println("Error updating MoneyGoalsScreen values...");
         }
     }
-}
-
-class ChartsScreen extends VBox {
-    FinanceManager manager;
-
-    ImageView incomeChart;
-
-    public ChartsScreen(FinanceManager manager) {
-        this.manager = manager;
-
-        incomeChart = new ImageView();
-
-        this.getChildren().setAll(
-                incomeChart
-        );
-    }
-
 }
