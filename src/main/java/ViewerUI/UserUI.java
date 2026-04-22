@@ -49,7 +49,7 @@ public class UserUI extends Application {
 
     private void configureHomeScreen() {
         homeScreenPane.setLeft(accountScreen);
-        homeScreenPane.setRight(menuScreen);
+        homeScreenPane.setCenter(menuScreen);
     }
 
     private void configureMenuScreen() {
@@ -95,7 +95,7 @@ public class UserUI extends Application {
     }
 
     private void setHomeDisplayPane(Node displayNode) {
-        homeScreenPane.setRight(displayNode);
+        homeScreenPane.setCenter(displayNode);
         updateScreens();
     }
 }

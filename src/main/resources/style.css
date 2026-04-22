@@ -36,9 +36,10 @@
 .button {
     -fx-background-color: #ce1230;
     -fx-text-fill: white;
-    -fx-font-size: 18px;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-pref-width: 100px;
+    -fx-max-width: 250px;
     -fx-pref-height: 50px;
     -fx-background-radius: 5;
     -fx-cursor: hand;
@@ -71,7 +72,9 @@
     -fx-spacing: 15;
     -fx-border-color: #dddddd;
     -fx-border-width: 0 1 0 0;
-    -fx-min-width: 250px;
+    -fx-pref-width: 250px;
+    -fx-max-width: 250px;
+
 }
 
 .menu-vbox {

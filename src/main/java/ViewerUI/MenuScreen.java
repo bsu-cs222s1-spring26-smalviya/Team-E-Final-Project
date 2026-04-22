@@ -1,4 +1,5 @@
 package ViewerUI;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -12,6 +13,7 @@ public class MenuScreen extends VBox {
     Button button_CurrencyConverter;
     Button button_Transactions;
     Button button_MoneyGoals;
+    Button button_Charts;
 
     public MenuScreen() {
         menuScreenLabel = new Label("Menu");
@@ -20,6 +22,7 @@ public class MenuScreen extends VBox {
         button_CurrencyConverter = new Button("Currency Converter");
         button_Transactions = new Button("Transactions");
         button_MoneyGoals = new Button("Money Goals");
+        button_Charts = new Button("Financial Charts");
 
         this.getStyleClass().add("menu-vbox");
 
@@ -27,7 +30,8 @@ public class MenuScreen extends VBox {
                 menuScreenLabel,
                 button_CurrencyConverter,
                 button_Transactions,
-                button_MoneyGoals
+                button_MoneyGoals,
+                button_Charts
         );
 
         this.setAlignment(Pos.CENTER);
