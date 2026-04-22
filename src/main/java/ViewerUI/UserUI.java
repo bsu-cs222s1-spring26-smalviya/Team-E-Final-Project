@@ -322,6 +322,8 @@ class CurrencyConverterScreen extends VBox {
         this.setSpacing(10);
         this.setPadding(new Insets(20, 20, 20, 20));
 
+        currencyConverterlabel.setFont(new Font(20));
+
         currencyConversionTypeContainer.setSpacing(10);
         currencyConversionOutputText.setPadding(new Insets(10, 0, 80, 0));
 
@@ -410,6 +412,10 @@ class TransactionsScreen extends VBox {
     private void configureVisualDetails() {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
+        this.setMinWidth(400);
+        this.setPadding(new Insets(20, 40, 20, 40));
+
+        screenTitle.setFont(new Font(20));
 
         amountInput.setPromptText("Amount for the transaction (- value for withdrawal)");
         categoryInput.setPromptText("Category of transaction (i.e. \"Rent\" or \"Food\")");
