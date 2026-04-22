@@ -1,7 +1,6 @@
 package ViewerUI;
 
 import Controller.FinanceManager;
-import Converter.ConverterException;
 import Converter.CurrencyConverter;
 import Converter.ExchangeRateParser;
 import Model.DataStorage;
@@ -18,6 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -91,6 +92,7 @@ public class UserUI extends Application {
         menuScreen.setCurrencyConverterButtonAction(event -> setHomeDisplayPane(currencyConverterScreen));
         menuScreen.setTransactionButtonAction(event -> setHomeDisplayPane(transactionsScreen));
         menuScreen.setMoneyGoalButtonAction(event -> setHomeDisplayPane(moneyGoalsScreen));
+        menuScreen.setChartsButtonAction(event -> manager.showChartPng());
     }
 
     private void configureAccountScreen() {
@@ -118,6 +120,10 @@ public class UserUI extends Application {
             moneyGoalsScreen.addMoneyGoal();
             updateScreens();
         });
+    }
+
+    private void configureChartsScreen() {
+
     }
 
     private void updateScreens() {
@@ -237,18 +243,21 @@ class MenuScreen extends VBox {
     Button button_CurrencyConverter;
     Button button_Transactions;
     Button button_MoneyGoals;
+    Button button_Charts;
 
     public MenuScreen() {
         menuScreenLabel = new Label("Please Select a Menu");
         button_CurrencyConverter = new Button("Currency Converter");
         button_Transactions = new Button("Transactions");
         button_MoneyGoals = new Button("Money Goals");
+        button_Charts = new Button("Charts");
 
         this.getChildren().setAll(
                 menuScreenLabel,
                 button_CurrencyConverter,
                 button_Transactions,
-                button_MoneyGoals
+                button_MoneyGoals,
+                button_Charts
         );
 
         configureVisualDetails();
@@ -272,6 +281,10 @@ class MenuScreen extends VBox {
 
     public void setMoneyGoalButtonAction(EventHandler<ActionEvent> action) {
         button_MoneyGoals.setOnAction(action);
+    }
+
+    public void setChartsButtonAction(EventHandler<ActionEvent> action) {
+        button_Charts.setOnAction(action);
     }
 }
 
@@ -540,4 +553,30 @@ class MoneyGoalsScreen extends VBox {
             System.out.println("Error updating MoneyGoalsScreen values...");
         }
     }
+}
+
+class ChartsScreen extends VBox {
+    FinanceManager manager;
+
+    ImageView incomeChart;
+
+    public ChartsScreen(FinanceManager manager) {
+        this.manager = manager;
+
+        incomeChart = new ImageView();
+
+        Image chart = new Image(getClass().getResourceAsStream("data/Alex-income_chart.png"));
+        incomeChart = new ImageView(chart);
+
+        this.getChildren().setAll(
+                incomeChart
+        );
+    }
+
+    public void updateScreen() {
+        if (manager.getCurrentAccount() != null) {
+            //manager.generateGraph();
+        }
+    }
+
 }
