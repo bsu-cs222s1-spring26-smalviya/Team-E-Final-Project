@@ -23,19 +23,19 @@ public class TransactionTest {
     }
 
     @Test
-    public void testTransactionWithdrawalCategory() {
+    public void testTransactionWithdrawalType() {
 
         Transaction withdrawalTransaction = new Transaction(-15, "Gambling", "Lost Gambling");
 
-        assertEquals("Withdrawal", withdrawalTransaction.getType());
+        assertEquals("Withdrawal", withdrawalTransaction.getTransactionType());
     }
 
     @Test
-    public void testTransactionDepositCategory() {
+    public void testTransactionDepositType() {
 
         Transaction depositTransaction = new Transaction(15, "Gambling", "Won Gambling");
 
-        assertEquals("Deposit", depositTransaction.getType());
+        assertEquals("Deposit", depositTransaction.getTransactionType());
     }
 
     @Test

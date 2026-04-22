@@ -62,6 +62,7 @@ public class FinanceManager {
                     break;
                 case "3":
                     generateGraph();
+                    showChartPng();
                     break;
                 case "4":
                     handleCurrencyConverter();
@@ -196,7 +197,37 @@ public class FinanceManager {
         saveData(currentAccount);
     }
 
-    private void generateGraph() {
+    public String addTransaction(double amount, String description) {
+        if (amount + currentAccount.getBalance() < 0) {
+            return ("Insufficient funds!");
+        }
+
+        currentAccount.addTransaction(new Transaction(amount, description));
+        saveData(currentAccount);
+
+        return ("Transaction added. New balance: " + currentAccount.getBalance());
+    }
+
+    public Account getCurrentAccount() {
+        return currentAccount;
+    }
+
+    public void initAccount(String username) {
+        boolean hasSaveData = DataStorage.checkLocalData(username);
+
+        if (hasSaveData) {
+            try {
+                currentAccount = DataStorage.loadAccount(username);
+            } catch (IOException e) {
+                System.out.println("Error loading account.");
+            }
+        } else {
+            currentAccount = new Account(username, 0.0);
+            saveData(currentAccount);
+        }
+    }
+
+    public void generateGraph() {
         String fileName = "data/" + currentAccount.getUsername() + "_data.json ";
         try {
             GraphGenerator.generateCharts(fileName);
@@ -216,7 +247,9 @@ public class FinanceManager {
         } catch (Exception e) {
             ui.displayMessage("Error: " + e.getMessage());
         }
+    }
 
+    public void showChartPng() {
         ShowPNG showPNG = new ShowPNG();
 
         try {
