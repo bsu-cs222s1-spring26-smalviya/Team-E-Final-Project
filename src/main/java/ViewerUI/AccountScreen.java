@@ -15,9 +15,13 @@ public class AccountScreen extends VBox {
     public AccountScreen(UIManager manager) {
         this.manager = manager;
 
-        accountScreenHeader = new Label("---Account---");
+        accountScreenHeader = new Label("Account Information");
+        accountScreenHeader.getStyleClass().add("title-label");
+
         accountNameLabel = new Label("Name: ");
         accountBalanceLabel = new Label("Balance: ");
+
+        this.getStyleClass().add("account-vbox");
 
         this.getChildren().setAll(
                 accountScreenHeader,
