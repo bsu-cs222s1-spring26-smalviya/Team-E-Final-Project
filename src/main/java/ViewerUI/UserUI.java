@@ -258,6 +258,10 @@ class CurrencyConverterScreen extends VBox {
     public void setBackButtonAction(EventHandler<ActionEvent> action) {
         backButton.setOnAction(action);
     }
+
+    public void setCurrencyConversionButtonAction(EventHandler<ActionEvent> action) {
+        currencyConversionButton.setOnAction(action);
+    }
 }
 
 class TransactionsScreen extends VBox {
