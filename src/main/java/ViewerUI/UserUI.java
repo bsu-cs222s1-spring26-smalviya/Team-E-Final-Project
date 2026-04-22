@@ -257,7 +257,7 @@ class MenuScreen extends VBox {
     private void configureVisualDetails() {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
-        this.setPadding(new Insets(20, 40, 20, 40));
+        this.setPadding(new Insets(20, 80, 20, 80));
 
         menuScreenLabel.setFont(new Font(15));
     }
@@ -324,6 +324,14 @@ class CurrencyConverterScreen extends VBox {
 
         currencyConversionTypeContainer.setSpacing(10);
         currencyConversionOutputText.setPadding(new Insets(10, 0, 80, 0));
+
+        currencyConversionAmount.setPromptText("The amount of money for the conversion");
+        currencyConversionAmount.setMaxWidth(300);
+
+        currencyConversionFrom.setPromptText("Currency being converted from");
+        currencyConversionFrom.setMinWidth(200);
+        currencyConversionTo.setPromptText("Currency type being converted to");
+        currencyConversionTo.setMinWidth(200);
     }
 
     public void setBackButtonAction(EventHandler<ActionEvent> action) {
