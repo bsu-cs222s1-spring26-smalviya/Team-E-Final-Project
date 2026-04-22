@@ -41,7 +41,9 @@ public class UserUI extends Application {
     TransactionsScreen transactionsScreen = new TransactionsScreen(manager);
     MoneyGoalsScreen moneyGoalsScreen = new MoneyGoalsScreen(manager);
 
-    public static void main(String[] args) {launch(args);}
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -78,7 +80,7 @@ public class UserUI extends Application {
     }
 
     private void configureLoginScreen() {
-        loginScreen.setLoginButtonAction(_ -> attemptLogin());
+        loginScreen.setLoginButtonAction(event -> attemptLogin());
     }
 
     private void configureHomeScreen() {
@@ -87,10 +89,10 @@ public class UserUI extends Application {
     }
 
     private void configureMenuScreen() {
-        menuScreen.setCurrencyConverterButtonAction(_ -> setHomeDisplayPane(currencyConverterScreen));
-        menuScreen.setTransactionButtonAction(_ -> setHomeDisplayPane(transactionsScreen));
-        menuScreen.setMoneyGoalButtonAction(_ -> setHomeDisplayPane(moneyGoalsScreen));
-        menuScreen.setChartsButtonAction(_ -> manager.showChartPng());
+        menuScreen.setCurrencyConverterButtonAction(event -> setHomeDisplayPane(currencyConverterScreen));
+        menuScreen.setTransactionButtonAction(event -> setHomeDisplayPane(transactionsScreen));
+        menuScreen.setMoneyGoalButtonAction(event -> setHomeDisplayPane(moneyGoalsScreen));
+        menuScreen.setChartsButtonAction(event -> manager.generateGraph());
     }
 
     private void configureAccountScreen() {
@@ -98,32 +100,32 @@ public class UserUI extends Application {
     }
 
     private void configureCurrencyScreen() {
-        currencyConverterScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
+        currencyConverterScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
         currencyConverterScreen.setCurrencyConversionButtonAction(
-                _ -> currencyConverterScreen.convertCurrency()
+                event -> currencyConverterScreen.convertCurrency()
         );
     }
 
     private void configureTransactionsScreen() {
-        transactionsScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
-        transactionsScreen.setAddTransactionButtonAction(_ -> {
+        transactionsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
+        transactionsScreen.setAddTransactionButtonAction(event -> {
             transactionsScreen.addTransaction();
             updateScreens();
         });
     }
 
     private void configureGoalsScreen() {
-        moneyGoalsScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
-        moneyGoalsScreen.setAddGoalButtonAction(_ -> {
+        moneyGoalsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
+        moneyGoalsScreen.setAddGoalButtonAction(event -> {
             moneyGoalsScreen.addMoneyGoal();
             updateScreens();
         });
     }
 
     private void updateScreens() {
-         accountScreen.updateScreen();
-         transactionsScreen.updateScreen();
-         moneyGoalsScreen.updateScreen();
+        accountScreen.updateScreen();
+        transactionsScreen.updateScreen();
+        moneyGoalsScreen.updateScreen();
     }
 
     private void attemptLogin() {
