@@ -1,7 +1,6 @@
 package ViewerUI;
 
 import Controller.FinanceManager;
-import Converter.ConverterException;
 import Converter.CurrencyConverter;
 import Converter.ExchangeRateParser;
 import Model.DataStorage;
@@ -79,7 +78,7 @@ public class UserUI extends Application {
     }
 
     private void configureLoginScreen() {
-        loginScreen.setLoginButtonAction( event -> attemptLogin());
+        loginScreen.setLoginButtonAction(_ -> attemptLogin());
     }
 
     private void configureHomeScreen() {
@@ -88,9 +87,10 @@ public class UserUI extends Application {
     }
 
     private void configureMenuScreen() {
-        menuScreen.setCurrencyConverterButtonAction(event -> setHomeDisplayPane(currencyConverterScreen));
-        menuScreen.setTransactionButtonAction(event -> setHomeDisplayPane(transactionsScreen));
-        menuScreen.setMoneyGoalButtonAction(event -> setHomeDisplayPane(moneyGoalsScreen));
+        menuScreen.setCurrencyConverterButtonAction(_ -> setHomeDisplayPane(currencyConverterScreen));
+        menuScreen.setTransactionButtonAction(_ -> setHomeDisplayPane(transactionsScreen));
+        menuScreen.setMoneyGoalButtonAction(_ -> setHomeDisplayPane(moneyGoalsScreen));
+        menuScreen.setChartsButtonAction(_ -> manager.showChartPng());
     }
 
     private void configureAccountScreen() {
@@ -98,23 +98,23 @@ public class UserUI extends Application {
     }
 
     private void configureCurrencyScreen() {
-        currencyConverterScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
+        currencyConverterScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
         currencyConverterScreen.setCurrencyConversionButtonAction(
-                event -> currencyConverterScreen.convertCurrency()
+                _ -> currencyConverterScreen.convertCurrency()
         );
     }
 
     private void configureTransactionsScreen() {
-        transactionsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
-        transactionsScreen.setAddTransactionButtonAction(event -> {
+        transactionsScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
+        transactionsScreen.setAddTransactionButtonAction(_ -> {
             transactionsScreen.addTransaction();
             updateScreens();
         });
     }
 
     private void configureGoalsScreen() {
-        moneyGoalsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
-        moneyGoalsScreen.setAddGoalButtonAction(event -> {
+        moneyGoalsScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
+        moneyGoalsScreen.setAddGoalButtonAction(_ -> {
             moneyGoalsScreen.addMoneyGoal();
             updateScreens();
         });
@@ -237,18 +237,21 @@ class MenuScreen extends VBox {
     Button button_CurrencyConverter;
     Button button_Transactions;
     Button button_MoneyGoals;
+    Button button_Charts;
 
     public MenuScreen() {
         menuScreenLabel = new Label("Please Select a Menu");
         button_CurrencyConverter = new Button("Currency Converter");
         button_Transactions = new Button("Transactions");
         button_MoneyGoals = new Button("Money Goals");
+        button_Charts = new Button("Charts");
 
         this.getChildren().setAll(
                 menuScreenLabel,
                 button_CurrencyConverter,
                 button_Transactions,
-                button_MoneyGoals
+                button_MoneyGoals,
+                button_Charts
         );
 
         configureVisualDetails();
@@ -272,6 +275,10 @@ class MenuScreen extends VBox {
 
     public void setMoneyGoalButtonAction(EventHandler<ActionEvent> action) {
         button_MoneyGoals.setOnAction(action);
+    }
+
+    public void setChartsButtonAction(EventHandler<ActionEvent> action) {
+        button_Charts.setOnAction(action);
     }
 }
 
@@ -367,10 +374,6 @@ class CurrencyConverterScreen extends VBox {
         } catch (Exception e) {
             currencyConversionOutputText.setText("Conversion result: " + "\nConversion failed...");
         }
-    }
-
-    public void updateScreen() {
-
     }
 }
 

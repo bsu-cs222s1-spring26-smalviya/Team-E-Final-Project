@@ -62,6 +62,7 @@ public class FinanceManager {
                     break;
                 case "3":
                     generateGraph();
+                    showChartPng();
                     break;
                 case "4":
                     handleCurrencyConverter();
@@ -226,7 +227,7 @@ public class FinanceManager {
         }
     }
 
-    private void generateGraph() {
+    public void generateGraph() {
         String fileName = "data/" + currentAccount.getUsername() + "_data.json ";
         try {
             GraphGenerator.generateCharts(fileName);
@@ -246,7 +247,9 @@ public class FinanceManager {
         } catch (Exception e) {
             ui.displayMessage("Error: " + e.getMessage());
         }
+    }
 
+    public void showChartPng() {
         ShowPNG showPNG = new ShowPNG();
 
         try {
@@ -262,8 +265,8 @@ public class FinanceManager {
         }
     }
 
-    //public static void main(String[] args) {
-        //FinanceManager app = new FinanceManager();
-        //app.start();
-    //}
+    public static void main(String[] args) {
+        FinanceManager app = new FinanceManager();
+        app.start();
+    }
 }
