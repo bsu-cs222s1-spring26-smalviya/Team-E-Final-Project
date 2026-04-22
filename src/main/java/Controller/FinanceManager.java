@@ -196,6 +196,36 @@ public class FinanceManager {
         saveData(currentAccount);
     }
 
+    public String addTransaction(double amount, String description) {
+        if (amount + currentAccount.getBalance() < 0) {
+            return ("Insufficient funds!");
+        }
+
+        currentAccount.addTransaction(new Transaction(amount, description));
+        saveData(currentAccount);
+
+        return ("Transaction added. New balance: " + currentAccount.getBalance());
+    }
+
+    public Account getCurrentAccount() {
+        return currentAccount;
+    }
+
+    public void initAccount(String username) {
+        boolean hasSaveData = DataStorage.checkLocalData(username);
+
+        if (hasSaveData) {
+            try {
+                currentAccount = DataStorage.loadAccount(username);
+            } catch (IOException e) {
+                System.out.println("Error loading account.");
+            }
+        } else {
+            currentAccount = new Account(username, 0.0);
+            saveData(currentAccount);
+        }
+    }
+
     private void generateGraph() {
         String fileName = "data/" + currentAccount.getUsername() + "_data.json ";
         try {
@@ -232,8 +262,8 @@ public class FinanceManager {
         }
     }
 
-    public static void main(String[] args) {
-        FinanceManager app = new FinanceManager();
-        app.start();
-    }
+    //public static void main(String[] args) {
+        //FinanceManager app = new FinanceManager();
+        //app.start();
+    //}
 }

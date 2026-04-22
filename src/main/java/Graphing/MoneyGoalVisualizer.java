@@ -10,7 +10,7 @@ public class MoneyGoalVisualizer {
             throw new NullArgumentException("account or money goal doesn't exist");
         }
         double balance = account.getBalance();
-        double target = goal.targetAmount();
+        double target = goal.getTargetAmount();
         if(balance <0 || target<0){
             throw new NegativeAmountException("balance or target is negative");
         }

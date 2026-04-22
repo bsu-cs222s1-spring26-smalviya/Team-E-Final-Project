@@ -4,8 +4,6 @@ plugins {
     id 'org.openjfx.javafxplugin' version '0.0.13'
 }
 
-
-
 group = 'team.e'
 version = '1.0'
 
@@ -22,14 +20,11 @@ test{
     useJUnitPlatform()
 }
 
-
-
 javafx {
-    version = "21" // 或 17（更稳）
+    version = "21"
     modules = [ 'javafx.controls', 'javafx.fxml' ]
 }
 
 application {
-    mainClass = 'Controller.FinanceManager'
+    mainClass = 'ViewerUI.UserUI'
 }
-
