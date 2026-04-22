@@ -472,7 +472,7 @@ class MoneyGoalsScreen extends VBox {
     public MoneyGoalsScreen(FinanceManager manager) {
         this.manager = manager;
 
-        goalsScreenLabel = new Label("Goals");
+        goalsScreenLabel = new Label("Money Goals");
         goalNameInput = new TextField();
         goalAmountInput = new TextField();
         goalDeadlineInput = new TextField();
@@ -496,6 +496,10 @@ class MoneyGoalsScreen extends VBox {
     private void configureVisualDetails() {
         this.setAlignment(Pos.CENTER);
         this.setSpacing(10);
+        this.setMinWidth(400);
+        this.setPadding(new Insets(20, 40, 20, 40));
+
+        goalsScreenLabel.setFont(new Font(20));
 
         goalNameInput.setPromptText("The name for the goal");
         goalAmountInput.setPromptText("The target amount to reach for the goal");
