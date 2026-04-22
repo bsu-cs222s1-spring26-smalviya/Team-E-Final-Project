@@ -28,12 +28,16 @@ class TransactionsScreen extends VBox {
         this.manager = manager;
 
         screenTitle = new Label("Transactions");
+        screenTitle.getStyleClass().add("title-label");
+
         amountInput = new TextField();
         categoryInput = new TextField();
         descriptionInput = new TextField();
         addTransactionButton = new Button("Add Transaction");
         transactionList = new ListView<>();
         backButton = new Button("Back");
+
+        this.getStyleClass().add("content-vbox");
 
         this.getChildren().setAll(
                 screenTitle,
