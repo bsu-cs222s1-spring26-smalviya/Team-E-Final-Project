@@ -262,8 +262,4 @@ public class FinanceManager {
         }
     }
 
-    //public static void main(String[] args) {
-        //FinanceManager app = new FinanceManager();
-        //app.start();
-    //}
 }
