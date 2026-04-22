@@ -251,7 +251,15 @@ class MenuScreen extends VBox {
                 button_MoneyGoals
         );
 
+        configureVisualDetails();
+    }
+
+    private void configureVisualDetails() {
         this.setAlignment(Pos.CENTER);
+        this.setSpacing(10);
+        this.setPadding(new Insets(20, 40, 20, 40));
+
+        menuScreenLabel.setFont(new Font(15));
     }
 
     public void setCurrencyConverterButtonAction(EventHandler<ActionEvent> action) {
