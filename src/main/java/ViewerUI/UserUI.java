@@ -9,6 +9,7 @@ import Model.Transaction;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -261,7 +262,16 @@ class CurrencyConverterScreen extends VBox {
                 backButton
         );
 
+        configureVisualDetails();
+    }
+
+    private void configureVisualDetails() {
         this.setAlignment(Pos.CENTER);
+        this.setSpacing(10);
+        this.setPadding(new Insets(20, 20, 20, 20));
+
+        currencyConversionTypeContainer.setSpacing(10);
+        currencyConversionOutputText.setPadding(new Insets(10, 0, 80, 0));
     }
 
     public void setBackButtonAction(EventHandler<ActionEvent> action) {
@@ -286,11 +296,13 @@ class CurrencyConverterScreen extends VBox {
 
             double convertedAmount = amount * rate;
             currencyConversionOutputText.setText(
-                    "Conversion result: " + "\n" + amount + " " + fromCurrency + " = " + convertedAmount + " " + toCurrency
-                    + "\n(Rate: " + rate + ")"
+                    "Conversion result: " + "\n" + String.format("%.2f", amount) + " " + fromCurrency + " = " +
+                            String.format("%.2f", convertedAmount) + " " + toCurrency +
+                            "\n(Rate: " + String.format("%.4f", rate) + ")"
             );
 
-        } catch (ConverterException e) {
+            currencyConversionAmount.clear();
+        } catch (Exception e) {
             currencyConversionOutputText.setText("Conversion result: " + "\nConversion failed...");
         }
     }
