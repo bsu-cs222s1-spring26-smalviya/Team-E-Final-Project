@@ -17,7 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -120,10 +119,6 @@ public class UserUI extends Application {
             moneyGoalsScreen.addMoneyGoal();
             updateScreens();
         });
-    }
-
-    private void configureChartsScreen() {
-
     }
 
     private void updateScreens() {
@@ -381,10 +376,6 @@ class CurrencyConverterScreen extends VBox {
             currencyConversionOutputText.setText("Conversion result: " + "\nConversion failed...");
         }
     }
-
-    public void updateScreen() {
-
-    }
 }
 
 class TransactionsScreen extends VBox {
@@ -565,18 +556,9 @@ class ChartsScreen extends VBox {
 
         incomeChart = new ImageView();
 
-        Image chart = new Image(getClass().getResourceAsStream("data/Alex-income_chart.png"));
-        incomeChart = new ImageView(chart);
-
         this.getChildren().setAll(
                 incomeChart
         );
-    }
-
-    public void updateScreen() {
-        if (manager.getCurrentAccount() != null) {
-            //manager.generateGraph();
-        }
     }
 
 }
