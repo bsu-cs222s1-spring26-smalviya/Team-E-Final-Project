@@ -189,10 +189,10 @@ public class FinanceManager {
                 amountIsNotSufficient = false;
             }
         }
-
+        String category = ui.getUserInputString("Choose your category: ");
         String description = ui.getUserInputString("Please describe this transaction.\n:");
 
-        currentAccount.addTransaction(new Transaction(amount, description));
+        currentAccount.addTransaction(new Transaction(amount, category, description));
         saveData(currentAccount);
     }
 

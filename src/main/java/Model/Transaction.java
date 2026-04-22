@@ -7,9 +7,10 @@ public class Transaction {
     final private String transactionType;
     final private String category;
     final private String date;
+    final private String category;
     final private String description;
 
-    public Transaction(double amount, String description) {
+    public Transaction(double amount, String category, String description) {
         this.amount = amount;
 
         if (amount < 0) {
@@ -19,6 +20,7 @@ public class Transaction {
         }
         this.category = "Unspecified";
         this.date = LocalDateTime.now().toString();
+        this.category = category;
         this.description = description;
     }
 

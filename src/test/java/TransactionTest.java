@@ -9,7 +9,7 @@ public class TransactionTest {
     @Test
     public void testTransactionCreation() {
 
-        Transaction testTransaction = new Transaction(-25.5, "Lunch");
+        Transaction testTransaction = new Transaction(-25.5, "food", "Lunch");
 
         assertNotNull(testTransaction);
     }
@@ -17,7 +17,7 @@ public class TransactionTest {
     @Test
     public void testTransactionAmount() {
 
-        Transaction testTransaction = new Transaction(45, "Fast Food");
+        Transaction testTransaction = new Transaction(45, "food", "Fast Food");
 
         assertEquals(45, testTransaction.getAmount());
     }
@@ -25,7 +25,7 @@ public class TransactionTest {
     @Test
     public void testTransactionWithdrawalType() {
 
-        Transaction withdrawalTransaction = new Transaction(-15, "Lost Gambling");
+        Transaction withdrawalTransaction = new Transaction(-15, "Gambling", "Lost Gambling");
 
         assertEquals("Withdrawal", withdrawalTransaction.getTransactionType());
     }
@@ -33,7 +33,7 @@ public class TransactionTest {
     @Test
     public void testTransactionDepositType() {
 
-        Transaction depositTransaction = new Transaction(15, "Won Gambling");
+        Transaction depositTransaction = new Transaction(15, "Gambling", "Won Gambling");
 
         assertEquals("Deposit", depositTransaction.getTransactionType());
     }
@@ -41,7 +41,7 @@ public class TransactionTest {
     @Test
     public void testDescription() {
 
-        Transaction testTransaction = new Transaction(12, "Gym");
+        Transaction testTransaction = new Transaction(12, "Gym", "Gym");
 
         assertEquals("Gym", testTransaction.getDescription());
     }
@@ -49,7 +49,7 @@ public class TransactionTest {
     @Test
     public void testTransactionDateExists() {
 
-        Transaction testTransaction = new Transaction(10, "Bus");
+        Transaction testTransaction = new Transaction(10, "Transport", "Bus");
 
         assertNotNull(testTransaction.getDate());
     }
