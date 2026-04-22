@@ -30,7 +30,7 @@ public class UserUI extends Application {
     AccountScreen accountScreen = new AccountScreen(manager);
     MenuScreen menuScreen = new MenuScreen();
 
-    CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen();
+    CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen(manager);
     TransactionsScreen transactionsScreen = new TransactionsScreen(manager);
     MoneyGoalsScreen moneyGoalsScreen = new MoneyGoalsScreen(manager);
 
@@ -217,6 +217,7 @@ class MenuScreen extends VBox {
 }
 
 class CurrencyConverterScreen extends VBox {
+    FinanceManager manager;
 
     Label currencyConverterlabel;
     HBox currencyConversionTypeContainer;
@@ -228,7 +229,9 @@ class CurrencyConverterScreen extends VBox {
     Label currencyConversionOutputText;
     Button backButton;
 
-    public CurrencyConverterScreen() {
+    public CurrencyConverterScreen(FinanceManager manager) {
+        this.manager = manager;
+
         currencyConverterlabel = new Label("Currency Converter");
         currencyConversionFrom = new TextField();
         currencyConversionTypeArrow = new Label("->");
@@ -261,6 +264,10 @@ class CurrencyConverterScreen extends VBox {
 
     public void setCurrencyConversionButtonAction(EventHandler<ActionEvent> action) {
         currencyConversionButton.setOnAction(action);
+    }
+
+    public void updateScreen() {
+
     }
 }
 
