@@ -81,4 +81,12 @@ public class AccountTest {
         testAccount.addMoneyGoals(new MoneyGoal("iPhone", 999, "11/11/2026"));
         assertTrue(testAccount.hasMoneyGoals());
     }
+
+    @Test
+    public void testAddWithdrawalTransaction() {
+        Account testAccount = new Account("Alex", 500.0);
+        Transaction withdrawal = new Transaction(-150.0, "food", "Groceries");
+        testAccount.addTransaction(withdrawal);
+        assertEquals(350.0, testAccount.getBalance());
+    }
 }
