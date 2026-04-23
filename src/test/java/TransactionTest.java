@@ -53,4 +53,10 @@ public class TransactionTest {
 
         assertNotNull(testTransaction.getDate());
     }
+
+    @Test
+    public void testTransactionZeroAmountType() {
+        Transaction zeroTransaction = new Transaction(0.0, "Misc", "Test Zero");
+        assertEquals("Deposit", zeroTransaction.getTransactionType());
+    }
 }
