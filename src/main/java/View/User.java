@@ -57,7 +57,6 @@ public class User {
 
     public void displayMoneyGoalVisualizer(String goalBar) {
         System.out.println(goalBar);
-        waitForNextStep();
     }
 
     private void waitForNextStep() {
