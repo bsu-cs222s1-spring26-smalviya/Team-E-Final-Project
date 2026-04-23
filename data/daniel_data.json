@@ -1,1 +1,6 @@
-{"username":"daniel","balance":100.0,"transactionHistory":[],"moneyGoals":[]}
+{
+  "username": "daniel",
+  "balance": 100.0,
+  "transactionHistory": [],
+  "moneyGoals": []
+}

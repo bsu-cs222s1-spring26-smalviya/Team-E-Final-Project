@@ -240,12 +240,11 @@ public class FinanceManager {
             ui.displayMessage("Error: " + e.getMessage());
         }
         try {
-            Account account = DataStorage.readUser(fileName);
-            List<MoneyGoal> moneyGoals = account.getMoneyGoalList();
+            List<MoneyGoal> moneyGoals = currentAccount.getMoneyGoalList();
             MoneyGoalVisualizer moneyGoalVisualizer = new MoneyGoalVisualizer();
             StringBuilder goalBars = new StringBuilder();
             for (MoneyGoal m : moneyGoals) {
-                goalBars.append(moneyGoalVisualizer.generateGoalBar(account, m));
+                goalBars.append(moneyGoalVisualizer.generateGoalBar(currentAccount, m));
             }
             ui.displayMoneyGoalVisualizer(goalBars.toString());
 
