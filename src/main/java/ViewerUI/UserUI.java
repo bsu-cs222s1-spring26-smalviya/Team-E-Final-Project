@@ -28,18 +28,18 @@ import java.util.List;
 
 
 public class UserUI extends Application {
-    FinanceManager manager = new FinanceManager();
+    FinanceManager financeManager = new FinanceManager();
 
     BorderPane displayPane = new BorderPane();
     Scene displayScene = new Scene(displayPane);
     LoginScreen loginScreen = new LoginScreen();
     BorderPane homeScreenPane = new BorderPane();
-    AccountScreen accountScreen = new AccountScreen(manager);
+    AccountScreen accountScreen = new AccountScreen(financeManager);
     MenuScreen menuScreen = new MenuScreen();
 
-    CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen(manager);
-    TransactionsScreen transactionsScreen = new TransactionsScreen(manager);
-    MoneyGoalsScreen moneyGoalsScreen = new MoneyGoalsScreen(manager);
+    CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen(financeManager);
+    TransactionsScreen transactionsScreen = new TransactionsScreen(financeManager);
+    MoneyGoalsScreen moneyGoalsScreen = new MoneyGoalsScreen(financeManager);
 
     public static void main(String[] args) {
         launch(args);
@@ -57,9 +57,9 @@ public class UserUI extends Application {
 
     @Override
     public void stop() {
-        if (manager.getCurrentAccount() != null) {
+        if (financeManager.getCurrentAccount() != null) {
             try {
-                DataStorage.saveAccount(manager.getCurrentAccount());
+                DataStorage.saveAccount(financeManager.getCurrentAccount());
                 System.out.println("Account saved successfully...");
             } catch (IOException exception) {
                 System.out.println("Error attempting to save account...\n" + exception.getMessage());
@@ -92,7 +92,7 @@ public class UserUI extends Application {
         menuScreen.setCurrencyConverterButtonAction(event -> setHomeDisplayPane(currencyConverterScreen));
         menuScreen.setTransactionButtonAction(event -> setHomeDisplayPane(transactionsScreen));
         menuScreen.setMoneyGoalButtonAction(event -> setHomeDisplayPane(moneyGoalsScreen));
-        menuScreen.setChartsButtonAction(event -> manager.generateGraph());
+        menuScreen.setChartsButtonAction(event -> financeManager.generateGraph());
     }
 
     private void configureAccountScreen() {
@@ -130,7 +130,7 @@ public class UserUI extends Application {
 
     private void attemptLogin() {
         String loginInput = loginScreen.getTextInput();
-        manager.initAccount(loginInput);
+        financeManager.initAccount(loginInput);
         setDisplayPane(homeScreenPane);
     }
 

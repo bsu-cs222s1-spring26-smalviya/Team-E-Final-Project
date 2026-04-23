@@ -27,7 +27,7 @@ public class MoneyGoalTest {
                 "6/1/2026"
         );
 
-        assertEquals("Vacation", goal.goalName());
+        assertEquals("Vacation", goal.getGoalName());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class MoneyGoalTest {
                 "6/1/2026"
         );
 
-        assertEquals(1000, goal.targetAmount());
+        assertEquals(1000, goal.getTargetAmount());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class MoneyGoalTest {
                 "6/1/2026"
         );
 
-        assertEquals("6/1/2026", goal.deadline());
+        assertEquals("6/1/2026", goal.getDeadline());
     }
 
     @Test

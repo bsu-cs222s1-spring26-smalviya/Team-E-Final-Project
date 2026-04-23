@@ -49,7 +49,7 @@ public class DataStorageTest {
 
         DataStorage.saveAccount(account);
 
-        Account loaded = DataStorage.readUser("data/Bob_data.json");
+        Account loaded = DataStorage.readUser("data/daniel_data.json");
 
         assertNotNull(loaded);
 
