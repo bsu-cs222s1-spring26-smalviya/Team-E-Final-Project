@@ -1,24 +1,31 @@
 package View;
 
-import javax.swing.*;
-import java.awt.*;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 
 public class ShowPNG {
-    public void showPng(String fileName) throws IOException {
-            BufferedImage image = ImageIO.read(new File(fileName));
 
-            JFrame frame = new JFrame("Show PNG picture");
-            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    public void showPng(String fileName) {
+        File file = new File(fileName);
+        Image image = new Image(file.toURI().toString());
 
-            JLabel label = new JLabel(new ImageIcon(image));
-            frame.getContentPane().add(label, BorderLayout.CENTER);
+        ImageView imageView = new ImageView(image);
 
-            frame.pack();
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-        }
+        imageView.setPreserveRatio(true);
+
+        StackPane root = new StackPane();
+        root.getChildren().add(imageView);
+
+        Stage stage = new Stage();
+        stage.setTitle("JavaFX Show PNG");
+
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+
+        stage.show();
     }
+}

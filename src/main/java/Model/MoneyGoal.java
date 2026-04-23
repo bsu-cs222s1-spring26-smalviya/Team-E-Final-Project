@@ -1,9 +1,9 @@
 package Model;
 
 public class MoneyGoal {
-    private String goalName;
-    private double targetAmount;
-    private String deadline;
+    private final String goalName;
+    private final double targetAmount;
+    private final String deadline;
 
     public MoneyGoal(String goalName, double targetAmount, String deadline) {
         this.goalName = goalName;

@@ -62,7 +62,6 @@ public class FinanceManager {
                     break;
                 case "3":
                     generateGraph();
-                    showChartPng();
                     break;
                 case "4":
                     handleCurrencyConverter();
@@ -247,11 +246,8 @@ public class FinanceManager {
         } catch (Exception e) {
             ui.displayMessage("Error: " + e.getMessage());
         }
-    }
 
-    public void showChartPng() {
         ShowPNG showPNG = new ShowPNG();
-
         try {
             showPNG.showPng("data/" + currentAccount.getUsername() + "-income_chart.png");
         } catch (Exception e) {

@@ -28,20 +28,22 @@ import java.util.List;
 
 
 public class UserUI extends Application {
-    FinanceManager manager = new FinanceManager();
+    FinanceManager financeManager = new FinanceManager();
 
     BorderPane displayPane = new BorderPane();
     Scene displayScene = new Scene(displayPane);
     LoginScreen loginScreen = new LoginScreen();
     BorderPane homeScreenPane = new BorderPane();
-    AccountScreen accountScreen = new AccountScreen(manager);
+    AccountScreen accountScreen = new AccountScreen(financeManager);
     MenuScreen menuScreen = new MenuScreen();
 
-    CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen(manager);
-    TransactionsScreen transactionsScreen = new TransactionsScreen(manager);
-    MoneyGoalsScreen moneyGoalsScreen = new MoneyGoalsScreen(manager);
+    CurrencyConverterScreen currencyConverterScreen = new CurrencyConverterScreen(financeManager);
+    TransactionsScreen transactionsScreen = new TransactionsScreen(financeManager);
+    MoneyGoalsScreen moneyGoalsScreen = new MoneyGoalsScreen(financeManager);
 
-    public static void main(String[] args) {launch(args);}
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     @Override
     public void start(Stage primaryStage) {
@@ -55,9 +57,9 @@ public class UserUI extends Application {
 
     @Override
     public void stop() {
-        if (manager.getCurrentAccount() != null) {
+        if (financeManager.getCurrentAccount() != null) {
             try {
-                DataStorage.saveAccount(manager.getCurrentAccount());
+                DataStorage.saveAccount(financeManager.getCurrentAccount());
                 System.out.println("Account saved successfully...");
             } catch (IOException exception) {
                 System.out.println("Error attempting to save account...\n" + exception.getMessage());
@@ -78,7 +80,7 @@ public class UserUI extends Application {
     }
 
     private void configureLoginScreen() {
-        loginScreen.setLoginButtonAction(_ -> attemptLogin());
+        loginScreen.setLoginButtonAction(event -> attemptLogin());
     }
 
     private void configureHomeScreen() {
@@ -87,10 +89,10 @@ public class UserUI extends Application {
     }
 
     private void configureMenuScreen() {
-        menuScreen.setCurrencyConverterButtonAction(_ -> setHomeDisplayPane(currencyConverterScreen));
-        menuScreen.setTransactionButtonAction(_ -> setHomeDisplayPane(transactionsScreen));
-        menuScreen.setMoneyGoalButtonAction(_ -> setHomeDisplayPane(moneyGoalsScreen));
-        menuScreen.setChartsButtonAction(_ -> manager.showChartPng());
+        menuScreen.setCurrencyConverterButtonAction(event -> setHomeDisplayPane(currencyConverterScreen));
+        menuScreen.setTransactionButtonAction(event -> setHomeDisplayPane(transactionsScreen));
+        menuScreen.setMoneyGoalButtonAction(event -> setHomeDisplayPane(moneyGoalsScreen));
+        menuScreen.setChartsButtonAction(event -> financeManager.generateGraph());
     }
 
     private void configureAccountScreen() {
@@ -98,37 +100,37 @@ public class UserUI extends Application {
     }
 
     private void configureCurrencyScreen() {
-        currencyConverterScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
+        currencyConverterScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
         currencyConverterScreen.setCurrencyConversionButtonAction(
-                _ -> currencyConverterScreen.convertCurrency()
+                event -> currencyConverterScreen.convertCurrency()
         );
     }
 
     private void configureTransactionsScreen() {
-        transactionsScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
-        transactionsScreen.setAddTransactionButtonAction(_ -> {
+        transactionsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
+        transactionsScreen.setAddTransactionButtonAction(event -> {
             transactionsScreen.addTransaction();
             updateScreens();
         });
     }
 
     private void configureGoalsScreen() {
-        moneyGoalsScreen.setBackButtonAction(_ -> setHomeDisplayPane(menuScreen));
-        moneyGoalsScreen.setAddGoalButtonAction(_ -> {
+        moneyGoalsScreen.setBackButtonAction(event -> setHomeDisplayPane(menuScreen));
+        moneyGoalsScreen.setAddGoalButtonAction(event -> {
             moneyGoalsScreen.addMoneyGoal();
             updateScreens();
         });
     }
 
     private void updateScreens() {
-         accountScreen.updateScreen();
-         transactionsScreen.updateScreen();
-         moneyGoalsScreen.updateScreen();
+        accountScreen.updateScreen();
+        transactionsScreen.updateScreen();
+        moneyGoalsScreen.updateScreen();
     }
 
     private void attemptLogin() {
         String loginInput = loginScreen.getTextInput();
-        manager.initAccount(loginInput);
+        financeManager.initAccount(loginInput);
         setDisplayPane(homeScreenPane);
     }
 
