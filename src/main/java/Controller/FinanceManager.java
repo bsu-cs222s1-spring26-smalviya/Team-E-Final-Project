@@ -224,7 +224,7 @@ public class FinanceManager {
             try {
                 currentAccount = DataStorage.loadAccount(username);
             } catch (IOException e) {
-                System.out.println("Error loading account.");
+                ui.displayMessage("Error loading account.");
             }
         } else {
             currentAccount = new Account(username, 0.0);
