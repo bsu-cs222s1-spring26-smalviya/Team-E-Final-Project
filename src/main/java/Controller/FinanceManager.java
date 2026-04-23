@@ -5,14 +5,20 @@ import Graphing.MoneyGoalVisualizer;
 import Model.Account;
 import Model.MoneyGoal;
 import Model.Transaction;
-import View.ShowPNG;
 import View.User;
 import Model.DataStorage;
 import Converter.CurrencyConverter;
 import Converter.ExchangeRateParser;
 import Converter.ConverterException;
 
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
 import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class FinanceManager {
@@ -227,7 +233,7 @@ public class FinanceManager {
     }
 
     public void generateGraph() {
-        String fileName = "data/" + currentAccount.getUsername() + "_data.json ";
+        String fileName = "data/" + currentAccount.getUsername() + "_data.json";
         try {
             GraphGenerator.generateCharts(fileName);
         } catch (Exception e) {
@@ -247,18 +253,31 @@ public class FinanceManager {
             ui.displayMessage("Error: " + e.getMessage());
         }
 
-        ShowPNG showPNG = new ShowPNG();
         try {
-            showPNG.showPng("data/" + currentAccount.getUsername() + "-income_chart.png");
+            showPng("data/" + currentAccount.getUsername() + "-income_chart.png");
         } catch (Exception e) {
             ui.displayMessage("Error: " + e.getMessage());
         }
 
         try {
-            showPNG.showPng("data/" + currentAccount.getUsername() + "-expense_chart.png");
+            showPng("data/" + currentAccount.getUsername() + "-expense_chart.png");
         } catch (Exception e) {
             ui.displayMessage("Error: " + e.getMessage());
         }
+    }
+
+    private void showPng(String fileName) throws IOException {
+        BufferedImage image = ImageIO.read(new File(fileName));
+
+        JFrame frame = new JFrame("Show PNG picture");
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        JLabel label = new JLabel(new ImageIcon(image));
+        frame.getContentPane().add(label, BorderLayout.CENTER);
+
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setVisible(true);
     }
 
     public static void main(String[] args) {
